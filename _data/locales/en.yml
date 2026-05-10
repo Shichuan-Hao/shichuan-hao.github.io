@@ -1,0 +1,31 @@
+# 英语语言文件
+
+# ----- Site Title -----
+site_title: 字节漫步
+site_tagline: 探索技术的无限可能
+
+# ----- Commons -----
+lastmod: Last Mod
+reading_time: Reading Time
+
+# ----- Tabs -----
+schedule: Schedule
+categories: Categories
+tags: Tags
+archives: Archives
+about: About
+
+# ----- Post -----
+prev: Previous
+next: Next
+older: Older
+newer: Newer
+share_label: Share
+totop: To Top
+
+# ----- Misc -----
+words: 字
+read_more: Read More
+end_placeholder: End of article
+link_copied: Link copied
+code_copied: Code copied
