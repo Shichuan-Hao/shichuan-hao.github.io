@@ -54,7 +54,7 @@ jobs:
         run: |
           bundle exec htmlproofer _site \
             --disable-external \
-            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/,\/assets\/js\/dist\/,app\.min\.js,sw\.min\.js" \
+            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/,\/assets\/.+\.(js|png|jpg|svg|ico|webmanifest)" \
             --allow-hash-href
 
       - name: Upload site artifact
