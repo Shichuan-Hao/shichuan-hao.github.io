@@ -23,7 +23,8 @@ description: >- # 用于 SEO meta 和 atom feed
 
 # 填写你网站的协议和主机名。
 # 例如：'https://username.github.io'，注意结尾不要带 '/'。
-url: "http://www.byteswalk.com"
+# url: "http://www.byteswalk.com"
+url:
 
 github:
   username: Shichuan-Hao # 改为你的 GitHub 用户名
@@ -149,7 +150,8 @@ pwa:
 paginate: 10
 
 # 站点的根路径
-baseurl: "/bateswalk"
+# baseurl: "/bateswalk"
+baseurl: ""
 
 # ------------ 以下选项不建议修改 ------------------
 
