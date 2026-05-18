@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>与婷姐相约</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* 动态背景 */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 107, 107, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 60%);
+      animation: gradientShift 15s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.15) rotate(5deg); opacity: 0.8; }
+    }
+
+    /* 漂浮的心形 */
+    .hearts-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .floating-heart {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0% { 
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { 
+        transform: translateY(-100px) rotate(720deg) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* 主内容 */
+    .main-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    /* 标题 */
+    .title-section {
+      margin-bottom: 50px;
+    }
+
+    .main-title {
+      font-size: 4rem;
+      color: #fff;
+      text-shadow: 0 0 40px rgba(255, 107, 107, 0.8), 0 0 80px rgba(255, 107, 107, 0.4);
+      margin-bottom: 15px;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    .heart-beats {
+      display: inline-block;
+      animation: heartbeat 1.2s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.3); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.2); }
+      60% { transform: scale(1); }
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      color: rgba(255, 255, 255, 0.75);
+      font-style: italic;
+    }
+
+    /* 倒计时容器 */
+    .countdown-container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 40px;
+      padding: 60px 50px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      margin-bottom: 40px;
+    }
+
+    /* 倒计时数字 */
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .time-block {
+      text-align: center;
+      min-width: 140px;
+    }
+
+    .time-number {
+      font-size: 6rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .time-label {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-top: 15px;
+    }
+
+    .separator {
+      font-size: 5rem;
+      color: rgba(255, 255, 255, 0.25);
+      font-weight: 200;
+      animation: blink 1s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.6; }
+    }
+
+    /* 日期标签 */
+    .date-section {
+      margin-top: 40px;
+    }
+
+    .date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+      color: white;
+      padding: 18px 45px;
+      border-radius: 60px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+      letter-spacing: 1px;
+    }
+
+    .date-badge i {
+      font-size: 1.2rem;
+    }
+
+    /* 消息 */
+    .message-section {
+      margin-top: 50px;
+    }
+
+    .message {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      padding: 20px 45px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .message .main-text {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .message .sub-text {
+      display: inline-block;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-style: italic;
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .main-title {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .countdown-container {
+        padding: 35px 20px;
+        border-radius: 25px;
+      }
+
+      .countdown-grid {
+        gap: 10px;
+      }
+
+      .time-block {
+        min-width: 70px;
+      }
+
+      .time-number {
+        font-size: 3rem;
+      }
+
+      .time-label {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+      }
+
+      .separator {
+        display: none;
+      }
+
+      .date-badge {
+        font-size: 1rem;
+        padding: 12px 25px;
+      }
+
+      .message {
+        font-size: 1rem;
+        padding: 15px 25px;
+      }
+
+      .quote {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .time-number {
+        font-size: 2.5rem;
+      }
+      
+      .time-block {
+        min-width: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 动态背景 -->
+  <div class="bg-gradient"></div>
+
+  <!-- 漂浮心形 -->
+  <div class="hearts-container" id="hearts"></div>
+
+  <!-- 主内容 -->
+  <div class="main-content">
+    <!-- 标题 -->
+    <div class="title-section">
+      <h1 class="main-title">
+        <span class="heart-beats">💕</span>
+        与婷姐相约
+        <span class="heart-beats">💕</span>
+      </h1>
+      <p class="subtitle">每一次等待，都是甜蜜的期盼</p>
+    </div>
+
+    <!-- 倒计时 -->
+    <div class="countdown-container">
+      <div class="countdown-grid">
+        <div class="time-block">
+          <div class="time-number" id="days">000</div>
+          <div class="time-label">天</div>
+        </div>
+        <span class="separator">:</span>
+        <div class="time-block">
+          <div class="time-number" id="hours">00</div>
+          <div class="time-label">时</div>
+        </div>
+        <span class="separator">:</span>
+        <div class="time-block">
+          <div class="time-number" id="minutes">00</div>
+          <div class="time-label">分</div>
+        </div>
+        <span class="separator">:</span>
+        <div class="time-block">
+          <div class="time-number" id="seconds">00</div>
+          <div class="time-label">秒</div>
+        </div>
+      </div>
+
+      <!-- 日期 -->
+      <div class="date-section">
+        <div class="date-badge">
+          <i class="fas fa-calendar-heart"></i>
+          <span>相约日期：<span id="target-date">2026年10月1日</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 消息 -->
+    <div class="message-section">
+      <p class="message">
+        <span class="main-text" id="message">💝 期待与你相见的那一天</span>
+        <span class="sub-text">" 因为值得等待，所以倍加珍惜 "</span>
+      </p>
+    </div>
+  </div>
+
+
+
+  <script>
+    // 创建漂浮的心形
+    function createFloatingHearts() {
+      const container = document.getElementById('hearts');
+      const hearts = ['💕', '💖', '💗', '💓', '💝', '❤️', '🩷', '🤍', '💜'];
+      
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('span');
+        heart.className = 'floating-heart';
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = (8 + Math.random() * 6) + 's';
+        heart.style.animationDelay = Math.random() * 10 + 's';
+        heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+        container.appendChild(heart);
+      }
+    }
+
+    // 获取目标日期（10月1日）
+    function getTargetDate() {
+      const now = new Date();
+      let year = now.getFullYear();
+      const target = new Date(year, 9, 1); // 10月
+      if (now > target) {
+        return new Date(year + 1, 9, 1);
+      }
+      return target;
+    }
+
+    // 更新倒计时
+    function updateCountdown() {
+      const target = getTargetDate();
+      const now = new Date();
+      const diff = target - now;
+
+      document.getElementById('target-date').textContent = 
+        target.getFullYear() + '年' + (target.getMonth() + 1) + '月' + target.getDate() + '日';
+
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '000';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        document.getElementById('message').textContent = '🎉 终于等到你！相聚时刻！';
+        return;
+      }
+
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('days').textContent = String(days).padStart(3, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+      // 动态消息
+      const msg = days === 0 ? '🌟 今天见面！超激动！' :
+                  days === 1 ? '🎈 明天就见面啦！' :
+                  days <= 7 ? '💕 一周内见！期待！' :
+                  days <= 30 ? '🌙 一个月内见！开始倒计时！' :
+                  '💖 每一秒都在靠近你';
+      document.getElementById('message').textContent = msg;
+    }
+
+    // 初始化
+    createFloatingHearts();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
