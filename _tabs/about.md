@@ -95,12 +95,15 @@ Vue.js  •  React  •  HTML/CSS/JavaScript
 - 📚 技术学习与成长
 - ☕ 或者只是单纯想聊聊天
 
-<div style="display: flex; gap: 15px; margin-top: 15px;">
+<div style="display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
   <a href="https://github.com/shichuanhao" style="text-decoration: none;">
     <button style="background: #24292e; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px;">📦 GitHub</button>
   </a>
   <a href="mailto:haoshichuan@foxmail.com" style="text-decoration: none;">
     <button style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px;">📧 发送邮件</button>
+  </a>
+  <a href="/resume/" style="text-decoration: none;">
+    <button style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border: none; padding: 10px 24px; border-radius: 6px; cursor: pointer; font-size: 14px; box-shadow: 0 2px 8px rgba(37,99,235,0.3);">📄 查看完整简历</button>
   </a>
 </div>
 
