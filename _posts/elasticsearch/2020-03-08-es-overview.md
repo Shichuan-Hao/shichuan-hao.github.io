@@ -4,7 +4,7 @@ description: ElasticSearch 概述。
 author: 郝世川
 date: 2020-03-08 17:27:00 +0800
 categories: [分布式, ElasticSearch]
-tags: [排版]
+tags: [搜索, 分布式, 数据库, ElasticSearch]
 # pin: true
 # math: true
 # mermaid: true
