@@ -31,16 +31,16 @@ DeepSeek 开源项目地址：https://github.com/deepseek-ai/DeepSeek-V3
 - `kernel.py`: 主要涉及量化和矩阵乘法操作，使用了 <hl=red>Triton</hl> 库进行加速，特别是针对 `<hl=red>FP8</hl> 精度（浮点8位）进行了优化。<hl=red>Triton</hl> 是一个专为 GPU 上高效自定义操作而设计的编程框架，支持 Python 和 PyTorch，可以通过简洁的代码来实现高效的 GPU 核心。
 - `model.py`: 定义了 DeepSeek v3 模型架构。
 
-目前模型权重已经在 Hugging Face 上开源了，具体情况见：https://github.com/deepseek-ai/DeepSeek-V3/blob/main/README.md
+目前模型权重已经在 Hugging Face 上开源了，具体情况见：[](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/README.md)
 > DeepSeek-V3 模型在 Hugging Face 上的总大小为 685B，包括 671B 的主模型权重和 14B 的多标记预测（MTP）模块权重。
 > 为确保最佳性能和灵活性，我们与开源社区和硬件供应商合作，提供多种在本地运行模型的方式。有关逐步指导，请参阅第6节：如何在本地运行（How_to_Run_Locally）
 > 对于希望深入了解的开发者，我们建议查阅 README_WEIGHTS.md 文件，了解主模型权重和多标记预测（MTP）模块的详细信息。请注意，MTP 支持目前仍在社区内积极开发中，我们欢迎您的贡献和反馈。
 
-并且还非常贴心的介绍了权重情况：https://github.com/deepseek-ai/DeepSeek-V3/blob/main/README_WEIGHTS.md
+并且还非常贴心的介绍了权重情况：[https://github.com/deepseek-ai/DeepSeek-V3/blob/main/README_WEIGHTS.md]()
 
-DeepSeek V3 模型权重可在 Hugging Face 上主页上下载：https://huggingface.co/deepseek-ai/DeepSeek-V3，权重总共约 650G 大小。
+DeepSeek V3 模型权重可在 [Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V3) 上主页上下载：，权重总共约 650G 大小。
 
-此外，也可以在魔搭社区上下载：https://www.modelscope.cn/models/deepseek-ai/DeepSeek-V3。
+此外，也可以在[魔搭社区](https://www.modelscope.cn/models/deepseek-ai/DeepSeek-V3)上下载：。
 
 既然是权重全开源，那肯定是可以在本地运行的，以下官方介绍的本地运行方法：
 ![How to Run Locally]()
@@ -98,7 +98,7 @@ DeepSeek V3 模型权重可在 Hugging Face 上主页上下载：https://hugging
 
 2. 登录 GitHub 主页拉取项目
 :
-    访问 DeepSeek V3 主页：https://github.com/deepseek-ai/DeepSeek-V3
+    访问[DeepSeek V3 主页](https://github.com/deepseek-ai/DeepSeek-V3)：
     ```bash
     git clone https://github.com/deepseek-ai/DeepSeek-V3.git
     ```
@@ -107,7 +107,7 @@ DeepSeek V3 模型权重可在 Hugging Face 上主页上下载：https://hugging
 :
     可以在 HuggingFace 或者 魔搭社区上下载模型权重，考虑到国内网络情况，推荐使用魔搭社区进行下载。
 
-    DeepSeek V3 魔搭社区官网地址：https://www.modelscope.cn/models/deepseek-ai/DeepSeek-V3
+    [DeepSeek V3 魔搭社区官网](https://www.modelscope.cn/models/deepseek-ai/DeepSeek-V3)地址：
 
     > `tip` 
     下载前需要提前留出 600G 左右存储空间，用于保存模型权重
@@ -272,7 +272,7 @@ SGLang 目前支持 MLA 优化、DP Attention、FP8(W8A8)、FP8 KV 缓存和 Tor
       ```
 
       接下来即可在 23333 端口调用 DeepSeek v3 模型了：
-      
+
       ```python
       from openai import OpenAI
 
