@@ -31,19 +31,19 @@ DeepSeek 开源项目地址：https://github.com/deepseek-ai/DeepSeek-V3
 - `kernel.py`: 主要涉及量化和矩阵乘法操作，使用了 <hl=red>Triton</hl> 库进行加速，特别是针对 `<hl=red>FP8</hl> 精度（浮点8位）进行了优化。<hl=red>Triton</hl> 是一个专为 GPU 上高效自定义操作而设计的编程框架，支持 Python 和 PyTorch，可以通过简洁的代码来实现高效的 GPU 核心。
 - `model.py`: 定义了 DeepSeek v3 模型架构。
 
-目前模型权重已经在 Hugging Face 上开源了，具体情况见：[](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/README.md)
+目前模型权重已经在 Hugging Face 上开源了，具体情况见：[README](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/README.md)
 > DeepSeek-V3 模型在 Hugging Face 上的总大小为 685B，包括 671B 的主模型权重和 14B 的多标记预测（MTP）模块权重。
 > 为确保最佳性能和灵活性，我们与开源社区和硬件供应商合作，提供多种在本地运行模型的方式。有关逐步指导，请参阅第6节：如何在本地运行（How_to_Run_Locally）
 > 对于希望深入了解的开发者，我们建议查阅 README_WEIGHTS.md 文件，了解主模型权重和多标记预测（MTP）模块的详细信息。请注意，MTP 支持目前仍在社区内积极开发中，我们欢迎您的贡献和反馈。
 
-并且还非常贴心的介绍了权重情况：[https://github.com/deepseek-ai/DeepSeek-V3/blob/main/README_WEIGHTS.md]()
+并且还非常贴心的介绍了权重情况：[README_WEIGHTS.md](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/README_WEIGHTS.md)
 
 DeepSeek V3 模型权重可在 [Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V3) 上主页上下载：，权重总共约 650G 大小。
 
 此外，也可以在[魔搭社区](https://www.modelscope.cn/models/deepseek-ai/DeepSeek-V3)上下载：。
 
 既然是权重全开源，那肯定是可以在本地运行的，以下官方介绍的本地运行方法：
-![How to Run Locally]()
+![How to Run Locally](/assets/img/byteswalk.png){: width="800" height="10"}
 > 6. 如何本地运行
 > DeepSeek-V3可以使用以下硬件和开源社区软件在本地部署：
 > - DeepSeek-Infer Demo：我们提供了一个简单且轻量的演示，支持FP8和FP16推理。
@@ -56,7 +56,7 @@ DeepSeek V3 模型权重可在 [Hugging Face](https://huggingface.co/deepseek-ai
 > 由于 DeepSeek 的框架原生采用 FP8 训练，因此仅提供 FP8 权重，预估仅仅 700GB+ 显存便可轻松运行。搭
 
 由于 DeepSeek 的框架原生采用 FP8 训练，因此仅提供 FP8 权重，预估仅仅 700GB+ 显存便可轻松运行。当然也可以转换为 BF16，在半精度下，需要1400GB+，而量化到int4时需要450GB+。以下是半精度下显存占用情况：（占用 490G 显存，需要 7 张 80G A100，租赁成本约 1000 元 1 天）。
-![半精度下显存占用情况]()
+![半精度下显存占用情况](/assets/img/byteswalk.png){: width="800" height="10"}
 
 ## DeepSeek V3 本地部署和调用流程
 
@@ -88,13 +88,13 @@ DeepSeek V3 模型权重可在 [Hugging Face](https://huggingface.co/deepseek-ai
    source ~/.bashrc
    conda activate dv3
    ```
-   ![]()
+   ![conda创建虚拟环境](/assets/img/byteswalk.png){: width="800" height="10"}
    ```bash
    conda install jupyterlab
    conda install ipykernel
    python -m ipykernel install --user --name dv3 --display-name "Python（dv3）"
    ```
-   ![]()
+   ![安装Jupyter内核](/assets/img/byteswalk.png){: width="800" height="10"}
 
 2. 登录 GitHub 主页拉取项目
 :
@@ -117,13 +117,13 @@ DeepSeek V3 模型权重可在 [Hugging Face](https://huggingface.co/deepseek-ai
     ```bash
     pip install modelscope
     ```
-    ![pip install modelscope]()
+    ![pip install modelscope](/assets/img/byteswalk.png){: width="800" height="10"}
     
     ```bash
     mkdir ./deepseek
     modelscope download --model OPEA/DeepSeek-V3-int4-sym-gptq-inc --local_dir ./deepseek
     ```
-    ![modelscope pull deepseek-ai/DeepSeek-V3]()
+    ![modelscope下载DeepSeek-V3](/assets/img/byteswalk.png){: width="800" height="10"}
 
     > `tip` 
     这里在下载的时候就是下载 Int4 类型的权重
@@ -146,8 +146,7 @@ DeepSeek V3 模型权重可在 [Hugging Face](https://huggingface.co/deepseek-ai
 
     model.generation_config.pad_token_id = model.generation_config.eos_token_id
     ```
-
-    ![]()
+    ![加载模型](/assets/img/byteswalk.png){: width="800" height="10"}
     
     ```python
     messages = [
@@ -165,7 +164,7 @@ DeepSeek V3 模型权重可在 [Hugging Face](https://huggingface.co/deepseek-ai
 
     print(result)
     ```
-    ![]()
+    ![推理结果](/assets/img/byteswalk.png){: width="800" height="10"}
 
 ## DeepSeek V3 + SGLang 部署方案
 
