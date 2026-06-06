@@ -3,7 +3,7 @@ title: DeepSeek v3 本地部署流程
 description: 
 author: 郝世川
 date: 2024-12-27 10:27:00 +0800
-categories: [Ai]
+categories: [AI Agent]
 tags: [DeepSeek]
 # pin: true
 # math: true
