@@ -1,0 +1,211 @@
+/* ============================================================
+   自定义 Prompt 框：.prompt-think / ```Response
+   遵循 Chirpy blockquote[class^=prompt-] 的约定
+   ============================================================ */
+
+/* ---------- CSS 变量（浅色） ---------- */
+:root {
+  --prompt-think-bg: #f3f0ff;
+  --prompt-think-icon-color: #7c3aed;
+}
+
+/* ---------- CSS 变量（深色） ---------- */
+html[data-mode="dark"] {
+  --prompt-think-bg: rgba(76, 29, 149, 0.25);
+  --prompt-think-icon-color: #a78bfa;
+}
+
+/* ---------- think blockquote ---------- */
+blockquote.prompt-think {
+  border-left: 0;
+  position: relative;
+  color: var(--prompt-text-color);
+  border-radius: 10px;
+  padding: 1rem 1rem 1rem 3rem;
+  background-color: var(--prompt-think-bg);
+}
+
+blockquote.prompt-think::before {
+  content: "\f5eb";           /* Font Awesome 脑图/思考 图标 */
+  color: var(--prompt-think-icon-color);
+  font: var(--fa-font-solid);
+  text-align: center;
+  width: 3rem;
+  position: absolute;
+  left: 0.25rem;
+  margin-top: 0.4rem;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- ```Response 代码块（米白色，默认折叠） ---------- */
+
+/* 整体外壳 */
+div.language-response {
+  border-left: 3px solid #c9b99a;
+  background-color: #faf8f5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* details 折叠容器 */
+div.language-response details.response-collapse {
+  display: block;
+}
+
+/* 标题栏（同时作为折叠开关） */
+div.language-response .code-header {
+  display: flex !important;
+  align-items: center;
+  background-color: #f0ece5 !important;
+  border-bottom: 1px solid #e8e2d9;
+  justify-content: flex-start !important; /* 从左到右排列 */
+  padding-left: 0;
+  padding-right: 0;
+  padding-inline-start: 0;
+  cursor: pointer;
+  list-style: none;
+  position: relative;           /* 为标题绝对定位提供参考 */
+}
+
+/* 隐藏 WebKit 默认三角 */
+div.language-response .code-header::-webkit-details-marker {
+  display: none;
+}
+
+/* 隐藏 Chirpy 默认的三个圆点（Response 块） */
+div.language-response details.response-collapse summary.code-header::before {
+  display: none !important;
+}
+
+/* 折叠箭头（Font Awesome 图标） */
+div.language-response details.response-collapse summary.code-header .fold-toggle {
+  font-size: 0.85rem;
+  margin-right: 0.9rem;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+
+div.language-response details.response-collapse[open] summary.code-header .fold-toggle {
+  transform: rotate(90deg);
+}
+
+/* 三个圆点（替代 Chirpy 默认） */
+div.language-response details.response-collapse summary.code-header .mac-dots {
+  display: inline-block;
+  margin-right: 0.75rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #fc625d;
+  box-shadow: 1rem 0 #fdbc40, 2rem 0 #35cd4b;
+  flex-shrink: 0;
+}
+
+/* 标题文字绝对居中 */
+div.language-response .code-header span[data-label-text] {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+/* 隐藏复制按钮 */
+div.language-response .code-header button {
+  display: none;
+}
+
+/* 内容区：自动换行 + 左侧留白 */
+div.language-response .highlight {
+  background-color: #faf8f5;
+}
+
+div.language-response .highlight pre,
+div.language-response .highlight code {
+  white-space: pre-wrap !important;
+  word-break: break-word;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background-color: transparent !important;
+}
+
+/* ---------- 深色模式：Response ---------- */
+html[data-mode="dark"] div.language-response {
+  border-left-color: #8b7d6b;
+  background-color: #2a2724;
+}
+
+html[data-mode="dark"] div.language-response .code-header {
+  background-color: #3a3530 !important;
+  border-bottom-color: #4a4540;
+}
+
+html[data-mode="dark"] div.language-response .highlight {
+  background-color: #2a2724;
+}
+
+/* ============================================================
+   通用代码块折叠（所有 highlighter-rouge 内的 <details>）
+   ============================================================ */
+
+/* <summary> 标题栏：显式覆盖 summary 默认的 list-item 样式 */
+.highlighter-rouge.code-collapse details summary.code-header {
+  display: flex !important;      /* 覆盖 list-item，保持 Chirpy flex 布局 */
+  align-items: center;           /* 垂直居中 */
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  padding-inline-start: 0;       /* 移除 WebKit 给 summary 预留的 40px 折叠标记空间 */
+}
+
+/* 隐藏 Chirpy 默认的三个圆点（折叠代码块上） */
+.highlighter-rouge.code-collapse details summary.code-header::before {
+  display: none !important;
+}
+
+/* 隐藏默认三角 */
+.highlighter-rouge.code-collapse details summary.code-header::-webkit-details-marker {
+  display: none;
+}
+
+/* 折叠箭头（Font Awesome 图标） */
+.highlighter-rouge.code-collapse details summary.code-header .fold-toggle {
+  font-size: 0.85rem;
+  margin-right: 0.9rem;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+
+.highlighter-rouge.code-collapse details[open] summary.code-header .fold-toggle {
+  transform: rotate(90deg);
+}
+
+/* 三个圆点（替代 Chirpy 默认） */
+.highlighter-rouge.code-collapse details summary.code-header .mac-dots {
+  display: inline-block;
+  margin-right: 0.75rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #fc625d;
+  box-shadow: 1rem 0 #fdbc40, 2rem 0 #35cd4b;
+  flex-shrink: 0;
+}
+
+/* 标题文字占据剩余空间并居中 */
+.highlighter-rouge.code-collapse details summary.code-header span[data-label-text] {
+  flex: 1;
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* ---------- 移动端适配 ---------- */
+@media all and (max-width: 576px) {
+  main .content > blockquote.prompt-think {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 0;
+    max-width: none;
+  }
+}

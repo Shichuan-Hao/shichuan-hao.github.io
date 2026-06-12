@@ -83,6 +83,10 @@ Quisque egestas convallis ipsum, ut sollicitudin risus tincidunt a. Maecenas int
 
 > `danger` 类型提示框示例。
 {: .prompt-danger }
+
+```Response
+这是一个用 ```Response 代码块展示的响应示例。
+```
 <!-- markdownlint-restore -->
 
 ## 表格

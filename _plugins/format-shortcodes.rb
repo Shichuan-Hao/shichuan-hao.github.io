@@ -17,6 +17,7 @@
 #    <code>行内代码</code>
 #    <tip>提示框</tip>
 #    <warn>警告框</warn>
+#    <info>信息框</info>
 #    <center>居中文字</center>
 #    <right>右对齐文字</right>
 #    <size=20px>指定字号</size>
@@ -100,6 +101,16 @@ def convert_shortcodes(input)
     <<~HTML
       <blockquote style="background:#fff3e0;border-left:4px solid #ff9800;padding:10px 16px;margin:12px 0;border-radius:4px;">
       ⚠️ <b>警告：</b>#{inner}
+      </blockquote>
+    HTML
+  end
+
+  # <info>...</info> 信息框
+  text = text.gsub(%r{<info>(.*?)</info>}m) do
+    inner = ::Regexp.last_match(1)
+    <<~HTML
+      <blockquote style="background:#e3f2fd;border-left:4px solid #2196f3;padding:10px 16px;margin:12px 0;border-radius:4px;">
+      ℹ️ <b>信息：</b>#{inner}
       </blockquote>
     HTML
   end
