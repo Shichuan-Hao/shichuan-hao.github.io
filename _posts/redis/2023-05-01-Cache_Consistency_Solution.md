@@ -1,7 +1,7 @@
 ---
 title: 高并发缓存一致性方案梳理
 description: 全面梳理缓存分类、缓存一致性方案、缓存更新设计模式，涵盖 Cache Aside、Read/Write Through、Write Behind Caching 等核心策略。
-author: 郝世川
+author: hsc
 date: 2023-05-01 17:27:00 +0800
 categories: [分布式, Redis]
 tags: [缓存, 分布式, 数据库, Redis]
