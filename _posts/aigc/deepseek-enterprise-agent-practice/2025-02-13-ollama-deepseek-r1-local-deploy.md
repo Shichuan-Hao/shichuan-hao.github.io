@@ -1,8 +1,8 @@
 ---
-title: Part1. Ollama 本地部署 DeepSeek R1 模型
+title: Ollama 本地部署 DeepSeek R1 模型
 description: Ollama 本地部署 DeepSeek R1 模型
-author: 郝世川
-date: 2024-12-27 10:27:00 +0800
+author: hsc
+date: 2025-02-13 12:27:00 +0800
 categories: [AI Agent]
 tags: [DeepSeek, Ollama, DeepSeek R1]
 # pin: true

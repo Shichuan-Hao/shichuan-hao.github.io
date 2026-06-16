@@ -1,0 +1,7 @@
+# _data/authors.yml
+# Chirpy 主题作者配置文件
+# 文章 front matter 中 author: hsc 对应此处的 key
+
+hsc:
+  name: 郝世川
+  url: https://github.com/Shichuan-Hao

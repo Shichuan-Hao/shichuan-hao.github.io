@@ -1,7 +1,7 @@
 ---
 title: 文本与排版
 description: 文本、排版、数学公式、图表、流程图、图片、视频等示例。
-author: cotes
+author: hsc
 date: 2026-05-08 17:27:00 +0800
 categories: [博客, 示例]
 tags: [排版]

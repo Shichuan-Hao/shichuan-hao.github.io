@@ -1,8 +1,8 @@
 ---
-title: Part2. Ollama REST API - api/generate 接口整理
+title: Ollama REST API
 description: Ollama 本地部署 DeepSeek R1 模型
-author: 郝世川
-date: 2024-12-27 10:27:00 +0800
+author: hsc
+date: 2025-03-27 10:27:00 +0800
 categories: [AI Agent]
 tags: [DeepSeek, Ollama, DeepSeek R1]
 ---
