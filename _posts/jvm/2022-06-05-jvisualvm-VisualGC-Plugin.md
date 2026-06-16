@@ -236,5 +236,5 @@ Visual GC 是三部分信息的有机结合：
 ## 参考链接
 
 - [VisualVM 官网](https://visualvm.github.io/index.html)
-- [Visual GC 官方文档](http://www.oracle.com/technetwork/java/visualgc-136680.html)
-- [JVM Options 参考](http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
+- [Visual GC 官方文档](https://www.oracle.com/technetwork/java/visualgc-136680.html)
+- [JVM Options 参考](https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
