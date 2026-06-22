@@ -5,13 +5,6 @@ author: hsc
 date: 2025-02-13 12:27:00 +0800
 categories: [AI Agent]
 tags: [DeepSeek, Ollama, DeepSeek R1]
-# pin: true
-# math: true
-# mermaid: true
-# image:
-#   path: /assets/img/posts/devices-mockup.png
-#   lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#   alt: Chirpy 主题在多种设备上的响应式渲染效果。
 ---
 
 ## Ollama 项目介绍
@@ -78,6 +71,10 @@ $ sudo ollama -v
 
 ## Ollama 下载 DeepSeek R1 及启动
 
+> 需要说明的一点是：`Ollama`项目虽然提供了本地化大模型的能力，但这并不意味着所有大模型都可以通过它下载和使用，其支持的大模型的详细列表可在`Ollama`的官方模型库页面查看：[https://ollama.com/library](https://ollama.com/library)。
+{: .prompt-tip }
+
+![Ollama 支持的大模型   ](https://muyu20241105.oss-cn-beijing.aliyuncs.com/images/202502121017505.png)
 ## Ollama 启动和使用方法
 
 ## Ollama 多 GPU 部署及 server 启动
