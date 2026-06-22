@@ -20,6 +20,6 @@
   {%- assign parts = item | split: "," -%}
   {%- assign src = parts[0] | strip -%}
   {%- assign width = parts[1] | strip -%}
-  <img src="{{ src }}"{% if width != "" %} style="width: {{ width }};"{% endif %} />
+  <img src="{{ src }}" alt="并排图片 {{ forloop.index }}"{% if width != "" %} style="width: {{ width }};"{% endif %} />
 {%- endfor -%}
 </div>
