@@ -11,7 +11,7 @@ tags: [DeepSeek, Ollama, DeepSeek R1]
 
 本文整理总结了如何使用 DeepSeek V3 和 R1 模型进行在线 API 调用满血版 DeepSeek V3 & R1 模型。
 
-一种简单的理解方法是: [](./2024-08-17-ollama-rest-api.md) 是通过 Ollama 在本地部署了 DeepSeek R1 模型，最终的目的是能够提供类似 `http:localhost:11434/v1/chat/completions` 的接口，然后我们就可以像调用 `OpenAI` 的接口一样调用 `DeepSeek` 的接口了。这个过程需要我们本地的 `GPU` 资源，然后通过 `ollama` 来启动和管理模型。`DeepSeek` 的在线 API 接口，则不需要我们自己用本地的 `GPU` 资源去部署，而是由服务商部署好模型，然后我们通过注册账号，获取 `API Key`，然后就可以像调用 `OpenAI` 的接口一样调用 `DeepSeek` 的接口。
+一种简单的理解方法是: [ollama-rest-api](../ollama-rest-api/) 是通过 Ollama 在本地部署了 DeepSeek R1 模型，最终的目的是能够提供类似 `http:localhost:11434/v1/chat/completions` 的接口，然后我们就可以像调用 `OpenAI` 的接口一样调用 `DeepSeek` 的接口了。这个过程需要我们本地的 `GPU` 资源，然后通过 `ollama` 来启动和管理模型。`DeepSeek` 的在线 API 接口，则不需要我们自己用本地的 `GPU` 资源去部署，而是由服务商部署好模型，然后我们通过注册账号，获取 `API Key`，然后就可以像调用 `OpenAI` 的接口一样调用 `DeepSeek` 的接口。
 
 ## 注册 deepseek 账号
 

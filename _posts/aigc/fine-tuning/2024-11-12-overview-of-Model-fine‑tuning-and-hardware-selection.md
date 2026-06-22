@@ -103,7 +103,7 @@ RAG：主要整合的是对知识库内容进行整合、汇总后输出。
 
 #### 4.6 人类反馈的强化学习（Reinforcement Learning from Human Feedback，RLHF）
 
-![人类反馈的强化学习（Reinforcement Learning from Human Feedback，RLHF）](typora-photo1220.oss-cn-beijing.aliyuncs.com/DataAnalysis/muyan/image-20241110181708019.png)
+![人类反馈的强化学习（Reinforcement Learning from Human Feedback，RLHF）](https://typora-photo1220.oss-cn-beijing.aliyuncs.com/DataAnalysis/muyan/image-20241110181708019.png)
 
 ![](https://typora-photo1220.oss-cn-beijing.aliyuncs.com/DataAnalysis/muyan/image-20241112155300423.png)
 

@@ -1,0 +1,25 @@
+{%- comment -%}
+  并排图片（需精确控制宽度时使用）
+  推荐优先使用纯 Markdown 方式：
+    ![caption](url1) ![caption](url2)
+    {: .img-row}
+  本 include 用法：
+    {% include img-row.html urls="img1.png | img2.png" %}
+    {% include img-row.html urls="img1.png,40% | img2.png,60%" %}
+    {% include img-row.html urls="img1.png,300px | img2.png" %}
+  参数：
+    urls  - 图片列表，用 | 分隔，可选 ,宽度
+    gap   - 间距，默认 10px
+{%- endcomment -%}
+
+{%- assign gap = include.gap | default: "10px" -%}
+{%- assign items = include.urls | split: "|" -%}
+
+<div class="img-row" style="gap: {{ gap }};">
+{%- for item in items -%}
+  {%- assign parts = item | split: "," -%}
+  {%- assign src = parts[0] | strip -%}
+  {%- assign width = parts[1] | strip -%}
+  <img src="{{ src }}"{% if width != "" %} style="width: {{ width }};"{% endif %} />
+{%- endfor -%}
+</div>

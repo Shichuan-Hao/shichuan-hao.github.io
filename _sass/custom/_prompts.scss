@@ -200,6 +200,75 @@ html[data-mode="dark"] div.language-response .highlight {
   margin-right: 0;
 }
 
+/* ============================================================
+   并排图片容器
+   方案一（推荐）：纯 Markdown，图片写在同一行，后跟 {: .img-row}
+     ![caption](url1) ![caption](url2)
+     {: .img-row}
+   方案二：Jekyll include，灵活控制宽度
+     {% include img-row.html urls="url1,50% | url2,50%" %}
+   ============================================================ */
+
+/* 方案一：Markdown 段落级别的并排容器 */
+p.img-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+p.img-row img {
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 1;
+}
+
+/* 未指定宽度时自动等分 */
+p.img-row img:not([width]):not([style*="width"]) {
+  flex: 1 1 0;
+}
+
+/* 方案二：include 生成的 div 容器 */
+div.img-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+div.img-row img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+/* 未指定宽度时，等分剩余空间 */
+div.img-row img:not([style*="width"]) {
+  flex: 1 1 0;
+}
+
+/* 移动端：图片堆叠 */
+@media all and (max-width: 576px) {
+  p.img-row,
+  div.img-row {
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  p.img-row img,
+  div.img-row img {
+    max-width: 100% !important;
+    flex: none !important;
+  }
+}
+
 /* ---------- 移动端适配 ---------- */
 @media all and (max-width: 576px) {
   main .content > blockquote.prompt-think {

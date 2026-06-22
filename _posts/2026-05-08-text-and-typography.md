@@ -195,6 +195,24 @@ Praesent maximus aliquam sapien. Sed vel neque in dolor pulvinar auctor. Maecena
 ![仅浅色模式](/assets/img/posts/shadow.png){: .light .w-75 .shadow .rounded-10 w='1212' h='668' }
 ![仅深色模式](/assets/img/posts/shadow-1.png){: .dark .w-75 .shadow .rounded-10 w='1212' h='668' }
 
+### 图片并排
+
+**推荐：纯 Markdown 方式** — 图片写在同一行，后跟 `{: .img-row}`：
+
+![左对齐](/assets/img/posts/left_align.png) ![左浮动](/assets/img/posts/float-to-left-mockup.png)
+{: .img-row}
+
+> 图片自动等分宽度、自动缩放，移动端堆叠。无需写 HTML 或 include。
+
+**精确控制宽度**：用 `{% include img-row.html %}`，`|` 分隔图片，`,宽度` 控制比例：
+
+{% include img-row.html urls="/assets/img/posts/left_align.png,40% | /assets/img/posts/float-to-left-mockup.png,60%" %}
+
+<!-- 3 张自动等分 -->
+{% include img-row.html urls="/assets/img/posts/left_align.png | /assets/img/posts/float-to-left-mockup.png | /assets/img/posts/left_align.png" %}
+
+> 不指定宽度时自动等分。include 适合需要精确比例的场景。
+
 ## 视频
 
 {% include embed/youtube.html id='Balreaj8Yqs' %}
