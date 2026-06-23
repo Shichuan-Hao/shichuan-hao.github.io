@@ -15,7 +15,7 @@ tags: [DeepSeek, Ollama, DeepSeek R1]
 
 ## 注册 deepseek 账号
 
-如果想访问`DeepSeek`的在线`API`接口，首先我们需要注册一个`deepseek`的账号，然后去获取到一个有效的`API Key`。官方的`DeepSeek` 的`API`服务地址是： [https://platform.deepseek.com/usage](ttps://platform.deepseek.com/usage)。
+如果想访问`DeepSeek`的在线`API`接口，首先我们需要注册一个`deepseek`的账号，然后去获取到一个有效的`API Key`。官方的`DeepSeek` 的`API`服务地址是： [https://platform.deepseek.com/usage](https://platform.deepseek.com/usage)。
 
 ![官方的`DeepSeek` 的`API`服务地址](https://muyu20241105.oss-cn-beijing.aliyuncs.com/images/202502141003689.png)
 

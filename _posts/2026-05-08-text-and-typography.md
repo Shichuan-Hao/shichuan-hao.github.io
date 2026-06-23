@@ -91,11 +91,94 @@ Quisque egestas convallis ipsum, ut sollicitudin risus tincidunt a. Maecenas int
 
 ## 表格
 
+### 默认表格
+
 | 公司                      | 联系人           | 国家 |
 | :------------------------ | :--------------- | ---: |
 | Alfreds Futterkiste       | Maria Anders     | 德国 |
 | Island Trading            | Helen Bennett    |   英国 |
 | Magazzini Alimentari Riuniti | Giovanni Rovelli | 意大利 |
+
+### 表格主题
+
+在表格最后一行下面紧跟 `{: .class1 .class2 }` 应用主题样式：
+
+**斑马纹 + 表头加粗居中：**
+
+| 测试类型 | 并发数 | 成功率 | 吞吐量 |
+|---------|-------|-------|-------|
+| 两张卡   | 2     | 100%  | 115   |
+| 四张卡   | 3     | 100%  | 169   |
+| 八张卡   | 5     | 100%  | 208   |
+{: .table-striped .table-header-bold .table-h-center }
+
+**紧凑表格（无斑马纹）：**
+
+| 参数       | 默认值  | 说明         |
+|-----------|--------|-------------|
+| timeout   | 30     | 超时秒数     |
+| retries   | 3      | 重试次数     |
+| batch     | 64     | 批量大小     |
+{: .table-striped .table-sm }
+
+### 表头对齐
+
+`.table-h-left`、`.table-h-center`、`.table-h-right` 控制表头对齐，可与 `.table-header-bold` 组合：
+
+| 公司     | 联系人       | 国家 |
+|:---------|:------------|-----:|
+| Alfreds  | Maria       | 德国 |
+| Island   | Helen       | 英国 |
+{: .table-striped .table-header-bold .table-h-left }
+
+| 公司     | 联系人       | 国家 |
+|:---------|:------------|-----:|
+| Alfreds  | Maria       | 德国 |
+| Island   | Helen       | 英国 |
+{: .table-striped .table-header-bold .table-h-center }
+
+| 公司     | 联系人       | 国家 |
+|:---------|:------------|-----:|
+| Alfreds  | Maria       | 德国 |
+| Island   | Helen       | 英国 |
+{: .table-striped .table-header-bold .table-h-right }
+
+### 表格标题
+
+在表格后写 `**标题**{: .table-caption-bottom }`，独立段落，样式参考图片说明（斜体、灰色、居中）：
+
+```markdown
+| A | B |
+|---|---|
+| 1 | 2 |
+{: .table-striped }
+
+**表 1：标题在下方**
+{: .table-caption-bottom }
+```
+
+效果示例：
+
+| 测试类型 | 并发数 | 成功率 |
+|---------|-------|-------|
+| 两张卡   | 2     | 100%  |
+{: .table-striped .table-header-bold .table-h-center }
+
+**表 1：标题在下方**
+{: .table-caption-bottom }
+
+**可用的表格 class：**
+
+| Class | 效果 |
+|-------|------|
+| `.table-striped` | 斑马纹（隔行变色） |
+| `.table-header-bold` | 表头深色背景 + 加粗 |
+| `.table-h-left` / `.table-h-center` / `.table-h-right` | 表头对齐（左/中/右） |
+| `.table-bordered` | 完整边框 |
+| `.table-sm` | 紧凑型（小字号） |
+| `.table-caption` | 表格上方标题（独立段落，斜体居中） |
+| `.table-caption-bottom` | 表格下方标题（独立段落，斜体居中） |
+{: .table-striped }
 
 ## 链接
 

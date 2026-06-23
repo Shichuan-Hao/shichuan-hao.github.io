@@ -278,3 +278,97 @@ div.img-row img:not([style*="width"]) {
     max-width: none;
   }
 }
+
+/* ============================================================
+   表格主题
+   用法：表格后跟 {: .table-striped .table-h-center} 等
+   标题：表格上方/下方放 **文字** 后跟 {: .table-caption}
+   ============================================================ */
+
+/* 斑马纹 */
+.table-striped tbody tr:nth-child(odd) {
+  background: var(--card-bg, #f8f9fa);
+}
+.table-striped tbody tr:nth-child(even) {
+  background: transparent;
+}
+
+/* 带边框 */
+.table-bordered {
+  border-collapse: collapse;
+}
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid var(--tb-list-border-color, #e9ecef);
+  padding: 0.5rem 0.75rem;
+}
+
+/* 紧凑型 */
+.table-sm th,
+.table-sm td {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.875rem;
+}
+
+/* 表头加粗 + 深色背景（独立于对齐） */
+.table-header-bold thead th {
+  font-weight: 700;
+  white-space: nowrap;
+  background: var(--card-bg, #f1f3f5);
+}
+
+/* 表头对齐 — 可与 .table-header-bold 组合 */
+.table-h-left thead th {
+  text-align: left;
+}
+.table-h-center thead th {
+  text-align: center;
+}
+.table-h-right thead th {
+  text-align: right;
+}
+
+/* 表格标题（独立段落，上方） */
+.table-caption {
+  margin-bottom: 0.25rem;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--heading-color);
+}
+
+/* 表格标题（独立段落，下方） */
+.table-caption-bottom {
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--heading-color);
+}
+
+/* ============================================================
+   表格标题 — 独立段落写法（推荐）
+   下方：**标题**{: .table-caption-bottom }
+   上方：**标题**{: .table-caption }
+   样式参考图片说明：斜体、灰色、居中
+   ============================================================ */
+.table-caption,
+.table-caption-bottom {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-muted-color, #6c757d);
+  line-height: 1.4;
+}
+
+.table-caption {
+  margin-bottom: 0.5rem;
+}
+
+.table-caption-bottom {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+}
