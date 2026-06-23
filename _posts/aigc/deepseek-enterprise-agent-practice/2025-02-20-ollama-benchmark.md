@@ -60,7 +60,7 @@ async with session.post(
     tokens_per_second = (eval_count / eval_duration * 1e9) if eval_duration > 0 else 0
 ```
 
-在 [](./2025-02-13-ollama-deepseek-r1-local-deploy.md) 中，我们整理了使用 `SystemD` 的启动和配置 `Ollama` 服务的方法，这种方式是通过创建 `systemd` 服务单元文件（即`ollama.service`），将 `ollama.serve` 配置为系统服务，从而可以使用 `systemctl start ollama` 等命令来启动和停止 `Ollama` 服务，比较适用于生产环境、需要长期稳定运行的服务以及自动化管理的场景，同时也更适合快速入门。
+在 [Ollama 本地部署 DeepSeek R1 模型](../ollama-deepseek-r1-local-deploy/) 中，我们整理了使用 `SystemD` 的启动和配置 `Ollama` 服务的方法，这种方式是通过创建 `systemd` 服务单元文件（即`ollama.service`），将 `ollama.serve` 配置为系统服务，从而可以使用 `systemctl start ollama` 等命令来启动和停止 `Ollama` 服务，比较适用于生产环境、需要长期稳定运行的服务以及自动化管理的场景，同时也更适合快速入门。
 
 除此之外，`Ollama` 还有另一种启动 `REST API` 的方法，即直接在命令行中运行 `ollama.serve` 命令，启动服务进程。比较适合本地开发环境，临时测试或调试，同时拥有更多的控制权限。
 
