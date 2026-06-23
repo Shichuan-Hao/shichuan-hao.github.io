@@ -1,0 +1,84 @@
+<!-- ============================================================
+   楼层模板 — 参数：
+     include.title    : 楼层标题
+     include.icon     : FontAwesome 图标 class
+     include.data     : 楼层数据数组
+     include.type     : website | article
+   ============================================================ -->
+
+{% assign floor_title = include.title    | default: "未命名" %}
+{% assign floor_icon  = include.icon     | default: "fas fa-folder" %}
+{% assign floor_type  = include.type     | default: "article" %}
+{% assign floor_key   = include.data_key | default: "" %}
+{% assign items       = "" %}
+{% if floor_key != "" %}{% assign section = site.data.materials[floor_key] %}{% assign items = section.items %}{% endif %}
+
+<section class="material-floor">
+  <header class="floor-header">
+    <h2 class="floor-title">
+      <i class="{{ floor_icon }}"></i>
+      <span>{{ floor_title }}</span>
+    </h2>
+    <span class="floor-count">共 {{ items.size }} 项</span>
+  </header>
+
+  <div class="floor-grid">
+    {% for item in items %}
+      {% if floor_type == "website" %}
+        <!-- 外部网站卡片 -->
+        <a class="floor-card floor-card-website"
+           href="{{ item.url }}"
+           target="_blank"
+           rel="noopener">
+          <div class="floor-card-body">
+            <div class="floor-card-icon">
+              <i class="{{ item.icon | default: 'fas fa-link' }}"></i>
+            </div>
+            <h3 class="floor-card-title">{{ item.title }}</h3>
+            <p class="floor-card-desc">{{ item.description }}</p>
+            <div class="floor-card-tags">
+              {% for tag in item.tags %}
+                <span class="floor-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            <div class="floor-card-foot">
+              <i class="fas fa-external-link-alt"></i>
+              <span>{{ item.url | remove: 'https://' | remove: 'http://' | truncate: 36 }}</span>
+            </div>
+          </div>
+        </a>
+
+      {% else %}
+        <!-- 文章/资料卡片 -->
+        <a class="floor-card floor-card-article"
+           href="{{ item.url }}"
+           target="_blank"
+           rel="noopener">
+          <div class="floor-card-body">
+            <div class="floor-card-top">
+              <h3 class="floor-card-title">{{ item.title }}</h3>
+              {% if item.status == "unread" %}
+                <span class="floor-badge badge-unread">待读</span>
+              {% elsif item.status == "read" %}
+                <span class="floor-badge badge-read">已读</span>
+              {% endif %}
+            </div>
+            <p class="floor-card-desc">{{ item.description }}</p>
+            <div class="floor-card-tags">
+              {% for tag in item.tags %}
+                <span class="floor-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            <div class="floor-card-foot">
+              {% if item.date_added %}
+                <i class="far fa-calendar-alt"></i>
+                <span>{{ item.date_added }}</span>
+              {% endif %}
+              <span class="floor-url-hint"><i class="fas fa-external-link-alt"></i></span>
+            </div>
+          </div>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,26 @@
+# ============================================================
+# 资料/文章 — 待读/已读/文章链接混排
+# status: unread / read   （不写或为空 = 普通链接）
+# ============================================================
+type: article
+items:
+  - title: "深入理解 Linux 内核"
+    url: "https://example.com/linux-kernel"
+    description: "Linux 内核工作原理详解"
+    tags: ["Linux", "内核"]
+    status: "unread"
+    date_added: "2026-06-20"
+
+  - title: "Redis 高性能设计原理"
+    url: "https://example.com/redis-design"
+    description: "单线程为什么这么快？IO 多路复用与事件驱动"
+    tags: ["Redis", "性能"]
+    status: "read"
+    date_added: "2026-06-18"
+
+  - title: "Designing Data-Intensive Applications — 官网"
+    url: "https://dataintensive.net"
+    description: "Martin Kleppmann 经典，分布式数据系统必读"
+    tags: ["架构", "数据库"]
+    status: ""
+    date_added: "2026-06-15"

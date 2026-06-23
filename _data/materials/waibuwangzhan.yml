@@ -1,0 +1,22 @@
+# ============================================================
+# 外部网站 — 添加新网站只需在 items 下新增
+# ============================================================
+type: website
+items:
+  - title: "GitHub"
+    url: "https://github.com"
+    description: "全球最大的代码托管平台"
+    tags: ["代码", "开源"]
+    icon: "fab fa-github"
+
+  - title: "Stack Overflow"
+    url: "https://stackoverflow.com"
+    description: "程序员问答社区，遇到报错就来搜"
+    tags: ["问答", "编程"]
+    icon: "fab fa-stack-overflow"
+
+  - title: "MDN Web Docs"
+    url: "https://developer.mozilla.org"
+    description: "Web 技术权威参考文档"
+    tags: ["前端", "文档"]
+    icon: "fas fa-book"
