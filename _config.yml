@@ -16,10 +16,10 @@ timezone: Asia/Shanghai
 
 title: 字节漫步 # 主标题
 
-tagline: 探索技术的无限可能 # 显示为副标题
+tagline: Java 后端 & AI Agent 探索者
 
 description: >- # 用于 SEO meta 和 atom feed
-  字节漫步 - 一个专注于技术分享与个人成长的独立博客。记录编程心得、探索前沿技术、分享生活感悟。
+  字节漫步 - 郝世川的技术博客。Java 后端开发实战，AI Agent 技术探索，记录从后端工程师到 AI 应用开发的成长之路。
 
 # 填写你网站的协议和主机名。
 # 例如：'https://username.github.io'，注意结尾不要带 '/'。
@@ -146,8 +146,6 @@ pwa:
     # 通常用于排除与当前网站域名相同的其他网站的 `baseurl`。
     deny_paths:
       # - "/example"  # 匹配 `<SITE_URL>/example/*` 的 URL 将不会被 PWA 缓存
-
-paginate: 10
 
 # 站点的根路径
 # baseurl: "/bateswalk"

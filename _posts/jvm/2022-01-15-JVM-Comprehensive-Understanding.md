@@ -3,7 +3,7 @@ title: 全面理解 JVM 虚拟机
 description: 从 Class 文件规范、类加载机制、执行引擎到 GC 垃圾回收，系统化梳理 JVM 虚拟机核心知识体系，为 JVM 调优和高阶面试打下扎实基础。
 author: hsc
 date: 2022-01-15 14:00:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JVM, 类加载, GC, 字节码, 垃圾回收]
 mermaid: true
 ---

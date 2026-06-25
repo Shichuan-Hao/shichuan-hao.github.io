@@ -1,7 +1,7 @@
 ---
 title: JVM 调优利器：jvisualvm 安装 Visual GC 插件及界面详解
 date: 2022-06-05 16:33:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [jvisualvm, VisualGC, JVM调优, GC监控]
 ---
 

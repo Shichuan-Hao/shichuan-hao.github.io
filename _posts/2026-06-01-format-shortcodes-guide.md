@@ -3,7 +3,7 @@ title: 格式化短标签使用指南
 description: 如何使用自定义短标签快速给 Markdown 文章添加格式化效果。
 author: hsc
 date: 2026-06-01 15:00:00 +0800
-categories: [工具, 博客]
+categories: [博客运营]
 tags: [Markdown, 格式化]
 ---
 

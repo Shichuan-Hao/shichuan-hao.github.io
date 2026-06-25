@@ -1,7 +1,7 @@
 ---
 title: "JDK17 GC 调优策略：从 RocketMQ 实战中学到的调优秘籍"
 date: 2022-06-22 16:35:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JDK17, GC调优, RocketMQ, G1, ZGC, JVM参数]
 ---
 

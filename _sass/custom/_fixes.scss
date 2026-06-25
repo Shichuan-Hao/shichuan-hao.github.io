@@ -1,0 +1,57 @@
+/* ============================================================
+   通用修复 — 修复 Chirpy 主题底层 CSS 问题
+   同时适用于默认主题和 GitHub 主题
+   ============================================================ */
+
+/* 修复 #post-list 中 .post-preview ::before 定位问题
+   原版 ::before 用了 position: absolute 但父元素没有定位上下文，
+   导致 ::before 相对于外层祖先定位，卡片内容变化时背景错开。
+   同时 ::before 必须 pointer-events: none 否则会拦截卡片点击 */
+#post-list .post-preview {
+  position: relative;
+
+  &::before {
+    pointer-events: none;
+  }
+}
+
+/* 增强卡片框可见度（仅 Chirpy 默认主题）
+   Chirpy 默认 card-shadow 极淡（5% + 15% 透明度），
+   尤其在有预览图的卡片上几乎不可见。
+   叠加一层更明显的轮廓阴影 */
+html:not([data-theme="github"]) #post-list .post-preview {
+  box-shadow: var(--card-shadow), 0 0 0 1px rgba(128, 128, 128, 0.22);
+}
+
+/* 侧边栏主题切换按钮与 #mode-toggle 对齐 */
+.sidebar-bottom {
+  #theme-toggle {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    color: var(--sidebar-btn-color);
+    background-color: var(--sidebar-btn-bg);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    &:not(:focus-visible) {
+      box-shadow: var(--sidebar-border-color) 0 0 0 1px;
+    }
+
+    &:hover {
+      background-color: var(--sidebar-hover-bg);
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      vertical-align: middle;
+    }
+  }
+}

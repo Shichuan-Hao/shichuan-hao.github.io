@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博客风格预览 — 5 种方案对比</title>
+<style>
+  :root { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+
+  body {
+    margin: 0; padding: 20px;
+    background: #f0f2f5;
+    color: #333;
+  }
+  h1.title {
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0 0 4px 0;
+    color: #1e293b;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 28px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .card {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  .card-head {
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .card-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: auto;
+    opacity: 0.7;
+  }
+
+  .card-body {
+    padding: 0;
+    max-height: 520px;
+    overflow-y: auto;
+  }
+
+  /* ============================================================
+     方案 1：暗黑科技风
+     ============================================================ */
+  .s1 { background: #0d1117; color: #c9d1d9; }
+  .s1 .card-head { background: #161b22; color: #e6edf3; border-color: #30363d; }
+  .s1 .card-label { background: rgba(88,166,255,0.15); color: #58a6ff; }
+
+  .s1-article { padding: 18px 16px; border-bottom: 1px solid #21262d; }
+  .s1-article:last-child { border-bottom: none; }
+  .s1-title { font-size: 0.95rem; font-weight: 600; color: #58a6ff; margin: 0 0 6px; }
+  .s1-title:hover { color: #79c0ff; }
+  .s1-meta { font-size: 0.7rem; color: #8b949e; display: flex; gap: 12px; margin-bottom: 6px; }
+  .s1-excerpt { font-size: 0.78rem; color: #8b949e; line-height: 1.5; margin: 0; }
+  .s1-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .s1-tag { font-size: 0.65rem; padding: 2px 8px; border-radius: 12px;
+    background: rgba(63,185,80,0.12); color: #3fb950; border: 1px solid rgba(63,185,80,0.2); }
+  .s1 .code-block { margin: 12px 0; padding: 12px 14px; border-radius: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px); font-family: 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 0.72rem; color: #c9d1d9; overflow-x: auto; }
+  .s1 .code-block .kw { color: #ff7b72; }
+  .s1 .code-block .fn { color: #d2a8ff; }
+  .s1 .code-block .str { color: #a5d6ff; }
+  .s1 .code-block .cm { color: #8b949e; }
+  .s1-sidebar { background: #161b22; border-right: 1px solid #30363d;
+    width: 180px; float: left; height: 100%; padding: 12px; box-sizing: border-box;
+    font-size: 0.75rem; color: #8b949e; margin-right: 0; border-radius: 0 0 0 8px; }
+  .s1-sidebar .logo { font-size: 1rem; color: #e6edf3; font-weight: 700; margin-bottom: 14px; }
+  .s1-sidebar .nav-item { padding: 5px 8px; border-radius: 6px; margin-bottom: 2px; cursor: pointer; }
+  .s1-sidebar .nav-item.active { background: rgba(88,166,255,0.12); color: #58a6ff; }
+  .s1-layout { display: flex; min-height: 0; }
+  .s1-main { flex: 1; padding: 0; }
+
+  /* ============================================================
+     方案 2：清爽学术风
+     ============================================================ */
+  .s2 { background: #fefefe; color: #222; font-family: Georgia, 'Noto Serif SC', 'Times New Roman', serif; }
+  .s2 .card-head { background: #fafafa; color: #1a1a1a; border-color: #eee; }
+  .s2 .card-label { background: #f5e6e6; color: #8b0000; }
+  .s2-article { padding: 20px 18px; border-bottom: 1px solid #eee; }
+  .s2-article:last-child { border-bottom: none; }
+  .s2-title { font-size: 1rem; font-weight: 400; color: #1a1a1a; margin: 0 0 4px;
+    font-family: Georgia, serif; }
+  .s2-title:hover { color: #8b0000; text-decoration: underline; text-decoration-color: #8b0000; }
+  .s2-meta { font-size: 0.7rem; color: #888; font-style: italic; margin-bottom: 8px;
+    font-family: 'Segoe UI', sans-serif; }
+  .s2-excerpt { font-size: 0.82rem; color: #444; line-height: 1.7; margin: 0; }
+  .s2-tags { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .s2-tag { font-size: 0.68rem; color: #555; font-family: 'Segoe UI', sans-serif; }
+  .s2-tag::before { content: '#'; color: #ccc; }
+  .s2 .code-block { margin: 12px 0; padding: 14px 16px; border-radius: 3px;
+    background: #f8f8f8; border: 1px solid #e8e8e8;
+    font-family: 'Latin Modern Mono', 'Fira Code', monospace;
+    font-size: 0.75rem; color: #333; overflow-x: auto; border-left: 3px solid #8b0000; }
+  .s2-sidebar { background: #fafafa; border-right: 1px solid #eee;
+    width: 180px; float: left; padding: 14px; box-sizing: border-box;
+    font-size: 0.78rem; color: #666; font-family: 'Segoe UI', sans-serif; }
+  .s2-sidebar .logo { font-size: 1.05rem; color: #1a1a1a; font-weight: 400;
+    font-family: Georgia, serif; margin-bottom: 16px; letter-spacing: 0.5px; }
+  .s2-sidebar .nav-item { padding: 5px 8px; margin-bottom: 2px; cursor: pointer; border-radius: 2px; }
+  .s2-sidebar .nav-item.active { background: #fff0f0; color: #8b0000; }
+  .s2-layout { display: flex; }
+  .s2-main { flex: 1; }
+
+  /* ============================================================
+     方案 3：Material You 现代风
+     ============================================================ */
+  .s3 { background: #fdfbff; color: #1d1b20; font-family: 'Google Sans', 'Segoe UI', sans-serif; }
+  .s3 .card-head { background: #f7f2fa; color: #1d1b20; border-color: #e8def8; }
+  .s3 .card-label { background: #e8def8; color: #6750a4; }
+  .s3-article { padding: 18px 16px; border-bottom: 1px solid #e8def8; }
+  .s3-article:last-child { border-bottom: none; }
+  .s3-title { font-size: 0.95rem; font-weight: 500; color: #1d1b20; margin: 0 0 6px; line-height: 1.4; }
+  .s3-title:hover { color: #6750a4; }
+  .s3-meta { font-size: 0.7rem; color: #79747e; display: flex; gap: 12px; margin-bottom: 6px; }
+  .s3-excerpt { font-size: 0.78rem; color: #49454f; line-height: 1.5; margin: 0; }
+  .s3-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .s3-tag { font-size: 0.65rem; padding: 3px 10px; border-radius: 16px;
+    background: #f3edf7; color: #6750a4; font-weight: 500; }
+  .s3 .code-block { margin: 12px 0; padding: 14px 16px; border-radius: 16px;
+    background: #f7f2fa; border: 1px solid #e8def8;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.73rem; color: #1d1b20; overflow-x: auto; }
+  .s3 .code-block .kw { color: #b3261e; }
+  .s3 .code-block .fn { color: #6750a4; }
+  .s3 .code-block .str { color: #146c2e; }
+  .s3-sidebar { background: linear-gradient(180deg, #f7f2fa 0%, #fef7ff 100%);
+    border-right: 1px solid #e8def8; width: 180px; float: left; padding: 14px;
+    box-sizing: border-box; font-size: 0.78rem; color: #49454f; border-radius: 0 0 0 14px; }
+  .s3-sidebar .logo { font-size: 1rem; color: #6750a4; font-weight: 500; margin-bottom: 14px; }
+  .s3-sidebar .nav-item { padding: 7px 12px; border-radius: 20px; margin-bottom: 2px; cursor: pointer; transition: background 0.2s; }
+  .s3-sidebar .nav-item:hover { background: #e8def8; }
+  .s3-sidebar .nav-item.active { background: #e8def8; color: #6750a4; font-weight: 500; }
+  .s3-layout { display: flex; }
+  .s3-main { flex: 1; }
+
+  /* ============================================================
+     方案 4：Nord 冰岛极简风
+     ============================================================ */
+  .s4 { background: #eceff4; color: #4c566a; }
+  .s4 .card-head { background: #e5e9f0; color: #3b4252; border-color: #d8dee9; font-weight: 600; }
+  .s4 .card-label { background: #d8dee9; color: #5e81ac; }
+  .s4-article { padding: 16px 16px; border-bottom: 1px solid #d8dee9; }
+  .s4-article:last-child { border-bottom: none; }
+  .s4-title { font-size: 0.9rem; font-weight: 600; color: #3b4252; margin: 0 0 4px; }
+  .s4-title:hover { color: #5e81ac; }
+  .s4-meta { font-size: 0.68rem; color: #81a1c1; display: flex; gap: 10px; margin-bottom: 5px; }
+  .s4-excerpt { font-size: 0.76rem; color: #4c566a; line-height: 1.5; margin: 0; }
+  .s4-tags { display: flex; gap: 5px; margin-top: 7px; flex-wrap: wrap; }
+  .s4-tag { font-size: 0.63rem; padding: 1px 7px; border-radius: 3px;
+    background: #d8dee9; color: #5e81ac; font-weight: 500; }
+  .s4 .code-block { margin: 10px 0; padding: 12px 14px; border-radius: 0;
+    background: #e5e9f0; border: none; border-left: 3px solid #5e81ac;
+    font-family: 'Fira Code', monospace; font-size: 0.72rem; color: #3b4252; overflow-x: auto; }
+  .s4 .code-block .kw { color: #b48ead; }
+  .s4 .code-block .fn { color: #5e81ac; }
+  .s4 .code-block .str { color: #a3be8c; }
+  .s4 .code-block .cm { color: #81a1c1; }
+  .s4-sidebar { background: #d8dee9; border-right: none;
+    width: 180px; float: left; padding: 14px; box-sizing: border-box;
+    font-size: 0.76rem; color: #4c566a; }
+  .s4-sidebar .logo { font-size: 1rem; color: #2e3440; font-weight: 700;
+    letter-spacing: 1px; margin-bottom: 14px; }
+  .s4-sidebar .nav-item { padding: 5px 8px; margin-bottom: 1px; cursor: pointer; border-radius: 0; }
+  .s4-sidebar .nav-item.active { background: #5e81ac; color: #eceff4; }
+  .s4-layout { display: flex; }
+  .s4-main { flex: 1; }
+
+  /* ============================================================
+     方案 5：暖色日系风
+     ============================================================ */
+  .s5 { background: #fdf6e3; color: #586e75; }
+  .s5 .card-head { background: #eee8d5; color: #073642; border-color: #e6dfc5; }
+  .s5 .card-label { background: #eee8d5; color: #b58900; border: 1px solid #e6dfc5; }
+  .s5-article { padding: 18px 16px; border-bottom: 1px solid #e6dfc5; }
+  .s5-article:last-child { border-bottom: none; }
+  .s5-title { font-size: 0.9rem; font-weight: 600; color: #073642; margin: 0 0 5px; }
+  .s5-title:hover { color: #b58900; }
+  .s5-meta { font-size: 0.68rem; color: #93a1a1; display: flex; gap: 10px; margin-bottom: 5px; }
+  .s5-excerpt { font-size: 0.76rem; color: #586e75; line-height: 1.6; margin: 0; }
+  .s5-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .s5-tag { font-size: 0.65rem; padding: 2px 8px; border-radius: 3px;
+    background: #eee8d5; color: #b58900; border: 1px solid #e6dfc5; }
+  .s5 .code-block { margin: 10px 0; padding: 12px 14px; border-radius: 4px;
+    background: #eee8d5; border: 1px solid #e6dfc5;
+    font-family: 'Source Code Pro', 'Fira Code', monospace;
+    font-size: 0.72rem; color: #657b83; overflow-x: auto; }
+  .s5 .code-block .kw { color: #d33682; }
+  .s5 .code-block .fn { color: #268bd2; }
+  .s5 .code-block .str { color: #2aa198; }
+  .s5 .code-block .cm { color: #93a1a1; }
+  .s5-sidebar { background: #eee8d5; border-right: 1px solid #e6dfc5;
+    width: 180px; float: left; padding: 14px; box-sizing: border-box;
+    font-size: 0.76rem; color: #93a1a1; border-radius: 0 0 0 4px; }
+  .s5-sidebar .logo { font-size: 1rem; color: #b58900; font-weight: 700; margin-bottom: 14px; }
+  .s5-sidebar .nav-item { padding: 5px 8px; margin-bottom: 2px; cursor: pointer; border-radius: 3px; }
+  .s5-sidebar .nav-item.active { background: #fdf6e3; color: #b58900; font-weight: 600; }
+  .s5-layout { display: flex; }
+  .s5-main { flex: 1; }
+
+  /* ============================================================
+     方案 4-dark：Nord 深色（暗色模式下的方案 4）
+     ============================================================ */
+</style>
+</head>
+<body>
+
+<h1 class="title">博客风格方案预览</h1>
+<p class="subtitle">每个卡片展示侧边栏 + 文章列表 + 代码块的组合效果 · 🟢 已应用 GitHub Primer 到全站</p>
+
+<div class="grid">
+
+  <!-- 方案 0：GitHub Primer Design（已应用） -->
+  <div class="card s0" style="border: 3px solid #2da44e; box-shadow: 0 4px 20px rgba(45,164,78,0.15);">
+    <div class="card-head" style="background:linear-gradient(135deg,#1f2328,#0d1117);color:#e6edf3;border-color:#30363d;">
+      🟢 当前主题 — GitHub Primer Design
+      <span class="card-label" style="background:rgba(45,164,78,0.2);color:#3fb950;">已应用 ✅</span>
+    </div>
+    <div class="card-body">
+      <div class="s0-layout" style="display:flex;">
+        <div class="s0-sidebar" style="background:#f6f8fa;border-right:1px solid #d0d7de;width:170px;padding:14px;font-size:0.78rem;color:#656d76;">
+          <div class="logo" style="font-size:1rem;color:#1f2328;font-weight:600;margin-bottom:14px;">shichuanhao</div>
+          <div class="nav-item" style="padding:5px 8px;border-radius:6px;margin-bottom:2px;cursor:pointer;background:rgba(208,215,222,0.32);color:#1f2328;font-weight:500;">📄 文章</div>
+          <div class="nav-item" style="padding:5px 8px;border-radius:6px;margin-bottom:2px;cursor:pointer;">🏷️ 标签</div>
+          <div class="nav-item" style="padding:5px 8px;border-radius:6px;margin-bottom:2px;cursor:pointer;">📂 分类</div>
+          <div class="nav-item" style="padding:5px 8px;border-radius:6px;margin-bottom:2px;cursor:pointer;">📅 归档</div>
+          <div class="nav-item" style="padding:5px 8px;border-radius:6px;margin-bottom:2px;cursor:pointer;">👤 关于</div>
+        </div>
+        <div class="s0-main" style="flex:1;background:#ffffff;">
+          <div style="padding:16px;border-bottom:1px solid #d0d7de;">
+            <h3 style="font-size:0.95rem;font-weight:600;color:#0969da;margin:0 0 4px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">深入理解 ZGC：颜色指针与读屏障</h3>
+            <div style="font-size:0.75rem;color:#656d76;display:flex;gap:12px;margin-bottom:6px;">
+              <span>📅 2025-06-20</span><span>📂 JVM</span>
+            </div>
+            <p style="font-size:0.78rem;color:#1f2328;line-height:1.5;margin:0;">ZGC 通过染色指针（Colored Pointers）和读屏障（Load Barrier）实现了亚毫秒级的停顿时间...</p>
+            <div style="margin:10px 0;padding:12px 14px;border-radius:6px;background:#f6f8fa;border:1px solid #d0d7de;font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.75rem;color:#1f2328;overflow-x:auto;">
+              <span style="color:#cf222e;">-XX:</span>+UseZGC
+              <span style="color:#cf222e;">-Xmx</span><span style="color:#0a3069;">16g</span><br>
+              <span style="color:#8250df;">System</span>.gc()  <span style="color:#68717a;">// 显式触发</span>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="font-size:0.75rem;padding:0 7px;height:20px;line-height:20px;border-radius:2em;border:1px solid #d0d7de;font-weight:500;">zgc</span>
+              <span style="font-size:0.75rem;padding:0 7px;height:20px;line-height:20px;border-radius:2em;border:1px solid #d0d7de;font-weight:500;">颜色指针</span>
+              <span style="font-size:0.75rem;padding:0 7px;height:20px;line-height:20px;border-radius:2em;border:1px solid #0969da;color:#0969da;font-weight:500;">读屏障</span>
+            </div>
+          </div>
+          <div style="padding:16px;border-bottom:1px solid #d0d7de;">
+            <h3 style="font-size:0.95rem;font-weight:600;color:#0969da;margin:0 0 4px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">GraalVM 原生镜像编译实战</h3>
+            <div style="font-size:0.75rem;color:#656d76;display:flex;gap:12px;margin-bottom:6px;">
+              <span>📅 2025-05-12</span><span>📂 Java</span>
+            </div>
+            <p style="font-size:0.78rem;color:#1f2328;line-height:1.5;margin:0;">使用 GraalVM Native Image 将 Spring Boot 应用编译为原生可执行文件，启动时间从 2s 降至 0.05s...</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+              <span style="font-size:0.75rem;padding:0 7px;height:20px;line-height:20px;border-radius:2em;border:1px solid #d0d7de;font-weight:500;">graalvm</span>
+              <span style="font-size:0.75rem;padding:0 7px;height:20px;line-height:20px;border-radius:2em;border:1px solid #d0d7de;font-weight:500;">编译优化</span>
+              <span style="font-size:0.75rem;padding:0 7px;height:20px;line-height:20px;border-radius:2em;border:1px solid #d0d7de;font-weight:500;">java17</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 暗色版本小预览 -->
+      <div style="background:#0d1117;border-top:2px solid #30363d;padding:6px 10px;display:flex;align-items:center;gap:6px;font-size:0.65rem;color:#8b949e;">
+        <span style="background:#21262d;padding:2px 8px;border-radius:10px;">🌙 Dark</span>
+        <span>暗色模式预览 →</span>
+        <span style="font-size:0.65rem;padding:0 6px;height:16px;line-height:16px;border-radius:2em;border:1px solid #30363d;color:#58a6ff;">zgc</span>
+        <span style="font-size:0.65rem;padding:0 6px;height:16px;line-height:16px;border-radius:2em;border:1px solid #30363d;color:#3fb950;">gc调优</span>
+      </div>
+      <div style="background:#161b22;padding:8px 10px;font-family:ui-monospace,SFMono-Regular,monospace;font-size:0.68rem;color:#e6edf3;overflow-x:auto;">
+        <span style="color:#ff7b72;">-XX:</span>+UseZGC
+        <span style="color:#ff7b72;">-Xmx</span><span style="color:#a5d6ff;">16g</span>
+        <span style="color:#8b949e;">// ZGC tuning</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案 1：暗黑科技风 -->
+  <div class="card s1">
+    <div class="card-head">
+      ⚫ 方案 1 — 暗黑科技风
+      <span class="card-label">默认暗色</span>
+    </div>
+    <div class="card-body">
+      <div class="s1-layout">
+        <div class="s1-sidebar">
+          <div class="logo">SHICHUANHAO</div>
+          <div class="nav-item active">📄 文章</div>
+          <div class="nav-item">🏷️ 标签</div>
+          <div class="nav-item">📂 分类</div>
+          <div class="nav-item">📅 归档</div>
+          <div class="nav-item">👤 关于</div>
+        </div>
+        <div class="s1-main">
+          <div class="s1-article">
+            <h3 class="s1-title">深入理解 ZGC：颜色指针与读屏障</h3>
+            <div class="s1-meta">
+              <span>📅 2025-06-20</span>
+              <span>📂 JVM</span>
+            </div>
+            <p class="s1-excerpt">ZGC 通过染色指针（Colored Pointers）和读屏障（Load Barrier）实现了亚毫秒级的停顿时间...</p>
+            <div class="code-block">
+              <span class="cm">// ZGC 触发条件</span><br>
+              <span class="kw">-XX:</span>+UseZGC
+              <span class="kw">-Xmx</span><span class="str">16g</span><br>
+              <span class="fn">System</span>.gc()  <span class="cm">// 显式触发</span>
+            </div>
+            <div class="s1-tags">
+              <span class="s1-tag">zgc</span>
+              <span class="s1-tag">颜色指针</span>
+              <span class="s1-tag">读屏障</span>
+              <span class="s1-tag">gc调优</span>
+            </div>
+          </div>
+          <div class="s1-article">
+            <h3 class="s1-title">GraalVM 原生镜像编译实战</h3>
+            <div class="s1-meta">
+              <span>📅 2025-05-12</span>
+              <span>📂 Java</span>
+            </div>
+            <p class="s1-excerpt">使用 GraalVM Native Image 将 Spring Boot 应用编译为原生可执行文件，启动时间从 2s 降至 0.05s...</p>
+            <div class="s1-tags">
+              <span class="s1-tag">graalvm</span>
+              <span class="s1-tag">编译优化</span>
+              <span class="s1-tag">java17</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案 2：清爽学术风 -->
+  <div class="card s2">
+    <div class="card-head">
+      📖 方案 2 — 清爽学术风
+      <span class="card-label">衬线字体</span>
+    </div>
+    <div class="card-body">
+      <div class="s2-layout">
+        <div class="s2-sidebar">
+          <div class="logo">SHICHUANHAO</div>
+          <div class="nav-item active">— 文章</div>
+          <div class="nav-item">— 标签</div>
+          <div class="nav-item">— 分类</div>
+          <div class="nav-item">— 归档</div>
+          <div class="nav-item">— 关于</div>
+        </div>
+        <div class="s2-main">
+          <div class="s2-article">
+            <h3 class="s2-title">深入理解 ZGC：颜色指针与读屏障</h3>
+            <div class="s2-meta">Published on 2025-06-20 · JVM · 12 min read</div>
+            <p class="s2-excerpt">ZGC 通过染色指针（Colored Pointers）和读屏障（Load Barrier）实现了亚毫秒级的停顿时间，这是现代 GC 算法中的重要里程碑。</p>
+            <div class="code-block">-XX:+UseZGC -Xmx16g
+              System.gc()</div>
+            <div class="s2-tags">
+              <span class="s2-tag">zgc</span>
+              <span class="s2-tag">颜色指针</span>
+              <span class="s2-tag">读屏障</span>
+              <span class="s2-tag">gc调优</span>
+            </div>
+          </div>
+          <div class="s2-article">
+            <h3 class="s2-title">GraalVM 原生镜像编译实战</h3>
+            <div class="s2-meta">Published on 2025-05-12 · Java · 8 min read</div>
+            <p class="s2-excerpt">使用 GraalVM Native Image 将 Spring Boot 应用编译为原生可执行文件，启动时间从 2s 降至 0.05s。</p>
+            <div class="s2-tags">
+              <span class="s2-tag">graalvm</span>
+              <span class="s2-tag">编译优化</span>
+              <span class="s2-tag">java17</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案 3：Material You -->
+  <div class="card s3">
+    <div class="card-head">
+      🎨 方案 3 — Material You 现代风
+      <span class="card-label">粉彩圆角</span>
+    </div>
+    <div class="card-body">
+      <div class="s3-layout">
+        <div class="s3-sidebar">
+          <div class="logo">SHICHUANHAO</div>
+          <div class="nav-item active">📄 文章</div>
+          <div class="nav-item">🏷️ 标签</div>
+          <div class="nav-item">📂 分类</div>
+          <div class="nav-item">📅 归档</div>
+          <div class="nav-item">👤 关于</div>
+        </div>
+        <div class="s3-main">
+          <div class="s3-article">
+            <h3 class="s3-title">深入理解 ZGC：颜色指针与读屏障</h3>
+            <div class="s3-meta">
+              <span>📅 2025-06-20</span>
+              <span>📂 JVM</span>
+            </div>
+            <p class="s3-excerpt">ZGC 通过染色指针和读屏障实现了亚毫秒级的停顿时间，这篇文章带你深入了解其内部原理。</p>
+            <div class="code-block">
+              <span class="cm">// ZGC 配置</span><br>
+              <span class="kw">-XX:</span>+UseZGC
+              <span class="kw">-Xmx</span><span class="str">16g</span>
+            </div>
+            <div class="s3-tags">
+              <span class="s3-tag">zgc</span>
+              <span class="s3-tag">颜色指针</span>
+              <span class="s3-tag">读屏障</span>
+              <span class="s3-tag">gc调优</span>
+            </div>
+          </div>
+          <div class="s3-article">
+            <h3 class="s3-title">GraalVM 原生镜像编译实战</h3>
+            <div class="s3-meta">
+              <span>📅 2025-05-12</span>
+              <span>📂 Java</span>
+            </div>
+            <p class="s3-excerpt">使用 GraalVM Native Image 将 Spring Boot 应用编译为原生可执行文件。</p>
+            <div class="s3-tags">
+              <span class="s3-tag">graalvm</span>
+              <span class="s3-tag">编译优化</span>
+              <span class="s3-tag">java17</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案 4：Nord -->
+  <div class="card s4">
+    <div class="card-head">
+      🧊 方案 4 — Nord 冰岛极简风
+      <span class="card-label">扁平冷色</span>
+    </div>
+    <div class="card-body">
+      <div class="s4-layout">
+        <div class="s4-sidebar">
+          <div class="logo">SHICHUANHAO</div>
+          <div class="nav-item active">ARTICLES</div>
+          <div class="nav-item">TAGS</div>
+          <div class="nav-item">CATEGORIES</div>
+          <div class="nav-item">ARCHIVE</div>
+          <div class="nav-item">ABOUT</div>
+        </div>
+        <div class="s4-main">
+          <div class="s4-article">
+            <h3 class="s4-title">深入理解 ZGC：颜色指针与读屏障</h3>
+            <div class="s4-meta">
+              <span>2025-06-20</span>
+              <span>/ JVM</span>
+            </div>
+            <p class="s4-excerpt">ZGC 通过染色指针和读屏障实现了亚毫秒级的停顿时间...</p>
+            <div class="code-block">
+              <span class="cm">// ZGC 配置</span><br>
+              <span class="kw">-XX:</span>+UseZGC
+              <span class="kw">-Xmx</span><span class="str">16g</span><br>
+              <span class="fn">System</span>.gc()
+            </div>
+            <div class="s4-tags">
+              <span class="s4-tag">zgc</span>
+              <span class="s4-tag">颜色指针</span>
+              <span class="s4-tag">读屏障</span>
+              <span class="s4-tag">gc调优</span>
+            </div>
+          </div>
+          <div class="s4-article">
+            <h3 class="s4-title">GraalVM 原生镜像编译实战</h3>
+            <div class="s4-meta">
+              <span>2025-05-12</span>
+              <span>/ Java</span>
+            </div>
+            <p class="s4-excerpt">使用 GraalVM Native Image 编译 Spring Boot 应用...</p>
+            <div class="s4-tags">
+              <span class="s4-tag">graalvm</span>
+              <span class="s4-tag">编译优化</span>
+              <span class="s4-tag">java17</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案 5：暖色日系 -->
+  <div class="card s5">
+    <div class="card-head">
+      🍵 方案 5 — 暖色日系风
+      <span class="card-label">米白暖调</span>
+    </div>
+    <div class="card-body">
+      <div class="s5-layout">
+        <div class="s5-sidebar">
+          <div class="logo">SHICHUANHAO</div>
+          <div class="nav-item active">文章</div>
+          <div class="nav-item">标签</div>
+          <div class="nav-item">分类</div>
+          <div class="nav-item">归档</div>
+          <div class="nav-item">关于</div>
+        </div>
+        <div class="s5-main">
+          <div class="s5-article">
+            <h3 class="s5-title">深入理解 ZGC：颜色指针与读屏障</h3>
+            <div class="s5-meta">
+              <span>2025年6月20日</span>
+              <span>· JVM</span>
+            </div>
+            <p class="s5-excerpt">ZGC 通过染色指针和读屏障实现了亚毫秒级的停顿时间。</p>
+            <div class="code-block">
+              <span class="cm">// ZGC 配置</span><br>
+              <span class="kw">-XX:</span>+UseZGC
+              <span class="kw">-Xmx</span><span class="str">16g</span>
+            </div>
+            <div class="s5-tags">
+              <span class="s5-tag">zgc</span>
+              <span class="s5-tag">颜色指针</span>
+              <span class="s5-tag">读屏障</span>
+              <span class="s5-tag">gc调优</span>
+            </div>
+          </div>
+          <div class="s5-article">
+            <h3 class="s5-title">GraalVM 原生镜像编译实战</h3>
+            <div class="s5-meta">
+              <span>2025年5月12日</span>
+              <span>· Java</span>
+            </div>
+            <p class="s5-excerpt">使用 GraalVM Native Image 编译 Spring Boot 应用。</p>
+            <div class="s5-tags">
+              <span class="s5-tag">graalvm</span>
+              <span class="s5-tag">编译优化</span>
+              <span class="s5-tag">java17</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

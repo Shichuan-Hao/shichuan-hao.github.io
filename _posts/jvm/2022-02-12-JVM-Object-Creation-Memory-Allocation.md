@@ -3,7 +3,7 @@ title: JVM 对象创建与内存分配机制深度剖析
 description: 从 new 指令到对象回收，完整解析 JVM 对象创建的五大步骤、内存分配的三条路径（栈上分配 / Eden 分配 / 老年代分配），以及对象回收的引用链判断机制，辅以 JOL 工具验证和 GC 日志实战分析。
 author: hsc
 date: 2022-02-12 16:00:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JVM, 对象创建, 内存分配, GC, 逃逸分析, 指针压缩]
 mermaid: true
 ---

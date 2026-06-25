@@ -1,7 +1,7 @@
 ---
 title: JVM 垃圾收集器 ParNew & CMS 与底层三色标记算法详解
 date: 2022-03-28 15:30:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JVM, GC, ParNew, CMS, 三色标记, 垃圾回收]
 toc: true
 ---

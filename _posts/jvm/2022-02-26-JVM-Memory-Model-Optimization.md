@@ -3,7 +3,7 @@ title: JVM 内存模型深度剖析与优化
 description: 从 JDK 体系结构、Java 跨平台特性到 JVM 整体内存模型，深入分析堆、栈、元空间的参数设置与调优实战，并通过 StackOverflowError 案例和百万级订单系统场景，掌握 JVM 内存优化的核心思路。
 author: hsc
 date: 2022-02-26 14:30:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JVM, 内存模型, 参数调优, StackOverflowError, 元空间]
 mermaid: true
 ---

@@ -1,7 +1,7 @@
 ---
 title: JVM 调优实战之 Arthas、GC 日志与常量池详解
 date: 2022-05-20 16:20:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JVM, Arthas, GC日志, 常量池, 字符串常量池, 包装类对象池]
 toc: true
 ---

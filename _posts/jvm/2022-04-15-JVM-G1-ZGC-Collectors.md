@@ -1,7 +1,7 @@
 ---
 title: JVM 垃圾收集器 G1 & ZGC 深度详解
 date: 2022-04-15 16:00:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JVM, GC, G1, ZGC, 垃圾回收, 颜色指针, 读屏障]
 toc: true
 ---

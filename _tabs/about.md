@@ -1,7 +1,7 @@
 ---
 # the default layout is 'page'
 icon: fas fa-info-circle
-order: 4
+order: 6
 ---
 
 <style>
@@ -32,9 +32,9 @@ order: 4
 }
 </style>
 
-## 👋 你好
+## 👋 你好，我是郝世川
 
-欢迎来到 **字节漫步**！很高兴认识你~
+一个 **Java 后端工程师**，正在向 **AI Agent 应用开发** 领域转型。
 
 ---
 
@@ -43,7 +43,6 @@ order: 4
 <div style="display: flex; justify-content: center; align-items: center; gap: 40px; margin: 30px 0; padding: 30px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 12px;">
   <div class="profile-card">
     <img src="/assets/img/avatar/me.jpg" alt="我的照片" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover; border: 4px solid #6c757d; transition: transform 0.3s ease;">
-    <div class="stars"></div>
   </div>
   <div style="display: flex; flex-direction: column; gap: 15px;">
     <div style="background: white; padding: 15px 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateX(10px)'" onmouseout="this.style.transform='translateX(0)'">
@@ -51,19 +50,24 @@ order: 4
       <div style="font-size: 13px; color: #666; margin-top: 6px;">Spring Boot / Spring Cloud / MySQL / Redis</div>
     </div>
     <div style="background: white; padding: 15px 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateX(10px)'" onmouseout="this.style.transform='translateX(0)'">
-      <strong style="color: #9b59b6; font-size: 16px;">🤖 AI Agent 全栈开发者</strong>
-      <div style="font-size: 13px; color: #666; margin-top: 6px;">LangChain / RAG / 大模型 API / Vue/React</div>
+      <strong style="color: #9b59b6; font-size: 16px;">🤖 AI Agent 学习中</strong>
+      <div style="font-size: 13px; color: #666; margin-top: 6px;">LangChain / RAG / Ollama / 大模型部署</div>
     </div>
   </div>
 </div>
 
-### 技术历程
+---
 
-> 🚀 从传统后端开发到 AI Agent 赛道，持续探索技术的边界
+## 🚀 我的转型路线
 
-- 🔭 **后端开发**：深耕 Java 技术栈，熟悉微服务架构、分布式系统
-- 🌱 **AI 转型**：正在学习大模型应用、Agent 架构设计、RAG 检索增强
-- 💡 **全栈探索**：结合后端能力与 AI 前沿，构建智能化应用
+> 从后端开发到 AI 应用，每一步都是积累。
+
+| 时间 | 阶段 | 重点 |
+|:------|:------|:------|
+| 2021 - 2023 | **Java 后端积累** | 深耕 JVM、分布式、微服务，输出 12 篇 JVM 系列文章 |
+| 2024 - 2026 | **AI Agent 探索** | 学习大模型部署、RAG、Agent 架构，输出 Ollama / vLLM / LoRA 系列实战文章 |
+| 2026 下半年 | **技能深化** | 系统学习 AI Agent 开发，构建完整项目 |
+| 2027 春季 | **职业跃迁** 🎯 | 计划通过春季招聘投递 AI Agent 相关岗位 |
 
 ---
 
@@ -76,23 +80,32 @@ Java  •  Spring Boot  •  Spring Cloud  •  MySQL  •  Redis  •  RabbitMQ
 
 ### AI 相关
 ```
-LangChain  •  RAG  •  Embedding  •  Vector DB  •  Prompt Engineering
+LangChain  •  RAG  •  Embedding  •  Ollama  •  vLLM  •  Prompt Engineering
 ```
 
-### 前端技术
+### 前端 & 工具
 ```
-Vue.js  •  React  •  HTML/CSS/JavaScript
+Vue.js  •  React  •  Linux  •  Docker  •  Git
 ```
+
+---
+
+## 📝 这个博客写什么
+
+1. **Java 后端** — JVM 原理、分布式架构、性能调优
+2. **AI Agent** — 大模型本地部署、RAG 检索增强、Agent 框架实战
+3. **转型思考** — 从后端到 AI 的学习路径、面试准备、职业思考
+4. **博客运营** — 写作技巧、工具分享、个人品牌建设
 
 ---
 
 ## 📬 联系我
 
-如果你对以下话题感兴趣，欢迎来找我交流：
+如果你对以下话题感兴趣，欢迎交流：
 
-- 💻 Java 后端开发经验
-- 🤖 AI Agent 应用开发
-- 📚 技术学习与成长
+- 💻 Java 后端 / JVM 调优
+- 🤖 AI Agent 应用开发 / 大模型部署
+- 📚 技术转型与学习路径
 - ☕ 或者只是单纯想聊聊天
 
 <div style="display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
@@ -109,18 +122,7 @@ Vue.js  •  React  •  HTML/CSS/JavaScript
 
 ---
 
-## 📝 博客内容
-
-这个博客记录我的技术学习和成长历程：
-
-1. **Java 后端** - Spring Boot 实战、数据库优化、架构设计
-2. **AI Agent** - 大模型应用、RAG 实践、Agent 开发心得
-3. **问题解决** - 开发中遇到的问题及解决方案
-4. **学习笔记** - 新技术的学习记录与总结
-
----
-
-> 🌟 "技术之路，道阻且长，行则将至。" 
+> 🌟 "技术之路，道阻且长，行则将至。每一步转型，都是新的开始。"
 > {: .prompt-info }
 
-感谢你的来访，希望我的分享能对你有所帮助！！！
+感谢你的来访，希望我的分享能对你有所帮助！

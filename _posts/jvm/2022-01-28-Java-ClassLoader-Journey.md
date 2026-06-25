@@ -3,7 +3,7 @@ title: Java 类加载机制
 description: 从双亲委派机制到自定义类加载器，通过一个"程序员 vs 资本家"的趣味故事，全景式掌握类加载器的核心玩法——外部 Jar 包加载、Class 加密混淆、热加载、打破双亲委派，以及 SPI 机制。
 author: hsc
 date: 2022-01-28 14:20:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JVM, 类加载, ClassLoader, 双亲委派, SPI, 热加载]
 mermaid: true
 ---

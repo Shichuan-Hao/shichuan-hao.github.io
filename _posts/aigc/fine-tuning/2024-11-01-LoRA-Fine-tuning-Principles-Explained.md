@@ -3,7 +3,7 @@ title: LoRA 微调原理详解
 description: 深入浅出讲解 LoRA（低秩适应）的核心原理、本征维度概念、矩阵秩的通俗理解、资源对比及 PyTorch 代码实现。
 author: hsc
 date: 2024-11-01 23:27:00 +0800
-categories: [AI Agent, Fine-tuning]
+categories: [AI Agent, 模型微调]
 tags: [LoRA, Fine-tuning, LLM]
 math: true
 mermaid: true

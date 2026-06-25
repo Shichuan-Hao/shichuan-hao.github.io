@@ -1,0 +1,281 @@
+---
+layout: page
+# 智能主题分组标签页
+---
+
+{% comment %}统计全局最大文章数{% endcomment %}
+{% assign global_max = 0 %}
+{% for t in site.tags %}
+  {% if t[1].size > global_max %}{% assign global_max = t[1].size %}{% endif %}
+{% endfor %}
+
+{% comment %}收集已分组的标签名{% endcomment %}
+{% assign grouped_names = '' | split: '' %}
+{% for group in site.data.tag_groups %}
+  {% for t in group.tags %}
+    {% assign grouped_names = grouped_names | push: t %}
+  {% endfor %}
+{% endfor %}
+
+<style>
+  .tag-groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag-group-card {
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--card-border-color, #e5e7eb);
+    border-radius: 14px;
+    padding: 1.4rem 1.5rem 1.2rem;
+    transition: box-shadow 0.25s, border-color 0.25s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .tag-group-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    border-color: #cbd5e1;
+  }
+
+  .group-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .group-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .group-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--heading-color, #1e293b);
+  }
+  .group-count {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: var(--text-muted-color, #94a3b8);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .group-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted-color, #94a3b8);
+    margin-top: -0.4rem;
+    line-height: 1.4;
+  }
+
+  .group-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 10px;
+    line-height: 1.25;
+  }
+  .g-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--text-color, #475569);
+    border-radius: 16px;
+    padding: 3px 12px 4px;
+    background: #f1f5f9;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .g-tag:hover {
+    border-color: #3b82f6;
+    color: #2563eb;
+    background: #eff6ff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(59,130,246,0.12);
+  }
+  .g-tag .g-badge {
+    font-size: 0.68em;
+    color: #94a3b8;
+    font-weight: 500;
+    min-width: 1em;
+    text-align: center;
+  }
+
+  .group-empty {
+    color: var(--text-muted-color, #94a3b8);
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+
+  .tag-stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.8rem;
+    padding: 0.7rem 1rem;
+    background: #f8fafc;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: var(--text-muted-color, #64748b);
+    flex-wrap: wrap;
+  }
+  .tag-stats-bar strong {
+    color: var(--heading-color, #1e293b);
+  }
+
+  @media (max-width: 768px) {
+    .tag-groups-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .tag-group-card {
+      padding: 1rem 1.1rem 0.9rem;
+    }
+    .group-tags {
+      gap: 4px 7px;
+    }
+    .g-tag {
+      padding: 2px 9px 3px;
+    }
+  }
+</style>
+
+<div id="tags" class="mx-xl-2">
+
+  <div class="tag-stats-bar">
+    <span>共 <strong>{{ site.tags.size }}</strong> 个标签</span>
+    <span>·</span>
+    <span><strong>{{ grouped_names.size }}</strong> 个已归类</span>
+    <span>·</span>
+    <span><strong>{{ site.tags.size | minus: grouped_names.size }}</strong> 个未归类</span>
+  </div>
+
+  <div class="tag-groups-grid">
+    {% for group in site.data.tag_groups %}
+      {% comment %}收集该分组下的标签及文章数{% endcomment %}
+      {% assign group_items = '' | split: '' %}
+      {% for t in site.tags %}
+        {% assign tag_name = t[0] %}
+        {% if group.tags contains tag_name %}
+          {% assign cnt = t[1].size %}
+          {% assign cnt_padded = cnt | prepend: '0000' | slice: -4, 4 %}
+          {% assign item = cnt_padded | append: ':::' | append: tag_name %}
+          {% assign group_items = group_items | push: item %}
+        {% endif %}
+      {% endfor %}
+
+      {% assign sorted_items = group_items | sort | reverse %}
+
+      {% comment %}计算本组最大文章数{% endcomment %}
+      {% assign group_max = 0 %}
+      {% for item in sorted_items %}
+        {% assign parts = item | split: ':::' %}
+        {% assign icnt = parts[0] | plus: 0 %}
+        {% if icnt > group_max %}{% assign group_max = icnt %}{% endif %}
+      {% endfor %}
+
+      <div class="tag-group-card">
+        <div class="group-header">
+          <span class="group-icon">{{ group.icon }}</span>
+          <span class="group-title">{{ group.name }}</span>
+          <span class="group-count">{{ sorted_items.size }} 个</span>
+        </div>
+        <div class="group-desc">{{ group.desc }}</div>
+
+        {% if sorted_items.size > 0 %}
+          <div class="group-tags">
+            {% for item in sorted_items %}
+              {% assign parts = item | split: ':::' %}
+              {% assign cnt = parts[0] | plus: 0 %}
+              {% assign tname = parts[1] %}
+
+              {% comment %}字号：本组内相对缩放{% endcomment %}
+              {% if group_max > 0 %}
+                {% assign local_ratio = cnt | times: 100 | divided_by: group_max %}
+                {% assign global_ratio = cnt | times: 100 | divided_by: global_max %}
+                {% if local_ratio > 75 %}
+                  {% assign fz = '1.08rem' %}{% assign fw = '700' %}
+                {% elsif local_ratio > 40 %}
+                  {% assign fz = '0.95rem' %}{% assign fw = '600' %}
+                {% elsif local_ratio > 15 %}
+                  {% assign fz = '0.87rem' %}{% assign fw = '500' %}
+                {% else %}
+                  {% assign fz = '0.8rem' %}{% assign fw = '400' %}
+                {% endif %}
+              {% else %}
+                {% assign fz = '0.85rem' %}{% assign fw = '400' %}
+              {% endif %}
+
+              <a class="g-tag" href="{{ tname | slugify | url_encode | prepend: '/tags/' | append: '/' | relative_url }}"
+                 style="font-size:{{ fz }};font-weight:{{ fw }};">
+                {{ tname }}
+                <span class="g-badge">{{ cnt }}</span>
+              </a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="group-empty">暂无标签</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% comment %}动态收集未归类的标签{% endcomment %}
+  {% assign ungrouped_items = '' | split: '' %}
+  {% for t in site.tags %}
+    {% assign tag_name = t[0] %}
+    {% unless grouped_names contains tag_name %}
+      {% assign cnt = t[1].size %}
+      {% assign cnt_padded = cnt | prepend: '0000' | slice: -4, 4 %}
+      {% assign item = cnt_padded | append: ':::' | append: tag_name %}
+      {% assign ungrouped_items = ungrouped_items | push: item %}
+    {% endunless %}
+  {% endfor %}
+  {% assign sorted_ungrouped = ungrouped_items | sort | reverse %}
+
+  {% if sorted_ungrouped.size > 0 %}
+    {% assign ung_max = 0 %}
+    {% for item in sorted_ungrouped %}
+      {% assign parts = item | split: ':::' %}
+      {% assign icnt = parts[0] | plus: 0 %}
+      {% if icnt > ung_max %}{% assign ung_max = icnt %}{% endif %}
+    {% endfor %}
+    <div class="tag-group-card" style="margin-top: 1.5rem; border-style: dashed;">
+      <div class="group-header">
+        <span class="group-icon">📦</span>
+        <span class="group-title">未归类</span>
+        <span class="group-count">{{ sorted_ungrouped.size }} 个</span>
+      </div>
+      <div class="group-desc">尚未分配到主题分组的标签</div>
+      <div class="group-tags">
+        {% for item in sorted_ungrouped %}
+          {% assign parts = item | split: ':::' %}
+          {% assign cnt = parts[0] | plus: 0 %}
+          {% assign tname = parts[1] %}
+          {% if ung_max > 0 %}
+            {% assign local_ratio = cnt | times: 100 | divided_by: ung_max %}
+            {% if local_ratio > 75 %}
+              {% assign fz = '1.08rem' %}{% assign fw = '700' %}
+            {% elsif local_ratio > 40 %}
+              {% assign fz = '0.95rem' %}{% assign fw = '600' %}
+            {% elsif local_ratio > 15 %}
+              {% assign fz = '0.87rem' %}{% assign fw = '500' %}
+            {% else %}
+              {% assign fz = '0.8rem' %}{% assign fw = '400' %}
+            {% endif %}
+          {% else %}
+            {% assign fz = '0.85rem' %}{% assign fw = '400' %}
+          {% endif %}
+          <a class="g-tag" href="{{ tname | slugify | url_encode | prepend: '/tags/' | append: '/' | relative_url }}"
+             style="font-size:{{ fz }};font-weight:{{ fw }};">
+            {{ tname }}
+            <span class="g-badge">{{ cnt }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>

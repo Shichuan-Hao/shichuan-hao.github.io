@@ -1,7 +1,7 @@
 ---
 title: JVM 调优工具详解及调优实战
 date: 2022-05-02 16:10:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JVM, 调优, jstat, jstack, jmap, GC日志, FullGC]
 toc: true
 ---

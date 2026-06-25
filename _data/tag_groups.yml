@@ -1,0 +1,102 @@
+# 标签智能分组 — 按语义主题归类
+# 不在任何分组中的标签会自动归入 "其他"
+
+- name: "JVM & GC"
+  icon: "🧠"
+  desc: "垃圾回收器、GC 日志、诊断工具与调优实践"
+  tags:
+    - arthas
+    - cms
+    - fullgc
+    - g1
+    - gc
+    - gc日志
+    - gc监控
+    - gc调优
+    - jmap
+    - jstack
+    - jstat
+    - jvisualvm
+    - jvm
+    - jvm参数
+    - jvm调优
+    - parnew
+    - stackoverflowerror
+    - visualgc
+    - zgc
+    - 三色标记
+    - 垃圾回收
+    - 读屏障
+    - 颜色指针
+    - 调优
+    - 参数调优
+
+- name: "JVM 内部机制"
+  icon: "🔧"
+  desc: "内存模型、字节码、编译优化与对象生命周期"
+  tags:
+    - jit
+    - 元空间
+    - 内存分配
+    - 内存模型
+    - 包装类对象池
+    - 字符串常量池
+    - 字节码
+    - 对象创建
+    - 常量池
+    - 执行引擎
+    - 指针压缩
+    - 方法内联
+    - 编译优化
+    - 热加载
+    - 逃逸分析
+
+- name: "Java 平台"
+  icon: "☕"
+  desc: "版本特性、类加载、模块化与 SPI 机制"
+  tags:
+    - classloader
+    - graalvm
+    - java17
+    - jdk17
+    - lts
+    - record
+    - sealed-classes
+    - spi
+    - 双亲委派
+    - 类加载
+    - 模块化
+
+- name: "AI & 大模型"
+  icon: "🤖"
+  desc: "LLM 微调、部署框架与推理引擎"
+  tags:
+    - deepseek
+    - deepseek-r1
+    - fine-tuning
+    - llm
+    - lora
+    - model-fine-tuning
+    - ollama
+    - qwen
+    - vllm
+    - 大模型部署
+    - 离线推理
+
+- name: "中间件 & 架构"
+  icon: "⚡"
+  desc: "消息队列、缓存、数据库与分布式系统"
+  tags:
+    - redis
+    - rocketmq
+    - 分布式
+    - 数据库
+    - 缓存
+
+- name: "其他"
+  icon: "📝"
+  desc: "工具、格式与杂项"
+  tags:
+    - markdown
+    - 排版
+    - 格式化

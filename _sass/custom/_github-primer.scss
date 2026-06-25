@@ -1,0 +1,351 @@
+/* ============================================================
+   GitHub Primer Design — html[data-theme="github"] 作用域
+   仅在用户选择 GitHub 主题时覆盖 Chirpy 默认变量
+   ============================================================ */
+
+/* ========== 浅色 GitHub 变量 ========== */
+html[data-theme="github"] {
+  --main-bg: #ffffff;
+  --mask-bg: #d0d7de;
+  --main-border-color: #d0d7de;
+  --text-color: #1f2328;
+  --text-muted-color: #656d76;
+  --text-muted-highlight-color: #656d76;
+  --heading-color: #1f2328;
+  --label-color: #656d76;
+  --blockquote-border-color: #d0d7de;
+  --blockquote-text-color: #656d76;
+  --link-color: #0969da;
+  --link-underline-color: #d0d7de;
+  --button-bg: #f6f8fa;
+  --btn-border-color: rgba(27,31,36,0.15);
+  --btn-backtotop-color: #656d76;
+  --btn-backtotop-border-color: #d0d7de;
+  --checkbox-color: #d0d7de;
+  --checkbox-checked-color: #0969da;
+  --img-bg: radial-gradient(circle, #ffffff 0%, #f6f8fa 100%);
+  --shimmer-bg: linear-gradient(90deg, rgba(255,255,255,0%) 0%, rgba(208,215,222,100%) 50%, rgba(255,255,255,0%) 100%);
+  --site-title-color: #1f2328;
+  --site-subtitle-color: #656d76;
+  --sidebar-bg: #f6f8fa;
+  --sidebar-border-color: #d0d7de;
+  --sidebar-muted-color: #656d76;
+  --sidebar-active-color: #1f2328;
+  --sidebar-hover-bg: rgba(208,215,222,0.32);
+  --sidebar-btn-bg: #f6f8fa;
+  --sidebar-btn-color: #656d76;
+  --avatar-border-color: #ffffff;
+  --topbar-bg: rgba(255,255,255,0.85);
+  --topbar-text-color: #1f2328;
+  --search-border-color: #d0d7de;
+  --search-icon-color: #656d76;
+  --input-focus-border-color: #0969da;
+  --post-list-text-color: #1f2328;
+  --btn-patinator-text-color: #1f2328;
+  --btn-paginator-hover-color: #f3f4f6;
+  --toc-highlight: #0969da;
+  --toc-popup-border-color: #d0d7de;
+  --btn-share-color: #656d76;
+  --btn-share-hover-color: #0969da;
+  --card-bg: #ffffff;
+  --card-hover-bg: #f6f8fa;
+  --card-shadow: 0 1px 0 rgba(27,31,36,0.04);
+  --footnote-target-bg: #ddf4ff;
+  --tb-odd-bg: #ffffff;
+  --tb-even-bg: #f6f8fa;
+  --tb-border-color: #d0d7de;
+  --dash-color: #d0d7de;
+  --kbd-wrap-color: #d0d7de;
+  --kbd-text-color: #1f2328;
+  --kbd-bg-color: #f6f8fa;
+  --prompt-text-color: rgba(31,35,40,0.77);
+  --prompt-tip-bg: #dafbe1;
+  --prompt-tip-icon-color: #1a7f37;
+  --prompt-info-bg: #ddf4ff;
+  --prompt-info-icon-color: #0969da;
+  --prompt-warning-bg: #fff8c5;
+  --prompt-warning-icon-color: #9a6700;
+  --prompt-danger-bg: #ffebe9;
+  --prompt-danger-icon-color: #cf222e;
+  --tag-border: #d0d7de;
+  --tag-shadow: #d0d7de;
+  --tag-hover: #f3f4f6;
+  --search-tag-bg: #f6f8fa;
+  --categories-border: rgba(27,31,36,0.15);
+  --categories-hover-bg: #f3f4f6;
+  --categories-icon-hover-color: #1f2328;
+  --timeline-color: #d0d7de;
+  --timeline-node-bg: #d0d7de;
+  --timeline-year-dot-color: #ffffff;
+  --language-border-color: #d0d7de;
+  --highlight-bg-color: #f6f8fa;
+  --highlighter-rouge-color: #1f2328;
+  --highlight-lineno-color: #656d76;
+  --inline-code-bg: rgba(175,184,193,0.2);
+  --code-color: #1f2328;
+  --code-header-text-color: #656d76;
+  --code-header-muted-color: #d0d7de;
+  --code-header-icon-color: #656d76;
+  --clipboard-checked-color: #1a7f37;
+  --card-header-bg: #f6f8fa;
+}
+
+/* ========== 暗色 GitHub 变量 ========== */
+html[data-theme="github"][data-mode="dark"] {
+  color-scheme: dark;
+  --main-bg: #0d1117;
+  --mask-bg: #21262d;
+  --main-border-color: #30363d;
+  --text-color: #e6edf3;
+  --text-muted-color: #8b949e;
+  --text-muted-highlight-color: #8b949e;
+  --heading-color: #e6edf3;
+  --label-color: #8b949e;
+  --blockquote-border-color: #30363d;
+  --blockquote-text-color: #8b949e;
+  --link-color: #58a6ff;
+  --link-underline-color: #30363d;
+  --button-bg: #21262d;
+  --btn-border-color: #30363d;
+  --btn-backtotop-color: #8b949e;
+  --btn-backtotop-border-color: #30363d;
+  --checkbox-color: #30363d;
+  --checkbox-checked-color: #58a6ff;
+  --img-bg: radial-gradient(circle, #0d1117 0%, #161b22 100%);
+  --shimmer-bg: linear-gradient(90deg, rgba(255,255,255,0%) 0%, rgba(48,54,61,40%) 50%, rgba(255,255,255,0%) 100%);
+  --site-title-color: #e6edf3;
+  --site-subtitle-color: #8b949e;
+  --sidebar-bg: #0d1117;
+  --sidebar-border-color: #30363d;
+  --sidebar-muted-color: #8b949e;
+  --sidebar-active-color: #e6edf3;
+  --sidebar-hover-bg: #161b22;
+  --sidebar-btn-bg: #21262d;
+  --sidebar-btn-color: #8b949e;
+  --avatar-border-color: #30363d;
+  --topbar-bg: rgba(13,17,23,0.85);
+  --topbar-text-color: #e6edf3;
+  --search-border-color: #30363d;
+  --search-icon-color: #8b949e;
+  --input-focus-border-color: #58a6ff;
+  --post-list-text-color: #e6edf3;
+  --btn-patinator-text-color: #e6edf3;
+  --btn-paginator-hover-color: #21262d;
+  --toc-highlight: #58a6ff;
+  --toc-popup-border-color: #30363d;
+  --btn-share-color: #8b949e;
+  --btn-share-hover-color: #58a6ff;
+  --card-bg: #161b22;
+  --card-hover-bg: #1c2129;
+  --card-shadow: 0 0 transparent;
+  --card-header-bg: #161b22;
+  --footnote-target-bg: rgba(56,139,253,0.15);
+  --tb-odd-bg: #161b22;
+  --tb-even-bg: #0d1117;
+  --tb-border-color: #30363d;
+  --dash-color: #30363d;
+  --kbd-wrap-color: #30363d;
+  --kbd-text-color: #e6edf3;
+  --kbd-bg-color: #161b22;
+  --prompt-text-color: rgba(230,237,243,0.75);
+  --prompt-tip-bg: rgba(46,160,67,0.15);
+  --prompt-tip-icon-color: #3fb950;
+  --prompt-info-bg: rgba(56,139,253,0.15);
+  --prompt-info-icon-color: #58a6ff;
+  --prompt-warning-bg: rgba(187,128,9,0.15);
+  --prompt-warning-icon-color: #d29922;
+  --prompt-danger-bg: rgba(248,81,73,0.15);
+  --prompt-danger-icon-color: #f85149;
+  --tag-border: #30363d;
+  --tag-shadow: #21262d;
+  --tag-hover: #1f2937;
+  --search-tag-bg: #21262d;
+  --categories-border: rgba(240,246,252,0.1);
+  --categories-hover-bg: #21262d;
+  --categories-icon-hover-color: #e6edf3;
+  --timeline-color: #30363d;
+  --timeline-node-bg: #8b949e;
+  --timeline-year-dot-color: #30363d;
+  --language-border-color: #30363d;
+  --highlight-bg-color: #161b22;
+  --highlighter-rouge-color: #e6edf3;
+  --highlight-lineno-color: #8b949e;
+  --inline-code-bg: rgba(110,118,129,0.4);
+  --code-color: #e6edf3;
+  --code-header-text-color: #8b949e;
+  --code-header-muted-color: #21262d;
+  --code-header-icon-color: #8b949e;
+  --clipboard-checked-color: #3fb950;
+  --filepath-text-color: #e6edf3;
+}
+
+/* ============================================================
+   GitHub 风格细节增强（仅在 GitHub 主题下生效）
+   ============================================================ */
+html[data-theme="github"] {
+  /* 系统字体栈 */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  }
+
+  h1, h2, h3, h4, h5, h6 { font-weight: 600; }
+
+  a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  /* 卡片 */
+  .card,
+  #post-list .post-preview,
+  .post-preview {
+    border: 1px solid var(--main-border-color);
+    border-radius: 6px;
+    box-shadow: none;
+    transition: border-color 0.15s ease;
+  }
+  .card:hover,
+  #post-list .post-preview:hover,
+  .post-preview:hover {
+    border-color: var(--link-color);
+    box-shadow: 0 1px 3px rgba(27,31,36,0.12);
+  }
+
+  /* 按钮 */
+  .btn,
+  .pagination .page-link {
+    border: 1px solid var(--btn-border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.12s ease, border-color 0.12s ease;
+  }
+  .btn:hover,
+  .pagination .page-link:hover {
+    background: var(--btn-paginator-hover-color);
+    border-color: var(--link-color);
+  }
+
+  /* GitHub Label 标签 */
+  .tag,
+  .post-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 7px;
+    height: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 18px;
+    border: 1px solid var(--tag-border);
+    border-radius: 2em;
+    color: var(--text-color);
+    background: transparent;
+    transition: background-color 0.12s ease, border-color 0.12s ease;
+  }
+  .tag:hover,
+  .post-tag:hover {
+    background: var(--tag-hover);
+    border-color: var(--link-color);
+  }
+
+  /* 代码 */
+  pre, code, .highlight {
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.85rem;
+  }
+  :not(pre) > code {
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
+    font-size: 85%;
+    background: var(--inline-code-bg);
+    border: 1px solid rgba(175,184,193,0.2);
+  }
+  &:not([data-mode="dark"]) :not(pre) > code {
+    border-color: rgba(175,184,193,0.2);
+  }
+
+  /* 引用 */
+  blockquote {
+    border-left: 0.25em solid #0969da;
+    border-radius: 0 4px 4px 0;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    background: transparent;
+  }
+  &[data-mode="dark"] blockquote { border-left-color: #58a6ff; }
+
+  /* 表格 */
+  table { border-spacing: 0; border-collapse: collapse; border-radius: 6px; overflow: hidden; }
+  th, td { border: 1px solid var(--tb-border-color); padding: 6px 13px; }
+  th { font-weight: 600; background: var(--tb-even-bg); }
+
+  /* 分隔线 */
+  hr { border: 0; border-bottom: 1px solid var(--main-border-color); margin: 24px 0; }
+
+  /* 图片 */
+  img { border-radius: 6px; }
+
+  /* 侧边栏 */
+  #sidebar { border-right: 1px solid var(--sidebar-border-color); }
+
+  /* 文章 meta */
+  .post-meta { font-size: 0.75rem; color: var(--text-muted-color); }
+
+  /* 搜索框 */
+  #search-input {
+    border-radius: 6px;
+    border: 1px solid var(--search-border-color);
+    padding: 5px 12px;
+    font-size: 0.875rem;
+    transition: border-color 0.15s ease;
+  }
+  #search-input:focus {
+    border-color: var(--input-focus-border-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(9,105,218,0.15);
+  }
+  &[data-mode="dark"] #search-input:focus { box-shadow: 0 0 0 3px rgba(56,139,253,0.15); }
+
+  #toc-bar { border-left: 1px solid var(--main-border-color); }
+  #back-to-top { border-radius: 6px; }
+  .pagination { gap: 4px; }
+  .prompt { border-radius: 6px; border: 1px solid transparent; }
+
+  /* 暗色分类卡片 */
+  &[data-mode="dark"] {
+    .categories.card, .list-group-item { background-color: var(--card-bg); }
+    .categories .card-header { background-color: var(--card-header-bg); }
+    .highlight { border: 1px solid var(--language-border-color); border-radius: 6px; }
+  }
+}
+
+/* ============================================================
+   主题切换按钮样式（始终显示）
+   ============================================================ */
+#theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.15s, border-color 0.15s;
+  opacity: 0.65;
+
+  &:hover {
+    background: var(--sidebar-hover-bg);
+    border-color: var(--sidebar-border-color);
+    opacity: 1;
+  }
+
+  &.active {
+    opacity: 1;
+    color: var(--link-color);
+  }
+}

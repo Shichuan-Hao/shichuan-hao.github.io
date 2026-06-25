@@ -1,7 +1,7 @@
 ---
 title: JDK17 新特性全面梳理：从 JDK8 迈向新时代
 date: 2021-09-21 20:35:00 +0800
-categories: [Java]
+categories: [Java 后端]
 tags: [JDK17, Java17, LTS, 模块化, GraalVM, Record, Sealed Classes]
 ---
 

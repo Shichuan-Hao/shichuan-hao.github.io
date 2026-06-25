@@ -1,4 +1,191 @@
 ---
-layout: home
-# Index page
+layout: default
 ---
+
+{% include lang.html %}
+
+<!-- ============================================================
+     首页 - 个人品牌 Landing Page
+   ============================================================ -->
+
+<style>
+  .landing-hero {
+    text-align: center;
+    padding: 2.5rem 1rem 2rem;
+  }
+  .landing-hero .avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--card-border-color, #e0e0e0);
+    margin-bottom: 1rem;
+  }
+  .landing-hero h1 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  .landing-hero .tagline {
+    color: var(--text-muted-color, #777);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+  .landing-hero .brief {
+    max-width: 520px;
+    margin: 0 auto 1.5rem;
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--text-color, #444);
+  }
+  .landing-hero .btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .landing-hero .btn-row a {
+    display: inline-block;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-primary   { background: #3b82f6; color: #fff; }
+  .btn-primary:hover { background: #2563eb; }
+  .btn-outline   { border: 1.5px solid var(--card-border-color, #ccc); color: var(--text-color, #555); }
+  .btn-outline:hover { border-color: #3b82f6; color: #3b82f6; }
+
+  .landing-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 1.5rem 0 2rem;
+    flex-wrap: wrap;
+  }
+  .landing-stats .stat-item {
+    text-align: center;
+  }
+  .landing-stats .stat-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3b82f6;
+  }
+  .landing-stats .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted-color, #999);
+  }
+
+  .landing-section {
+    margin-bottom: 2rem;
+  }
+  .landing-section h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--card-border-color, #eee);
+  }
+  .landing-section h2 i { margin-right: 6px; }
+
+  .landing-post-item {
+    padding: 0.7rem 0;
+    border-bottom: 1px dashed var(--card-border-color, #eee);
+  }
+  .landing-post-item:last-child { border-bottom: none; }
+  .landing-post-item a {
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .landing-post-item .post-date {
+    font-size: 0.78rem;
+    color: var(--text-muted-color, #aaa);
+    margin-left: 8px;
+  }
+  .landing-post-item .post-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted-color, #999);
+    margin-top: 2px;
+  }
+
+  .landing-more {
+    text-align: right;
+    margin-top: 0.4rem;
+  }
+  .landing-more a {
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: #3b82f6;
+  }
+</style>
+
+<!-- Hero -->
+<div class="landing-hero">
+  <img class="avatar" src="{{ '/assets/img/avatar/me.jpg' | relative_url }}" alt="avatar">
+  <h1>郝世川</h1>
+  <div class="tagline">Java 后端工程师 &nbsp;·&nbsp; AI Agent 探索者</div>
+  <div class="brief">
+    从 JVM 原理到 AI Agent 应用，记录一名后端工程师向 AI 领域转型的技术实践与学习思考。2027 年春招，目标 AI Agent 相关岗位。
+  </div>
+  <div class="btn-row">
+    <a href="/blog/" class="btn-primary"><i class="fas fa-pen"></i> 阅读文章</a>
+    <a href="/projects/" class="btn-outline"><i class="fas fa-rocket"></i> 我的项目</a>
+    <a href="/about/" class="btn-outline"><i class="fas fa-user"></i> 关于我</a>
+  </div>
+</div>
+
+<!-- 数据统计 -->
+<div class="landing-stats">
+  <div class="stat-item">
+    <div class="stat-num">{{ site.posts.size }}</div>
+    <div class="stat-label">篇文章</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">{{ site.categories.size }}</div>
+    <div class="stat-label">个分类</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">{{ site.data.projects.items.size }}</div>
+    <div class="stat-label">个项目</div>
+  </div>
+</div>
+
+<!-- 最新文章 -->
+<div class="landing-section">
+  <h2><i class="fas fa-clock"></i> 最新文章</h2>
+  {% for post in site.posts limit:5 %}
+    <div class="landing-post-item">
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      {% if post.categories.size > 0 %}
+        <span class="post-desc">
+          {% for cat in post.categories limit:2 %}
+            <span style="background:#eef2ff; color:#4a5cf7; padding:1px 8px; border-radius:10px; font-size:0.72rem;">{{ cat }}</span>
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
+  {% endfor %}
+  <div class="landing-more">
+    <a href="/blog/">查看更多 →</a>
+  </div>
+</div>
+
+<!-- 快捷入口 -->
+<div class="landing-section" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+  <a href="/categories/java-后端/" style="flex:1; min-width:120px; display:block; padding:1rem; border-radius:8px; background:#fef3c7; text-decoration:none; color:#92400e; text-align:center;">
+    <div style="font-size:1.5rem;">☕</div>
+    <div style="font-weight:600; margin-top:4px;">Java 后端</div>
+  </a>
+  <a href="/categories/ai-agent/" style="flex:1; min-width:120px; display:block; padding:1rem; border-radius:8px; background:#ede9fe; text-decoration:none; color:#6b21a8; text-align:center;">
+    <div style="font-size:1.5rem;">🤖</div>
+    <div style="font-weight:600; margin-top:4px;">AI Agent</div>
+  </a>
+  <a href="/categories/博客运营/" style="flex:1; min-width:120px; display:block; padding:1rem; border-radius:8px; background:#dbeafe; text-decoration:none; color:#1e40af; text-align:center;">
+    <div style="font-size:1.5rem;">✍️</div>
+    <div style="font-weight:600; margin-top:4px;">博客运营</div>
+  </a>
+</div>

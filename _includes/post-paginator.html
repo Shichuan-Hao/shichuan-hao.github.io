@@ -1,0 +1,97 @@
+<!-- The paginator for post list on BlogPage. -->
+
+<nav aria-label="Page Navigation">
+  <ul class="pagination align-items-center mt-4 mb-0">
+    <!-- left arrow -->
+    {% if page_num > 1 %}
+      {% if page_num == 2 %}
+        {% assign prev_url = '/blog/' | relative_url %}
+      {% else %}
+        {% assign prev_path = '/blog/page/' | append: page_num | minus: 1 | append: '/' %}
+        {% assign prev_url = prev_path | relative_url %}
+      {% endif %}
+    {% else %}
+      {% assign prev_url = '#' %}
+    {% endif %}
+
+    <li class="page-item {% unless page_num > 1 %}disabled{% endunless %}">
+      <a class="page-link" href="{{ prev_url }}" aria-label="previous-page">
+        <i class="fas fa-angle-left"></i>
+      </a>
+    </li>
+
+    <!-- page numbers -->
+    {% assign left_ellipsis = false %}
+    {% assign right_ellipsis = false %}
+
+    {% for i in (1..total_pages) %}
+      {% assign pre = page_num | minus: 1 %}
+      {% assign next = page_num | plus: 1 %}
+      {% assign pre_less = pre | minus: 1 %}
+      {% assign next_more = next | plus: 1 %}
+      {% assign show = false %}
+
+      {% if page_num == 1 %}
+        {% if i <= 3 or i == total_pages %}
+          {% assign show = true %}
+        {% endif %}
+      {% elsif page_num == total_pages %}
+        {% if i == 1 or i >= pre_less %}
+          {% assign show = true %}
+        {% endif %}
+      {% else %}
+        {% if i == 1 or i == total_pages %}
+          {% assign show = true %}
+        {% elsif i >= pre and i <= next %}
+          {% assign show = true %}
+        {% endif %}
+      {% endif %}
+
+      {% if show %}
+        <!-- show number -->
+        <li class="page-item {% if i == page_num %} active{% endif %}">
+          <a
+            class="page-link"
+            href="{% if i > 1 %}{{ '/blog/page/' | append: i | append: '/' | relative_url }}{% else %}{{ '/blog/' | relative_url }}{% endif %}"
+          >
+            {{- i -}}
+          </a>
+        </li>
+      {% else %}
+        <!-- hide number -->
+        {% if i < pre and left_ellipsis == false %}
+          <li class="page-item disabled">
+            <span class="page-link">...</span>
+          </li>
+          {% assign left_ellipsis = true %}
+        {% elsif i > next and right_ellipsis == false %}
+          <li class="page-item disabled">
+            <span class="page-link">...</span>
+          </li>
+          {% assign right_ellipsis = true %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    <!-- mobile pagination -->
+    <li class="page-index align-middle">
+      <span>{{ page_num }}</span>
+      <span class="text-muted">/ {{ total_pages }}</span>
+    </li>
+
+    <!-- right arrow -->
+    {% if page_num < total_pages %}
+      {% assign next_path = '/blog/page/' | append: page_num | plus: 1 | append: '/' %}
+      {% assign next_url = next_path | relative_url %}
+    {% else %}
+      {% assign next_url = '#' %}
+    {% endif %}
+
+    <li class="page-item {% unless page_num < total_pages %}disabled{% endunless %}">
+      <a class="page-link" href="{{ next_url }}" aria-label="next-page">
+        <i class="fas fa-angle-right"></i>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- .pagination -->

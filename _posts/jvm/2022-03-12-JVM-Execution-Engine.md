@@ -3,7 +3,7 @@ title: 深入理解 JVM 执行引擎
 description: 从解释执行到 JIT 即时编译，深入剖析热点代码识别（方法调用计数器 + 回边计数器）、C1/C2 编译器与分层编译机制，以及方法内联、逃逸分析、标量替换、栈上分配、锁消除五大后端编译优化技术。
 author: hsc
 date: 2022-03-12 16:10:00 +0800
-categories: [Java, JVM]
+categories: [Java 后端, JVM 内功]
 tags: [JVM, 执行引擎, JIT, 编译优化, 逃逸分析, 方法内联]
 mermaid: true
 ---
