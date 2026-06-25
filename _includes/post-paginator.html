@@ -7,7 +7,8 @@
       {% if page_num == 2 %}
         {% assign prev_url = '/blog/' | relative_url %}
       {% else %}
-        {% assign prev_path = '/blog/page/' | append: page_num | minus: 1 | append: '/' %}
+        {% assign prev_page_num = page_num | minus: 1 %}
+        {% assign prev_path = '/blog/page/' | append: prev_page_num | append: '/' %}
         {% assign prev_url = prev_path | relative_url %}
       {% endif %}
     {% else %}
@@ -81,7 +82,8 @@
 
     <!-- right arrow -->
     {% if page_num < total_pages %}
-      {% assign next_path = '/blog/page/' | append: page_num | plus: 1 | append: '/' %}
+      {% assign next_page_num = page_num | plus: 1 %}
+      {% assign next_path = '/blog/page/' | append: next_page_num | append: '/' %}
       {% assign next_url = next_path | relative_url %}
     {% else %}
       {% assign next_url = '#' %}
