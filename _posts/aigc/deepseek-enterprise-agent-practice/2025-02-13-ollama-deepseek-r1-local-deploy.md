@@ -27,7 +27,9 @@ Ollama 项目支持跨平台部署，目前已兼容 Mac、Linux 和 Windows 操
 
 ![](https://snowball101.oss-cn-beijing.aliyuncs.com/img/202403081646978.png)
 
-本人是在 Ubuntu 24.04 系统下安装部署 Ollama 项目，因此本文重点总结改版本操作系统得详细步骤。具体来说，Ollama 在 Ubuntu 系统上安装方式由两种，分别是：<hl=red>Olla一键安装和手动安装ma</hl>，但不论使用哪种方法进行安装，都需要安装Ollama项目的服务器上具备网络连通环境，因为不仅涉及Ollama安装包的更新，还会涉及后续大模型的下载。
+本人是在 Ubuntu 24.04 系统下安装部署 Ollama 项目，因此本文重点总结该版本操作系统得详细步骤。
+
+具体来说，Ollama 在 Ubuntu 系统上安装方式由两种，分别是：<hl=red>Olla一键安装和手动安装ma</hl>，但不论使用哪种方法进行安装，都需要安装Ollama项目的服务器上具备网络连通环境，因为不仅涉及Ollama安装包的更新，还会涉及后续大模型的下载。
 
 ## Ollama 项目本地安装
 
@@ -44,6 +46,7 @@ Ollama 项目本地安装得方法极为简单，这里以 Ubuntu 24.04 系统�
 2. 下载 Ollama 的二进制文件；
 3. 配置系统服务，包括创建用户和用户组，添加 Ollama 的配置信息；
 4. 启动 Ollama 服务。
+
 这个过程会比较慢，拉取的文件约 2G 左右，如果安装过程中未出现任何错误信息，通常情况下能够表明安装已经成功。可以通过执行下命令来检查 Ollama 服务的运行状态：
 
 ```bash
@@ -73,7 +76,16 @@ $ sudo ollama -v
 > 需要说明的一点是：`Ollama`项目虽然提供了本地化大模型的能力，但这并不意味着所有大模型都可以通过它下载和使用，其支持的大模型的详细列表可在`Ollama`的官方模型库页面查看：[https://ollama.com/library](https://ollama.com/library)。
 {: .prompt-tip }
 
-![Ollama 支持的大模型   ](https://muyu20241105.oss-cn-beijing.aliyuncs.com/images/202502121017505.png)
+![Ollama 支持的大模型](https://muyu20241105.oss-cn-beijing.aliyuncs.com/images/202502121017505.png)
+
+在 Ollama 的模型库中主要支持的还是 `LLaMA` 架构的一些主流大模型，并且现在已经全面接入了 `DeepSeek R1` 满血版模型及其蒸馏的小模型，可以进入如下页面查看所有可使用的 `DeepSeek` 模型。注意：Ollama 暂时没有接入 `DeepSeek V3` 模型 
+
+
+![](https://muyu20241105.oss-cn-beijing.aliyuncs.com/images/202502131352604.png)
+
+在进入大模型的详细页面后，可以看到其支持的模型
+
+
 ## Ollama 启动和使用方法
 
 ## Ollama 多 GPU 部署及 server 启动
