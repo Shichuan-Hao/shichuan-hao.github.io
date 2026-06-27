@@ -13,8 +13,7 @@ tags: [DeepSeek, Ollama, DeepSeek R1]
 
 目前主要针对主流的 <hl=red>LLaMA</hl> 架构的开源大模型设计，通过将模型权重、配置文件和必要数据封装进由<hl=red>Modelfile</hl>定义的包中，从而实现大模型的下载，启动和本地运行的自动化部署及推流流程。
 
-此外，<hl=red>Ollama</hl> 内置了一系列针对大模型运行和推理的优化策略，目前作为一个非常热门的<color=red>大模型托管平台</color>，基本主流的大模型应用开发框架如 `LangChain`、`AutoGen`、`Microsoft GraphRAG
-及热门项目`AnythingLLM`、`OpenWebUI` 等高度集成。
+此外，<hl=red>Ollama</hl> 内置了一系列针对大模型运行和推理的优化策略，目前作为一个非常热门的<color=red>大模型托管平台</color>，基本主流的大模型应用开发框架如 `LangChain`、`AutoGen`、`Microsoft GraphRAG`及热门项目`AnythingLLM`、`OpenWebUI` 等高度集成。
 
 > `Ollama` 通过将大模型运行的所有必要组件（如权重文件、配置设置和相关数据）封装在一个单一的文件或包中，`Modelfile` 允许用户更容易地下载、安装、配置和启动模型。这种方法类似于其它软件或应用程序的安装包，它们将所有必要的文件打包在一起，以便用户可以通过简单的安装过程将软件添加到他们的系统中。<br/>
 Ollama 项目地址：[https://github.com/Ollama/ollama](https://github.com/Ollama/ollama) <br/>

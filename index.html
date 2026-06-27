@@ -131,24 +131,24 @@ layout: default
     从 JVM 原理到 AI Agent 应用，记录一名后端工程师向 AI 领域转型的技术实践与学习思考。2027 年春招，目标 AI Agent 相关岗位。
   </div>
   <div class="btn-row">
-    <a href="/blog/" class="btn-primary"><i class="fas fa-pen"></i> 阅读文章</a>
-    <a href="/projects/" class="btn-outline"><i class="fas fa-rocket"></i> 我的项目</a>
-    <a href="/about/" class="btn-outline"><i class="fas fa-user"></i> 关于我</a>
+    <a href="{{ '/blog/' | relative_url }}" class="btn-primary"><i class="fas fa-pen"></i> 阅读文章</a>
+    <a href="{{ '/projects/' | relative_url }}" class="btn-outline"><i class="fas fa-rocket"></i> 我的项目</a>
+    <a href="{{ '/about/' | relative_url }}" class="btn-outline"><i class="fas fa-user"></i> 关于我</a>
   </div>
 </div>
 
 <!-- 数据统计 -->
 <div class="landing-stats">
   <div class="stat-item">
-    <div class="stat-num">{{ site.posts.size }}</div>
+    <div class="stat-num">{{ site.posts | size }}</div>
     <div class="stat-label">篇文章</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">{{ site.categories.size }}</div>
+    <div class="stat-num">{{ site.categories | size }}</div>
     <div class="stat-label">个分类</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">{{ site.data.projects.items.size }}</div>
+    <div class="stat-num">2</div>
     <div class="stat-label">个项目</div>
   </div>
 </div>
@@ -160,9 +160,9 @@ layout: default
     <div class="landing-post-item">
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
       <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-      {% if post.categories.size > 0 %}
+      {% if post.categories %}
         <span class="post-desc">
-          {% for cat in post.categories limit:2 %}
+          {% for cat in post.categories limit:3 %}
             <span style="background:#eef2ff; color:#4a5cf7; padding:1px 8px; border-radius:10px; font-size:0.72rem;">{{ cat }}</span>
           {% endfor %}
         </span>
@@ -170,21 +170,21 @@ layout: default
     </div>
   {% endfor %}
   <div class="landing-more">
-    <a href="/blog/">查看更多 →</a>
+    <a href="{{ '/blog/' | relative_url }}">查看更多 →</a>
   </div>
 </div>
 
 <!-- 快捷入口 -->
-<div class="landing-section" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-  <a href="/categories/java-后端/" style="flex:1; min-width:120px; display:block; padding:1rem; border-radius:8px; background:#fef3c7; text-decoration:none; color:#92400e; text-align:center;">
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+  <a href="{{ '/categories/java-后端/' | relative_url }}" style="flex:1; min-width:120px; display:block; padding:1rem; border-radius:8px; background:#fef3c7; text-decoration:none; color:#92400e; text-align:center;">
     <div style="font-size:1.5rem;">☕</div>
     <div style="font-weight:600; margin-top:4px;">Java 后端</div>
   </a>
-  <a href="/categories/ai-agent/" style="flex:1; min-width:120px; display:block; padding:1rem; border-radius:8px; background:#ede9fe; text-decoration:none; color:#6b21a8; text-align:center;">
+  <a href="{{ '/categories/ai-agent/' | relative_url }}" style="flex:1; min-width:120px; display:block; padding:1rem; border-radius:8px; background:#ede9fe; text-decoration:none; color:#6b21a8; text-align:center;">
     <div style="font-size:1.5rem;">🤖</div>
     <div style="font-weight:600; margin-top:4px;">AI Agent</div>
   </a>
-  <a href="/categories/博客运营/" style="flex:1; min-width:120px; display:block; padding:1rem; border-radius:8px; background:#dbeafe; text-decoration:none; color:#1e40af; text-align:center;">
+  <a href="{{ '/categories/博客运营/' | relative_url }}" style="flex:1; min-width:120px; display:block; padding:1rem; border-radius:8px; background:#dbeafe; text-decoration:none; color:#1e40af; text-align:center;">
     <div style="font-size:1.5rem;">✍️</div>
     <div style="font-weight:600; margin-top:4px;">博客运营</div>
   </a>
