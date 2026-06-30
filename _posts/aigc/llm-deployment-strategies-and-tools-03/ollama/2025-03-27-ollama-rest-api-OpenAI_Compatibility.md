@@ -1,5 +1,5 @@
 ---
-title: Ollama REST API
+title: Ollama REST API - OpenAI Compatilility
 description: Ollama 本地部署 DeepSeek R1 模型
 author: hsc
 date: 2025-03-27 10:27:00 +0800
