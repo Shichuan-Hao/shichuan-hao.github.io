@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 学习路径仪表盘 | 2026.07 → 2027.03</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --card: #1a1d28;
+  --card-hover: #212433;
+  --border: #2a2d3a;
+  --text: #e1e4ed;
+  --text-muted: #8b8fa3;
+  --accent: #6366f1;
+  --accent-glow: rgba(99,102,241,0.3);
+  --green: #22c55e;
+  --green-bg: rgba(34,197,94,0.12);
+  --orange: #f59e0b;
+  --orange-bg: rgba(245,158,11,0.12);
+  --blue: #3b82f6;
+  --blue-bg: rgba(59,130,246,0.12);
+  --purple: #a855f7;
+  --purple-bg: rgba(168,85,247,0.12);
+  --red: #ef4444;
+  --radius: 12px;
+  --transition: 0.2s ease;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+.header {
+  padding: 40px 0 32px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header .subtitle {
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+.stat-card .label { color: var(--text-muted); font-size: 0.85rem; }
+.stat-card .value { font-size: 1.75rem; font-weight: 700; margin-top: 4px; }
+.stat-card .progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.stat-card .progress-bar .fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* Timeline */
+.timeline-section { margin-bottom: 40px; }
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title .dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.phase-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.phase-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.phase-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.phase-card:nth-child(1)::before { background: var(--blue); }
+.phase-card:nth-child(2)::before { background: var(--accent); }
+.phase-card:nth-child(3)::before { background: var(--purple); }
+.phase-card:nth-child(4)::before { background: var(--orange); }
+.phase-card:hover { background: var(--card-hover); transform: translateY(-2px); }
+.phase-card .phase-num { font-size: 0.8rem; color: var(--text-muted); }
+.phase-card .phase-name { font-size: 1.05rem; font-weight: 600; margin: 6px 0 4px; }
+.phase-card .phase-date { font-size: 0.82rem; color: var(--text-muted); }
+.phase-card .phase-desc { font-size: 0.82rem; color: var(--text-muted); margin-top: 8px; }
+.phase-card .phase-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 8px;
+}
+.badge-foundation { background: var(--blue-bg); color: var(--blue); }
+.badge-course    { background: rgba(99,102,241,0.12); color: var(--accent); }
+.badge-deep      { background: var(--purple-bg); color: var(--purple); }
+.badge-interview { background: var(--orange-bg); color: var(--orange); }
+
+/* Course Modules */
+.modules-section { margin-bottom: 40px; }
+.stage-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  background: var(--card);
+  padding: 4px;
+  border-radius: var(--radius);
+  width: fit-content;
+}
+.stage-tab {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: all var(--transition);
+}
+.stage-tab:hover { color: var(--text); }
+.stage-tab.active { background: var(--accent); color: #fff; }
+
+.module-list { display: flex; flex-direction: column; gap: 8px; }
+.module-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all var(--transition);
+}
+.module-item:hover { border-color: #3d4060; }
+.module-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  cursor: pointer;
+  gap: 12px;
+  user-select: none;
+}
+.module-checkbox {
+  width: 20px; height: 20px;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.module-checkbox.checked {
+  background: var(--green);
+  border-color: var(--green);
+}
+.module-checkbox.checked::after {
+  content: '✓';
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+.module-tag {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.tag-required { background: rgba(239,68,68,0.12); color: var(--red); }
+.tag-recommend { background: var(--orange-bg); color: var(--orange); }
+.tag-optional { background: var(--blue-bg); color: var(--blue); }
+.tag-project { background: rgba(168,85,247,0.12); color: var(--purple); }
+.module-name { flex: 1; font-weight: 500; font-size: 0.93rem; }
+.module-time { color: var(--text-muted); font-size: 0.8rem; flex-shrink: 0; }
+.module-arrow {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  transition: transform var(--transition);
+  flex-shrink: 0;
+}
+.module-item.open .module-arrow { transform: rotate(180deg); }
+.module-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.module-item.open .module-body { max-height: 600px; }
+.module-content {
+  padding: 0 20px 16px 52px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.module-content ul { padding-left: 18px; }
+.module-content li { margin-bottom: 4px; }
+.module-content li::marker { color: var(--accent); }
+
+/* Project Section */
+.projects-section { margin-bottom: 40px; }
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  border-left: 3px solid var(--purple);
+  transition: all var(--transition);
+}
+.project-card:hover { background: var(--card-hover); }
+.project-card h4 { font-size: 0.95rem; margin-bottom: 4px; }
+.project-card .tech { font-size: 0.75rem; color: var(--purple); margin-bottom: 8px; }
+.project-card p { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Weekly Plan */
+.weekly-section { margin-bottom: 40px; }
+.weekly-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+.week-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  position: relative;
+}
+.week-card .week-num {
+  font-size: 0.7rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+.week-card .week-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 4px 0;
+}
+.week-card .week-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.week-card.done { opacity: 0.5; }
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all var(--transition);
+}
+.btn:hover { background: var(--card-hover); border-color: #3d4060; }
+.btn.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn.accent:hover { background: #5558e6; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .stats-grid, .phase-grid, .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .stats-grid, .phase-grid, .project-grid { grid-template-columns: 1fr; }
+  .header h1 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>AI Agent 智能体开发学习仪表盘</h1>
+  <p class="subtitle">课程：《大模型Agent智能体开发实战课》| 目标：2027年春招 ｜ 学员背景：8年Java后端</p>
+</div>
+
+<!-- Controls -->
+<div class="controls">
+  <button class="btn accent" onclick="resetAll()">重置全部进度</button>
+  <button class="btn" onclick="expandAll()">展开全部模块</button>
+  <button class="btn" onclick="collapseAll()">收起全部模块</button>
+  <span style="margin-left:auto;color:var(--text-muted);font-size:0.82rem;display:flex;align-items:center;">
+    💡 进度自动保存在浏览器本地
+  </span>
+</div>
+
+<!-- Stats -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="label">总学习模块</div>
+    <div class="value"><span id="total-modules">16</span></div>
+    <div class="progress-bar"><div class="fill" id="total-bar" style="width:0%;background:var(--green)"></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="label">已完成模块</div>
+    <div class="value" style="color:var(--green)"><span id="done-modules">0</span></div>
+  </div>
+  <div class="stat-card">
+    <div class="label">进行中项目</div>
+    <div class="value" style="color:var(--purple)"><span id="done-projects">0</span>/4</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">距离春招</div>
+    <div class="value" id="countdown">--</div>
+  </div>
+</div>
+
+<!-- Timeline Phases -->
+<div class="timeline-section">
+  <div class="section-title"><span class="dot" style="background:var(--accent)"></span>四阶段学习时间线</div>
+  <div class="phase-grid">
+    <div class="phase-card" onclick="document.getElementById('weekly-plan').scrollIntoView({behavior:'smooth'})">
+      <div class="phase-num">PHASE 1</div>
+      <div class="phase-name">基础夯实</div>
+      <div class="phase-date">2026年7月 · 4周</div>
+      <div class="phase-desc">Python速成 + LLM基础 + 环境搭建 + API调用入门</div>
+      <span class="phase-badge badge-foundation">入门</span>
+    </div>
+    <div class="phase-card" onclick="document.getElementById('modules-section').scrollIntoView({behavior:'smooth'})">
+      <div class="phase-num">PHASE 2</div>
+      <div class="phase-name">课程攻坚</div>
+      <div class="phase-date">2026年8-10月 · 12周</div>
+      <div class="phase-desc">完整学完课程三大阶段：部署→微调→Agent→RAG→项目</div>
+      <span class="phase-badge badge-course">核心</span>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">PHASE 3</div>
+      <div class="phase-name">Agent深钻</div>
+      <div class="phase-date">2026年11-12月 · 8周</div>
+      <div class="phase-desc">LangGraph深钻 + MCP协议 + 2个差异化个人项目</div>
+      <span class="phase-badge badge-deep">差异化</span>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">PHASE 4</div>
+      <div class="phase-name">面试冲刺</div>
+      <div class="phase-date">2027年1-3月 · 10周</div>
+      <div class="phase-desc">系统整理 + 刷题 + 简历打磨 + 投递面试</div>
+      <span class="phase-badge badge-interview">求职</span>
+    </div>
+  </div>
+</div>
+
+<!-- Course Modules (from Excel) -->
+<div class="modules-section" id="modules-section">
+  <div class="section-title"><span class="dot" style="background:var(--accent)"></span>课程模块清单（共16个Part）</div>
+  <div class="stage-tabs">
+    <button class="stage-tab active" onclick="filterModules('all', this)">全部</button>
+    <button class="stage-tab" onclick="filterModules('foundation', this)">初级阶段</button>
+    <button class="stage-tab" onclick="filterModules('advanced', this)">进阶阶段</button>
+    <button class="stage-tab" onclick="filterModules('expert', this)">高级阶段</button>
+    <button class="stage-tab" onclick="filterModules('project', this)">实战项目</button>
+  </div>
+  <div class="module-list" id="module-list"></div>
+</div>
+
+<!-- Weekly Plan -->
+<div class="weekly-section" id="weekly-plan">
+  <div class="section-title"><span class="dot" style="background:var(--orange)"></span>逐周学习计划（32周 / 8个月）</div>
+  <div class="weekly-grid" id="weekly-grid"></div>
+</div>
+
+</div>
+
+<script>
+// ==================== Course Data ====================
+const modules = [
+  { id:'p1', stage:'foundation', name:'Part 1：大模型部署软硬件环境准备', time:'约 2h', tag:'required', tagLabel:'必修',
+    content:'Python虚拟环境配置、Jupyter Notebook使用、AutoDL云GPU租赁教程、Windows/Linux双系统安装、硬件选型建议（单卡3090/24G显存）' },
+  { id:'p2', stage:'foundation', name:'Part 2：大模型部署与调用方法（赠送）', time:'约 4h', tag:'required', tagLabel:'必修',
+    content:'<ul><li>在线API调用：DeepSeek V3/R1、OpenAI GPT-4o/o3/o4、Claude 4、Gemini系列</li><li>本地部署：DeepSeek V3/R1、Open-WebUI部署、KTransformers高性能部署、KT+Unsloth动态量化</li><li>核心技能：API Key申请、Python调用、参数调优、流式输出、Function Calling</li></ul>' },
+  { id:'p3', stage:'foundation', name:'Part 3：大模型部署策略与工具详解', time:'约 3h', tag:'required', tagLabel:'必修',
+    content:'<ul><li>个人轻量部署方案：Ollama推理加速框架</li><li>企业多并发部署方案：vLLM推理加速框架</li><li>其他框架：SGLang、LMStudio</li></ul>' },
+  { id:'p4', stage:'advanced', name:'Part 4：大模型高效 & 强化微调原理', time:'约 3h', tag:'recommend', tagLabel:'推荐',
+    content:'<ul><li>高效微调原理：LoRA、QLoRA（低秩适配）</li><li>强化学习微调：DPO（直接偏好优化）、PPO、RLHF</li><li>核心理解：知识灌注 vs 领域适配的区别</li></ul>' },
+  { id:'p5', stage:'advanced', name:'Part 5：微调数据集获取方法及自主构建', time:'约 2h', tag:'recommend', tagLabel:'推荐',
+    content:'<ul><li>微调数据集格式规范（Alpaca/ShareGPT格式）</li><li>公开数据集获取来源（HuggingFace/ModelScope）</li><li>私有数据标注与构建方法</li><li>数据清洗与质量评估</li></ul>' },
+  { id:'p6', stage:'advanced', name:'Part 6：借助Llama-Factory进行高效微调', time:'约 3h', tag:'recommend', tagLabel:'推荐',
+    content:'<ul><li>Llama-Factory框架部署与配置</li><li>WebUI界面操作微调全流程</li><li>命令行批量微调脚本</li><li>微调参数调优（学习率、rank、epoch等）</li></ul>' },
+  { id:'p7', stage:'advanced', name:'Part 7：大模型微调 & 蒸馏应用实战', time:'约 4h', tag:'recommend', tagLabel:'推荐',
+    content:'<ul><li>DeepSeek R1模型微调实战</li><li>模型蒸馏实战（大模型→小模型）</li><li>DeepSeek R1论文精读与GRPO算法实战</li><li>NL2SQL领域微调项目</li><li>医疗领域模型微调项目</li><li>PEFT手动微调完整流程</li></ul>' },
+  { id:'p8', stage:'advanced', name:'Part 8：企业级大模型微调实战', time:'约 4h', tag:'optional', tagLabel:'选学',
+    content:'企业级微调最佳实践：大规模数据工程化处理、分布式微调、模型评估体系、AB测试上线流程。微调模块相对独立，无明确微调需求可暂缓，不影响Agent/RAG学习。' },
+  { id:'p9', stage:'expert', name:'Part 9：RAG基础 & 向量数据库应用', time:'约 3h', tag:'required', tagLabel:'必修',
+    content:'<ul><li>RAG基本概念与架构（检索增强生成）</li><li>文档解析、文本分块策略（Chunking）</li><li>Embedding模型选型与向量嵌入</li><li>向量数据库：Chroma/FAISS/Milvus</li><li>相似度检索与Top-K策略</li><li>Naive RAG完整Pipeline实现</li></ul>' },
+  { id:'p10', stage:'expert', name:'Part 10：企业级RAG技术优化 & 评估', time:'约 3h', tag:'required', tagLabel:'必修',
+    content:'<ul><li>检索优化：HyDE（假设文档嵌入）、Re-ranking重排序</li><li>Self-RAG、CRAG（纠正式RAG）</li><li>RAG评估指标：忠实度、相关性、准确率</li><li>RAGAS评估框架使用</li><li>多路召回策略</li></ul>' },
+  { id:'p11', stage:'expert', name:'Part 11：GraphRAG应用实战', time:'约 3h', tag:'required', tagLabel:'必修',
+    content:'<ul><li>Microsoft GraphRAG部署与配置</li><li>LightRAG轻量级实现</li><li>图索引构建：实体识别→关系提取→社区检测</li><li>Naive RAG vs GraphRAG vs LightRAG对比</li><li>DS-V3/DS-R1本地知识库问答实战</li></ul>' },
+  { id:'p12', stage:'expert', name:'Part 12：低代码开发实战 - Dify', time:'约 2h', tag:'optional', tagLabel:'选学',
+    content:'<ul><li>Dify平台部署与使用</li><li>可视化构建Agent工作流</li><li>知识库接入与API发布</li><li>适用场景：快速原型验证、非编程人员构建Agent</li></ul>' },
+  { id:'p13', stage:'expert', name:'Part 13：AI Agent 基础与ReAct实战', time:'约 3h', tag:'required', tagLabel:'必修',
+    content:'<ul><li>Agent核心概念：感知→规划→执行→反馈循环</li><li>ReAct模式原理（Reasoning + Acting）</li><li>Function Calling机制深度解析</li><li>Tool Use：自定义工具开发与注册</li><li>从零构建一个ReAct Agent</li></ul>' },
+  { id:'p14', stage:'expert', name:'Part 14：自主Agent开发框架LangGraph', time:'约 5h', tag:'required', tagLabel:'必修',
+    content:'<ul><li>LangGraph状态图编程模型（StateGraph）</li><li>节点(Node)、边(Edge)、条件边(ConditionalEdge)</li><li>Checkpointer持久化与状态恢复</li><li>Human-in-the-Loop人机协作模式</li><li>多Agent编排与通信</li><li>LangSmith可观测性与调试</li><li><strong>面试核心框架，重点掌握！</strong></li></ul>' },
+  { id:'p15', stage:'expert', name:'Part 15：热门Agent框架 - AutoGen', time:'约 3h', tag:'recommend', tagLabel:'推荐',
+    content:'<ul><li>微软AutoGen多智能体对话框架</li><li>ConversableAgent与AssistantAgent</li><li>GroupChat群组对话管理</li><li>与LangGraph对比：封装度更高，灵活度更低</li></ul>' },
+  { id:'p16', stage:'expert', name:'Part 16：AssistantAPI & Swarm', time:'约 3h', tag:'recommend', tagLabel:'推荐',
+    content:'<ul><li>OpenAI Assistant API架构（仅支持GPT系列）</li><li>内置工具：Code Interpreter、File Search、Function Calling</li><li>Swarm多智能体编排框架</li><li>DS-V3智能体开发实战</li></ul>' },
+  { id:'prj1', stage:'project', name:'项目一：企业知识库文档问答 - FuFan_Chat', time:'约 8h', tag:'project', tagLabel:'项目',
+    content:'<ul><li>技术栈：ChatGLM3-6B + FastChat + LangChain + ChromaDB</li><li>完全模拟企业开发流程</li><li>需Linux环境（依赖不兼容Windows）</li><li>包含：文档解析→向量化→检索→问答全流程</li><li>按Week课件逐步复现，不可跳过步骤</li></ul>' },
+  { id:'prj2', stage:'project', name:'项目二：AI编程&数据分析Agent - MateGen Pro', time:'约 6h', tag:'project', tagLabel:'项目',
+    content:'<ul><li>技术栈：OpenAI Assistant API + 前后端分离架构</li><li>轻量级，支持Win/Linux/Mac</li><li>核心功能：代码解释器 + 数据分析 + 工具调用</li><li>注意：仅支持OpenAI直连API Key</li></ul>' },
+  { id:'prj3', stage:'project', name:'项目三：智能客服Agent - AssistGen', time:'约 8h', tag:'project', tagLabel:'项目',
+    content:'<ul><li>技术栈：LangGraph + DeepSeek + RAG</li><li>功能：本地部署 + 流式问答 + 联网检索 + 本地知识库问答</li><li>多智能体协作架构</li><li>面试中最有价值的项目经验</li></ul>' },
+  { id:'prj4', stage:'project', name:'项目四："Manus"通用智能体开发实战', time:'约 10h', tag:'project', tagLabel:'项目',
+    content:'<ul><li>模拟Manus类通用Agent架构</li><li>多工具编排 + 自主任务规划</li><li>浏览器自动化 + 文件操作 + 代码执行</li><li>（课程已全部更新完毕）</li></ul>' },
+];
+
+const weeklyPlan = [
+  { w:1, date:'7月第1周', phase:1, title:'Python 速成', desc:'类型系统、装饰器、asyncio、FastAPI基础。Java转Python语法对照学习，重点攻克差异点。' },
+  { w:2, date:'7月第2周', phase:1, title:'环境搭建', desc:'课程Part1：Python虚拟环境、Jupyter、AutoDL云GPU租赁教程、Linux基础命令。' },
+  { w:3, date:'7月第3周', phase:1, title:'API调用入门', desc:'Part2前半：DeepSeek V3/R1在线API调用、参数详解、流式输出、Function Calling初探。' },
+  { w:4, date:'7月第4周', phase:1, title:'LLM理论基础', desc:'Transformer架构、Attention机制、Token/Tokenization、Prompt Engineering基础、温度/Top-P等参数原理。' },
+  { w:5, date:'8月第1周', phase:2, title:'本地部署(上)', desc:'Part2-3：Ollama本地部署DeepSeek、Open-WebUI搭建、模型权重下载流程。' },
+  { w:6, date:'8月第2周', phase:2, title:'本地部署(下)', desc:'vLLM企业级部署、SGLang推理加速、KTransformers高性能部署、动态量化技术。' },
+  { w:7, date:'8月第3周', phase:2, title:'RAG基础(上)', desc:'Part9：RAG概念理解、文档解析与Chunking策略、Embedding模型选型。' },
+  { w:8, date:'8月第4周', phase:2, title:'RAG基础(下)', desc:'Part9-10：向量数据库Chroma实战、完整RAG Pipeline、检索评估指标。' },
+  { w:9, date:'9月第1周', phase:2, title:'GraphRAG实战', desc:'Part11：Microsoft GraphRAG部署、图索引构建、与传统RAG对比实验。' },
+  { w:10, date:'9月第2周', phase:2, title:'Agent基础', desc:'Part13：Agent概念、ReAct模式原理、Function Calling深度实战。' },
+  { w:11, date:'9月第3周', phase:2, title:'LangGraph入门', desc:'Part14前半：StateGraph编程模型、节点/边/条件边、构建第一个LangGraph Agent。' },
+  { w:12, date:'9月第4周', phase:2, title:'LangGraph进阶', desc:'Part14后半：Checkpointer持久化、Human-in-the-Loop、多Agent编排。' },
+  { w:13, date:'10月第1周', phase:2, title:'AutoGen + Swarm', desc:'Part15-16：AutoGen多智能体对话、Swarm框架、Assistant API架构。' },
+  { w:14, date:'10月第2周', phase:2, title:'微调原理', desc:'Part4-5：LoRA/QLoRA原理、DPO/PPO原理、微调数据集构建方法。' },
+  { w:15, date:'10月第3周', phase:2, title:'微调实战', desc:'Part6-7：Llama-Factory实操、DeepSeek R1微调、模型蒸馏、NL2SQL实战。' },
+  { w:16, date:'10月第4周', phase:2, title:'企业微调 + Dify', desc:'Part8+12：企业级微调最佳实践、Dify低代码Agent构建（快速体验即可）。' },
+  { w:17, date:'11月第1周', phase:3, title:'项目一复现', desc:'FuFan_Chat完整复现：Linux环境搭建→模型部署→知识库构建→问答系统上线。' },
+  { w:18, date:'11月第2周', phase:3, title:'项目二+三复现', desc:'MateGen Pro + AssistGen：Assistant API Agent实战 + LangGraph智能客服。' },
+  { w:19, date:'11月第3周', phase:3, title:'LangGraph深钻', desc:'通读LangGraph官方文档、LangSmith可观测性全链路追踪、自定义Tool开发。' },
+  { w:20, date:'11月第4周', phase:3, title:'MCP协议 & A2A', desc:'Model Context Protocol（Agent工具标准化）、Agent-to-Agent协议，2026年面试高频。' },
+  { w:21, date:'12月第1周', phase:3, title:'个人项目一', desc:'【智能运维Agent】结合Java后端经验：自动分析日志→定位异常→调用API修复→生成报告。' },
+  { w:22, date:'12月第2周', phase:3, title:'个人项目一收尾', desc:'完善项目：加README架构图、录Demo视频、写技术博客、推到GitHub。' },
+  { w:23, date:'12月第3周', phase:3, title:'个人项目二', desc:'【多智能体协作系统】搜数据Agent + 分析Agent + 报告Agent，展示编排能力。' },
+  { w:24, date:'12月第4周', phase:3, title:'个人项目二收尾', desc:'项目完善 + GitHub Profile优化 + 开始写简历初稿。' },
+  { w:25, date:'1月第1周', phase:4, title:'知识体系整理', desc:'系统梳理：Agent架构模式、RAG优化策略对比、向量数据库选型、Prompt工程最佳实践。' },
+  { w:26, date:'1月第2周', phase:4, title:'知识体系整理(续)', desc:'大模型幻觉缓解、Agent安全/护栏、成本优化、生产化部署方案（Docker/K8s）。' },
+  { w:27, date:'1月第3周', phase:4, title:'刷面试题(上)', desc:'LangGraph/LangChain核心概念题、Agent设计题、Python编码题、系统设计题。' },
+  { w:28, date:'1月第4周', phase:4, title:'刷面试题(下)', desc:'LeetCode Top 100（Python实现）、模拟面试、八股文整理。' },
+  { w:29, date:'2月第1周', phase:4, title:'简历打磨', desc:'突出"8年Java后端+AI Agent实战"差异化定位、STAR法则写项目经验。' },
+  { w:30, date:'2月第2周', phase:4, title:'内推+投递', desc:'目标岗位：AI Agent开发/大模型应用开发工程师。投AI初创、大厂AI部门、传统企业数字化转型。' },
+  { w:31, date:'2月第3-4周', phase:4, title:'持续面试', desc:'保持每日1-2场面试节奏，面试后及时复盘，补充知识盲区。' },
+  { w:32, date:'3月', phase:4, title:'收Offer + 决策', desc:'对比Offer、谈判薪资、准备入职。AI Agent开发岗参考薪资范围：30-60K（一线城市资深）。' },
+];
+
+const phaseColors = { 1: 'var(--blue)', 2: 'var(--accent)', 3: 'var(--purple)', 4: 'var(--orange)' };
+const phaseBgColors = { 1: 'var(--blue-bg)', 2: 'rgba(99,102,241,0.12)', 3: 'var(--purple-bg)', 4: 'var(--orange-bg)' };
+
+// ==================== Render Functions ====================
+function renderModules(filter = 'all') {
+  const container = document.getElementById('module-list');
+  const filtered = filter === 'all' ? modules : modules.filter(m => m.stage === filter);
+  const progress = getProgress();
+  
+  container.innerHTML = filtered.map(m => {
+    const isChecked = progress[m.id] || false;
+    const tagClass = m.tag === 'required' ? 'tag-required' : m.tag === 'recommend' ? 'tag-recommend' : m.tag === 'optional' ? 'tag-optional' : 'tag-project';
+    return `
+    <div class="module-item" data-id="${m.id}" data-stage="${m.stage}">
+      <div class="module-header" onclick="toggleModule(this.parentElement, event)">
+        <div class="module-checkbox ${isChecked ? 'checked' : ''}" onclick="toggleCheck('${m.id}', event)"></div>
+        <span class="module-tag ${tagClass}">${m.tagLabel}</span>
+        <span class="module-name" style="${isChecked ? 'text-decoration:line-through;opacity:0.5' : ''}">${m.name}</span>
+        <span class="module-time">${m.time}</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-body">
+        <div class="module-content">${m.content}</div>
+      </div>
+    </div>`;
+  }).join('');
+  updateStats();
+}
+
+function renderWeekly() {
+  const container = document.getElementById('weekly-grid');
+  const progress = getProgress();
+  const now = new Date();
+  const weekProgress = progress['_weeks'] || {};
+  
+  container.innerHTML = weeklyPlan.map(w => {
+    const c = phaseColors[w.phase];
+    const bg = phaseBgColors[w.phase];
+    return `
+    <div class="week-card" style="border-left:3px solid ${c}">
+      <div class="week-num" style="color:${c}">第${w.w}周 · ${w.date}</div>
+      <div class="week-title">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${c};margin-right:6px"></span>
+        ${w.title}
+        ${weekProgress[w.w] ? '<span style="color:var(--green);font-size:0.7rem;margin-left:8px">✓ 完成</span>' : ''}
+      </div>
+      <div class="week-desc">${w.desc}</div>
+    </div>`;
+  }).join('');
+}
+
+// ==================== Interaction ====================
+function toggleModule(el, e) {
+  if (e.target.classList.contains('module-checkbox')) return;
+  el.classList.toggle('open');
+}
+
+function toggleCheck(id, e) {
+  e.stopPropagation();
+  const progress = getProgress();
+  progress[id] = !progress[id];
+  saveProgress(progress);
+  renderModules(document.querySelector('.stage-tab.active')?.dataset?.filter || 'all');
+}
+
+function filterModules(filter, btn) {
+  document.querySelectorAll('.stage-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  btn.dataset.filter = filter;
+  renderModules(filter);
+}
+
+function expandAll() {
+  document.querySelectorAll('.module-item').forEach(el => el.classList.add('open'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.module-item').forEach(el => el.classList.remove('open'));
+}
+
+function resetAll() {
+  if (confirm('确定要重置全部学习进度吗？此操作不可恢复！')) {
+    localStorage.removeItem('agent-study-progress');
+    renderModules('all');
+    renderWeekly();
+    document.querySelectorAll('.stage-tab').forEach(b => b.classList.remove('active'));
+    document.querySelector('.stage-tab').classList.add('active');
+  }
+}
+
+// ==================== Progress ====================
+function getProgress() {
+  try { return JSON.parse(localStorage.getItem('agent-study-progress')) || {}; }
+  catch(e) { return {}; }
+}
+
+function saveProgress(p) {
+  localStorage.setItem('agent-study-progress', JSON.stringify(p));
+}
+
+function updateStats() {
+  const done = document.querySelectorAll('.module-checkbox.checked').length;
+  const total = modules.length;
+  const doneProjects = modules.filter(m => m.stage === 'project' && document.querySelector(`[data-id="${m.id}"] .module-checkbox.checked`)).length || 
+    (getProgress().prj1 ? 1 : 0) + (getProgress().prj2 ? 1 : 0) + (getProgress().prj3 ? 1 : 0) + (getProgress().prj4 ? 1 : 0);
+  
+  document.getElementById('done-modules').textContent = done;
+  document.getElementById('done-projects').textContent = doneProjects;
+  document.getElementById('total-bar').style.width = total > 0 ? (done / total * 100) + '%' : '0%';
+}
+
+function updateCountdown() {
+  const target = new Date('2027-03-01');
+  const now = new Date();
+  const diff = target - now;
+  const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  document.getElementById('countdown').textContent = days + ' 天';
+}
+
+// ==================== Init ====================
+document.querySelector('.stage-tab').dataset.filter = 'all';
+renderModules('all');
+renderWeekly();
+updateCountdown();
+setInterval(updateCountdown, 60000);
+</script>
+</body>
+</html>
