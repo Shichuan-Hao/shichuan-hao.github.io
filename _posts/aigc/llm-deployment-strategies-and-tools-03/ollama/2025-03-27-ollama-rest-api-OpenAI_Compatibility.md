@@ -15,7 +15,7 @@ tags: [Ollama]
 - `models`
 - `embeddings`
 
-在 [](.././ollama/2025-03-27-ollama-rest-api-generate.md) 和 [](../ollama/2025-03-27-ollama-rest-api-chat.md) 总结的 `/api/generate` 和 `/api/chat` 接口就是 `Ollama` 兼容 `OpenAI` 的 `REST API` 接口的底层实现。其中：
+在 [Ollama REST API - generate 接口](/posts/ollama-rest-api-generate/) 和 [Ollama REST API - chat 接口](/posts/ollama-rest-api-chat/) 总结的 `/api/generate` 和 `/api/chat` 接口就是 `Ollama` 兼容 `OpenAI` 的 `REST API` 接口的底层实现。其中：
 - `/api/generate` 接口对应 `OpenAI` 的 `completions` 接口;
 - `/api/chat` 接口对应 `OpenAI` 的 `chat/completions` 接口。
 
