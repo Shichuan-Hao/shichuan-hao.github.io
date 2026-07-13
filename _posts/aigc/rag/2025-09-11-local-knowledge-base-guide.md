@@ -5,6 +5,8 @@ author: hsc
 date: 2025-09-11 19:27:00 +0800
 categories: [AI Agent, RAG]
 tags: []
+math: true
+mermaid: true
 ---
 
 ## 当下大语言模型知识库局限性
@@ -95,7 +97,8 @@ print(response.text)
 
 而对于如何将短文本和问题进行匹配，所涉及到的核心技术就是Embedding（词向量映射）。当然，既然是将长文本拆分为短文本，那就必然会带来一定的信息损失，因此这种长文本信息输入的过程也有一定的性能局限性。
 
-![](ml2022.oss-cn-hangzhou.aliyuncs.com/img/image-20231218181159789.png)
+![RAG long-text knowledge base input strategy flowchart with user question and external knowledge base splitting and matching/长文本知识库输入策略流程图（用户提问 + 外部知识库切分 → 文本匹配 → 大模型生成回答）](/assets/img/posts/rag/rag-input-strategy.png)__图：基于 Embedding 的本地知识库流程（RAG__
+
 
 ### 3. 借助 LangChain 实现长文本读取
 
@@ -105,7 +108,10 @@ print(response.text)
 
 截至目前，开源框架LangChain能够实现基于开源模型的长文本信息输入，能够全自动的进行长文本切分与短文本匹配，并且还进一步诞生了基于LangChain的ChatChat项目，专门用于实现更加精准的短文本拆分与匹配，该项目的拆分匹配流程如下：   
 
-![](ml2022.oss-cn-hangzhou.aliyuncs.com/img/image-20231218182814731.png)
+![LangChain-based Local Knowledge Base Q&A Pipeline (RAG)](/assets/img/posts/rag/langchain_local_kb_rag.png)__图：基于 LangChain 的本地知识库问答流程（RAG）__
+
+> 图中的 imClumsyPanda 正是知名开源项目 Langchain-ChatGLM（现已更名为 Langchain-Chatchat）的早期作者
+{: .prompt-warning }
 
 ### 4. 借助 Assistant API 实现长文本读取。
 
