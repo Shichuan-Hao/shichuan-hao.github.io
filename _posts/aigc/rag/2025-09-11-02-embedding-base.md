@@ -1,5 +1,5 @@
 ---
-title: Embedding 基础：理解文本向量化
+title: Embedding 快速入门之 Embedding 基础：理解文本向量化
 description:
 author: hsc
 date: 2025-09-13 22:27:00 +0800
@@ -422,4 +422,4 @@ res = openai.Embedding.create(
 
 在大模型技术时间应用领域，Embedding的核心作用则是进行更效率或者更高层次的文本匹配，来辅助大模型进行更高效率、更有针对性的文本输入。
 
-至此，上文呈现了一个关于Embedding模型的全景式概览。通过这个简要的介绍以增加Embedding的多样性和深度有一个初步的认识。但这部分内容不会作为本节的重点，在后面的课程中我们会安排单独的课时，为大家细致地拆解这些先进的开源Embedding技术，深入讲解它们的理论基础和实际应用方式。
+至此，上文呈现了一个关于Embedding模型的全景式概览。通过这个简要的介绍以增加Embedding的多样性和深度有一个初步的认识。

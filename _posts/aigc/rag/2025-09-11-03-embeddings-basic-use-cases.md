@@ -1,5 +1,5 @@
 ---
-title: Embedding 基础应用案例
+title: Embedding 快速入门之 OpenAI Embedding 模型
 description:
 author: hsc
 date: 2024-09-12 19:27:00 +0800
@@ -11,12 +11,12 @@ mermaid: true
 
 OpenAI 拥有非常丰富的大模型生态，其 API 是由一系列涵盖对话、图像、审查等具有不同能力和价格选项的多样化模型提供支持，如`gpt-3.5-turbo`、`gpt-4`等，它们都有自己特有的 EndPoint，**每一个 EndPoint 对应着不同的服务模型，这就意味着根据所选的EndPoint，背后为我们服务的模型也会有所不同**。
 
-> 在计算机网络和Web开发中，EndPoint 通常指的是互联网上一个服务的终端或访问点。简单地说，当你希望与一个在线服务进行交互时，你会发送一个请求到这个服务的一个指定的 EndPoint。在OpenAI的上下文中，不同的 EndPoint 代表的是不同的模型或服务，所以你可以根据需求选择合适的EndPoint来访问特定的模型功能。
+> 在计算机网络和 Web 开发中，EndPoint 通常指的是互联网上一个服务的终端或访问点。简单地说，当你希望与一个在线服务进行交互时，你会发送一个请求到这个服务的一个指定的 EndPoint。在OpenAI的上下文中，不同的 EndPoint 代表的是不同的模型或服务，所以你可以根据需求选择合适的EndPoint来访问特定的模型功能。
 {: .prompt-info }
 
 > OpenAI Models Overview：[](https://platform.openai.com/docs/models/overview)
 
-总之，**若想使用 OpenAI 的Embedding 模型获取文本的 Embedding向量化表示，只要学会其API调用的方法即可**。也就是说，我们要明确 OpenAI Embedding 模型的 EndPoint 是如何设定的。
+简而言之，**若想使用 OpenAI 的Embedding 模型获取文本的 Embedding向量化表示，只要学会其API调用的方法即可**。也就是说，我们要明确 OpenAI Embedding 模型的 EndPoint 是如何设定的。
 
 
 ## OpenAI Embedding模型：两代模型的迭代升级
@@ -610,4 +610,4 @@ print("这里是大模型实战课程!\t编码价格为 -> $", cost_of_Embedding
 
 至此，我们就已经对OpenAI的Embedding API有了一个非常全面的认知。
 
-Embedding技术推动了NLP技术的发展，它在搜索、聚类、推荐等应用领域都扮演着非常关键的作用，但对于之前没了解过Embedding的人来说，学完前面的内容可能只会感觉：Embedding无非就是使用一个所谓的训练过的Embedding模型，将输入的文本转换成我们并不是很理解的浮点数矩阵，它到底为何如此重要，且其到底是如何在不同领域中都能够发挥重要的作用呢，可能并没有一个感性的认知，所以接下来，我们将通过六个典型的案例，涉及推荐、聚类、搜索等多个关键应用场景，来展示Embedding是如何发挥作用的，在学习应用Embedding技术的同时，让大家能够更加深刻地感受到Embedding在现实应用中的真正价值。
+Embedding 技术推动了NLP技术的发展，它在搜索、聚类、推荐等应用领域都扮演着非常关键的作用，但对于之前没了解过Embedding的人来说，学完前面的内容可能只会感觉：Embedding无非就是使用一个所谓的训练过的Embedding模型，将输入的文本转换成我们并不是很理解的浮点数矩阵，它到底为何如此重要，且其到底是如何在不同领域中都能够发挥重要的作用呢，可能并没有一个感性的认知，所以接下来，我们将通过六个典型的案例，涉及推荐、聚类、搜索等多个关键应用场景，来展示Embedding是如何发挥作用的，在学习应用Embedding技术的同时，让大家能够更加深刻地感受到Embedding在现实应用中的真正价值。
