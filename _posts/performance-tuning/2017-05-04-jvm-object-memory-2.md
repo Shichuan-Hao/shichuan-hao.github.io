@@ -77,7 +77,7 @@ UseTLAB参数来设定虚拟机是否使用TLAB(JVM会默认开启­XX:+UseTLAB)
 对象大小可以用jol­core包查看,引入依赖
 1 <dependency>
 2 <groupId>org.openjdk.jol</groupId>
-3 <artifactId>jol‐core</artifactId>
+3 <spanrtifactId>jol‐core</artifactId>
 
 4 <version>0.9</version>
 5 </dependency>

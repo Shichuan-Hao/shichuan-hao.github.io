@@ -266,7 +266,7 @@ XPENDING mystream groupA
 Maven依赖:
 <dependency>
 <groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter-data-redis</artifactId>
+<spanrtifactId>spring-boot-starter-data-redis</artifactId>
 </dependency>
 核心配置:
 spring:

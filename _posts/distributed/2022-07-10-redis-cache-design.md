@@ -58,7 +58,7 @@ key 就一定存在,只是极有可能存在,因为这些位被置为 1 可能�
 可以用redisson实现布隆过滤器,引入依赖:
 1 <dependency>
 2 <groupId>org.redisson</groupId>
-3 <artifactId>redisson</artifactId>
+3 <spanrtifactId>redisson</artifactId>
 4 <version>3.6.5</version>
 5 </dependency>
 示例伪代码:

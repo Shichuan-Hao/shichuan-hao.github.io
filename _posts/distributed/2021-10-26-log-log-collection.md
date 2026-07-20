@@ -647,7 +647,7 @@ Spring Boot应用输出日志到ELK的流程如下图所示:
 引入依赖
 1 <dependency>
 2 <groupId>net.logstash.logback</groupId>
-3 <artifactId>logstash-logback-encoder</artifactId>
+3 <spanrtifactId>logstash-logback-encoder</artifactId>
 4 <version>6.3</version>
 5 </dependency>
 
@@ -655,14 +655,14 @@ Spring Boot应用输出日志到ELK的流程如下图所示:
 1 <?xml version="1.0" encoding="UTF-8"?>
 2 <configuration debug="false">
 3 <property name="LOG_HOME" value="logs/elk-demo.log" />
-4 <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+4 <spanppender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 5 <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 6 <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} -
 %msg%n</pattern>
 7 </encoder>
 8 </appender>
 9
-10 <appender name="logstash"
+10 <spanppender name="logstash"
 class="net.logstash.logback.appender.LogstashTcpSocketAppender">
 11 <destination>192.168.65.211:4560</destination>
 12 <encoder class="net.logstash.logback.encoder.LogstashEncoder" >
@@ -671,8 +671,8 @@ class="net.logstash.logback.appender.LogstashTcpSocketAppender">
 15 </appender>
 16 <!-- 日志输出级别 -->
 17 <root level="INFO">
-18 <appender-ref ref="STDOUT" />
-19 <appender-ref ref="logstash" />
+18 <spanppender-ref ref="STDOUT" />
+19 <spanppender-ref ref="logstash" />
 20 </root>
 21 </configuration>
 3)添加elk-demo.conf配置,启动logstash

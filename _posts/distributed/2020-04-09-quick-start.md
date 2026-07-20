@@ -36,7 +36,7 @@ MQ产品最直接的作用,是将同步的事件驱动改为异步的消息驱�
 <dependencies>
 <dependency>
 <groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter</artifactId>
+<spanrtifactId>spring-boot-starter</artifactId>
 <version>2.4.5</version>
 </dependency>
 </dependencies>
@@ -184,13 +184,9 @@ Exchanges和Queues就是RabbitMQ的核心功能。最后的Admin则是一些管�
 Exchange和Queue是RabbitMQ中用来传递消息的核心组件。我们可以简单体验一下。
 1、在Queues菜单,创建一个名为test1的经典对列
 
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C2.png?
-lastModify=1721917136)
+<!-- [image removed: local file path] -->
 创建完成后,选择这个test1队列,就可以在⻚面上直接发送消息以及消费消息了。
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C3.png?
-lastModify=1721917136)
+<!-- [image removed: local file path] -->
 
 在RabbitMQ中的消息都是通过Queue队列传递的,这个Queue其实就是一个典型的FIFO的队列数据结构。我们当前的演示是通过控制台⻚面来通过Queue进行
 收发消息。未来,我们编写客户端时,就是绑定对应的对列进行消息收发。
@@ -198,20 +194,14 @@ lastModify=1721917136)
 队列Queue即可以发消息,也可以收消息,那旁边的Exchange交换机是干什么的呢?其实他也是用来辅助发送消息的。Exchange与Queue之间会建立一种绑
 定关系,通过绑定关系,Exchange交换机里发送的消息就可以分发到不同的Queue上。
 进入Exchanges菜单,可以看到针对每个虚拟机,RabbitMQ都预先创建了多个Exchange交换机。
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%9F%BA%E7%A1%80%E6%93%8D
-%E4%BD%9C.png?lastModify=1721917136)
+<!-- [image removed: local file path] -->
 这里我们选择amq.direct交换机,进入交换机详情⻚,选择Binding,并将test1队列绑定到这个交换机上。
 注意选择/mirror虚拟机上的Exchange
 
 绑定完成后,可以在Exchange详情⻚以及Queue详情⻚都看到绑定的结果。
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%9F%BA%E7%A1%80%E6%93%8D
-%E4%BD%9C4.png?lastModify=1721908378)
+<!-- [image removed: local file path] -->
 接下来就可以在Exchange的详情⻚里发送消息。然后在test1这个queue里就能消费到这条消息。
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%9F%BA%E7%A1%80%E6%93%8D
-%E4%BD%9C3.png?lastModify=1721908378)
+<!-- [image removed: local file path] -->
 Exchange交换机并不实际存储消息,只是将发送到Exchange的消息转发到绑定的队列上。在具体使用时,通常只有消息生产者需要与Exchange打交道。而消
 费者,则并不需要与Exchange打交道,只要从Queue中消费消息就可以了。
 另外,Exchange既然可以绑定一个队列,当然也可以绑定多个队列。在实际使用中,Exchange与Queue之间可以建立不同类型的绑定关系,然后通过一些不
@@ -225,7 +215,7 @@ Exchange交换机并不实际存储消息,只是将发送到Exchange的消息转
 
 <dependency>
 <groupId>com.rabbitmq</groupId>
-<artifactId>amqp-client</artifactId>
+<spanrtifactId>amqp-client</artifactId>
 <version>5.21.0</version>
 </dependency>
 2、然后就可以创建一个消费者实例,尝试从RabbitMQ上的test1这个队列上拉取消息。
@@ -280,7 +270,7 @@ channel.basicConsume(QUEUE_NAME, myconsumer);
 执行这个应用程序后,就会在RabbitMQ上新创建一个test2的队列(如果你之前没有创建过的话),并且启动一个消费者,处理test2队列上的消息。这时,我们
 可以从管理平台⻚面上往test2队列发送一条消息,这个消费者程序就会及时消费消息。
 
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/1-06.png?lastModify=1721908378)
+<!-- [image removed: local file path] -->
 然后在管理平台的Connections和Channels里就能看到这个消费者程序与RabbitMQ建立的一个Connection连接与一个Channel通道。
 这里可以看到Connection就是与客户端的一个连接。只要连接还通着,他的状态就是running。而Channel是RabbitMQ与客户端进行数据交互的一个通道,没
 有数据交互时,状态就是idle闲置。有数据交互时,就会变成running。在他们后面,都会展示出数据交互的状态。
@@ -289,8 +279,7 @@ Channel中可以很方面的了解到RabbitMQ当前的服务运行状态。
 三、RabbitMQ中的核心概念总结
 通过这些操作,我们就可以了解到RabbitMQ的消息流转模型。
 
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/RabbitMQ%E6%A6%82%E5%BF%B5.png?
-lastModify=1722144470)
+<!-- [image removed: local file path] -->
 这里包含了很多RabbitMQ的重要概念:
 1、Queue对列
 这是RabbitMQ中最核心的概念。他是实际保存数据的最小单元。Queue结构天生就具有FIFO的顺序。消息最终要被发送到Queue当中,然后才能被消费者进行

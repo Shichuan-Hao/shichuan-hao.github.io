@@ -105,8 +105,7 @@ nohup bin/kafka-server-start.sh config/server.properties &
 Kafka的基础工作机制是消息发送者可以将消息发送到kafka上指定的topic,而消息消费者,可以从指定的
 topic上消费消息。
 
-![](file:///Users/roykingw/Desktop/a-work/kafka/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/1-
-1.png?lastModify=1723207746)
+<!-- [image removed: local file path] -->
 首先,可以使用Kafka提供的客户端脚本创建Topic
 #创建Topic
 bin/kafka-topics.sh --create --topic test --bootstrap-server localhost:9092
@@ -183,8 +182,7 @@ testGroup
 从之前的实验可以看到, Kafka的消息发送者和消息消费者通过Topic这样一个逻辑概念来进行业务沟通。但是
 实际上,所有的消息是存在服务端的Partition这样一个数据结构当中的。
 
-![](file:///Users/roykingw/Desktop/a-work/kafka/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/1-
-05.png?lastModify=1723208714)
+<!-- [image removed: local file path] -->
 在Kafka的技术体系中,有以下一些概念需要先熟悉起来:
 客户端Client: 包括消息生产者 和 消息消费者。之前简单接触过。
 消费者组:每个消费者可以指定一个所属的消费者组,相同消费者组的消费者共同构成一个逻辑消费者
@@ -367,16 +365,14 @@ ISR参数表示partition的实际分配情况。他是AR的一个子集,只列�
 接下来,我们还可以查看Topic下的Partition分布情况。在Broker上,与消息,联系最为紧密的,其实就是
 Partition了。之前在配置Kafka集群时,指定了一个log.dirs属性,指向了一个服务器上的日志目录。进入这个
 目录,就能看到每个Broker的实际数据承载情况。
-![](file:///Users/roykingw/Desktop/a-work/kafka/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/1-
-4.png?lastModify=1723214107)
+<!-- [image removed: local file path] -->
 
 从这里可以看到,Broker上的一个Partition对应了日志目录中的一个目录。而这个Partition上的所有消息,就
 保存在这个对应的目录当中。
 从整个过程可以看到,Kafka当中,Topic是一个数据集合的逻辑单元。同一个Topic下的数据,实际上是存储
 在Partition分区中的,Partition就是数据存储的物理单元。而Broker是Partition的物理载体,这些Partition分
 区会尽量均匀的分配到不同的Broker机器上。而之前接触到的offset,就是每个消息在partition上的偏移量。
-![](file:///Users/roykingw/Desktop/a-work/kafka/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/1-
-03.png?lastModify=1723214107)
+<!-- [image removed: local file path] -->
 这样设计解决了什么问题?
 1、Kafka设计需要支持海量的数据,而这样庞大的数据量,一个Broker是存不下的。那就拆分成多个
 Partition,每个Broker只存一部分数据。这样极大的扩展了集群的吞吐量。

@@ -21,44 +21,7 @@ ShardingJDBC和ShardingProxy协同使用,共同处理好分库分表的各种问
 ShardingProxy,定位为一个透明化的数据库代理,是ShardingSphere重要的服务端分库分表产品。目前提供
 MySQL和PostgreSQL协议,透明化数据库操作。简单理解就是,他会部署成一个MySQL或者PostgreSQL的数据
 库服务,应用程序只需要像操作单个数据库一样去访问ShardingProxy,由ShardingProxy去完成分库分表功能。
-![](<data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1001
-509"%3E%3C/svg%3E>)
-我们之前已经使用ShardingJDBC进行了很多分库分表的功能,为什么还需要使用ShardingProxy呢?这应该是你
-在开始使用ShardingProxy需要考虑的问题。 总体来说,使用ShardingProxy有以下几个好处。
-1、配合 ORM 框架使用更友好
-当使用 ShardingJDBC 时,需要在代码中直接编写分库分表的逻辑,如果使用 ORM 框架,会产生冲突。
-ShardingProxy 作为一个第三方的服务端中间件,就可以在产品层面处理分库分表的逻辑,无缝对接 ORM 框架。
-2、对 DBA 更加友好
-ShardingProxy 作为服务端代理,对 DBA 完全透明。DBA 可以直接操作原始数据源,而不需要了解
-ShardingSphere 的功能和 API。这简化了 DBA 的工作,也不会产生额外学习成本。
-3、避免在项目中侵入分库分表逻辑
-使用 ShardingJDBC,需要在业务代码中编写分库分表规则配置,这会使代码显得繁琐,且一旦规则变更,需要修改
-大量代码。ShardingProxy 通过外部配置实现规则管理,可以避免这种情况。
-
-4、 实现无中心化数据治理
-通过 ShardingProxy,可以将多个数据源注册到同一个代理服务中,实现跨数据源的数据治理、监控和报警等功能。
-这有利于大规模微服务系统的运维。
-所以,ShardingSphere 提供服务端分库分表方案的主要优势是对 ORM、DBA 更加友好,可以避免侵入业务代码,提供
-分布式事务和数据治理支持。这些功能更加适合大规模企业级应用。
-这里提到的很多重要的优势,其实就是后续使用ShardingProxy时需要重点关注的功能。
-二、ShardingProxy基础使用
-ShardingProxy作为一个第三方服务,部署使用已经非常简化。基本就是三个步骤,下载-配置-启动。
-1、部署ShardingProxy
-首先,获取ShardingProxy
-ShardingProxy在windows和Linux上提供了一套统一的部署发布包。我们可以从ShardingSphere官网下载
-ShardingProxy发布包apache-shardingsphere-5.2.1-shardingsphere-proxy-bin.tar.gz,解压到本地目录。 注意
-不要有中文路径
-ShardingProxy是一个典型的Java应用程序,解压后目录结构如下:
-解压完成后,如果要连接MySQL数据库,那么需要手动将JDBC的驱动包mysql-connector-java-8.0.20.jar复制到
-ShardingProxy的lib目录下。ShardigProxy默认只附带了PostgreSQL的JDBC驱动包,没有包含MYSQL的JDBC驱
-动包。
-然后,配置服务
-打开conf目录,在这个目录下就有ShardingProxy的所有配置文件。配置ShardingProxy也非常简单,你基本不需
-要去记那些复杂的配置,每个配置文件里都给出了配置的示例,照着改改就行。 当然前提是,你理解了
-ShardingSphere的各种玩法
-
-![](file:///Users/roykingw/Desktop/a-work/shardingsphere/%E5%85%AD%E6%9C%9FVIP/img/4-1.png?
-lastModify=1720597408)
+<!-- [image removed: local file path] -->
 这些配置文件的作用一目了然。server.yaml配置一些服务通用的参数。 config-sharding配置数据分片逻辑。
 config-encrypt配置数据加密逻辑。config-readwrite-splitting配置读写分离逻辑。文件当中的配置项,就是
 ShardingJDBC的ShardingSphereDatasource可以理解的yaml配置文件。如果你熟悉了之前ShardingJDBC的示
@@ -290,39 +253,39 @@ ShardingProxy中默认只集成了Atomikos实现。
 <!--XA 分布式事务 -->
 <dependency>
 <groupId>org.apache.shardingsphere</groupId>
-<artifactId>shardingsphere-transaction-xa-core</artifactId>
+<spanrtifactId>shardingsphere-transaction-xa-core</artifactId>
 <version>5.2.1</version>
 <exclusions>
 <exclusion>
-<artifactId>transactions-jdbc</artifactId>
+<spanrtifactId>transactions-jdbc</artifactId>
 <groupId>com.atomikos</groupId>
 </exclusion>
 <exclusion>
-<artifactId>transactions-jta</artifactId>
+<spanrtifactId>transactions-jta</artifactId>
 <groupId>com.atomikos</groupId>
 </exclusion>
 </exclusions>
 </dependency>
 <!-- 版本滞后了 -->
 <dependency>
-<artifactId>transactions-jdbc</artifactId>
+<spanrtifactId>transactions-jdbc</artifactId>
 <groupId>com.atomikos</groupId>
 <version>5.0.8</version>
 </dependency>
 <dependency>
-<artifactId>transactions-jta</artifactId>
+<spanrtifactId>transactions-jta</artifactId>
 <groupId>com.atomikos</groupId>
 <version>5.0.8</version>
 </dependency>
 <!-- 使用XA事务时,可以引入其他几种事务管理器 -->
 <!-- <dependency>-->
 <!-- <groupId>org.apache.shardingsphere</groupId>-->
-<!-- <artifactId>shardingsphere-transaction-xa-bitronix</artifactId>-->
+<!-- <spanrtifactId>shardingsphere-transaction-xa-bitronix</artifactId>-->
 <!-- <version>5.2.1</version>-->
 <!-- </dependency>-->
 <!-- <dependency>-->
 <!-- <groupId>org.apache.shardingsphere</groupId>-->
-<!-- <artifactId>shardingsphere-transaction-xa-narayana</artifactId>-->
+<!-- <spanrtifactId>shardingsphere-transaction-xa-narayana</artifactId>-->
 <!-- <version>5.2.1</version>-->
 <!-- </dependency>-->
 配置事务管理器
@@ -734,7 +697,7 @@ this.props = props;
 <!-- 将SPI扩展功能单独打成jar包 -->
 <plugin>
 <groupId>org.apache.maven.plugins</groupId>
-<artifactId>maven-jar-plugin</artifactId>
+<spanrtifactId>maven-jar-plugin</artifactId>
 <version>3.2.0</version>
 <executions>
 <execution>
@@ -772,8 +735,7 @@ this.props = props;
 ShardingSphere已经包含了一个子项目ElasticJob可以帮助定制定时任务调度。在ShardingSphere未来的规划
 中,也设计一个Scaling组件。预计结合ElasticJob定制出一个比较标准的数据迁移指导方案。但是,在这之前,我
 们其实可以利用ShardingSphere的混合架构来辅助进行分库分表数据迁移。
-![](<data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 959
-701"%3E%3C/svg%3E>)
+![](<!-- [svg placeholder removed] -->)
 
 热数据可以在旧业务数据通道外,通过ShardingJDBC往新的数据库进行实时双写。在这里主要是要考虑尽量少的
 影响旧业务的数据通道。而我们要做的, 就是用一个ShardingSphereDataSource,去替换旧的DataSource。首

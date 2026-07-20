@@ -1,6 +1,6 @@
 ---
 title: "Netty使用和常用组件辨析"
-description: "Netty使用和常用组件 简述 本次课程以 Netty 4.1.42.Final 版本进行讲解 <dependency> <groupId>io.netty</groupId> <artifactId>netty-all</artifactId <version>4.1.42.Final </version> <scope>compile</scope> </dependency> Nett..."
+description: "Netty使用和常用组件 简述 本次课程以 Netty 4.1.42.Final 版本进行讲解 <dependency> <groupId>io.netty</groupId> <spanrtifactId>netty-all</artifactId <version>4.1.42.Final </version> <scope>compile</scope> </dependency> Nett..."
 author: hsc
 date: 2021-04-21 00:00:00 +0800
 categories: ['Java 后端', '分布式']
@@ -15,7 +15,7 @@ Netty使用和常用组件
 本次课程以 Netty 4.1.42.Final 版本进行讲解
 <dependency>
 <groupId>io.netty</groupId>
-<artifactId>netty-all</artifactId
+<spanrtifactId>netty-all</artifactId
 <version>4.1.42.Final </version>
 <scope>compile</scope>
 </dependency>

@@ -314,7 +314,7 @@ info.java的非模块化jar包来说,默认就会创建具有jar包名称的模�
 比如,在demoModule1中,我引入了如下的junit依赖
 <dependency>
 <groupId>junit</groupId>
-<artifactId>junit</artifactId>
+<spanrtifactId>junit</artifactId>
 <version>4.13.2</version>
 </dependency>
 那么此时,从 Maven仓库下载下来的jar包是junit-4.13.2.jar。 那么此时,junit 的模块名就是junit。
@@ -418,9 +418,9 @@ jdk.unsupported.desktop@17.0.8
 jdk.xml.dom@17.0.8
 jdk.zipfs@17.0.8
 roy.demomodule
-file:///Users/roykingw/DevCode/JDK17Demo/out/artifacts/demoModule/demoModule.jar
+file:///path/to/demoModule.jar
 roy.demomodule2
-file:///Users/roykingw/DevCode/JDK17Demo/out/artifacts/demoModule2_jar/demoModule2.jar
+file:///path/to/demoModule2.jar
 7 、类加载机制调整
 与模块化机制对应,JDK9 往后的类加载机制也做了不小的调整。
 

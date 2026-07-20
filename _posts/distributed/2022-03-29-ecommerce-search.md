@@ -1017,7 +1017,7 @@ shenzhen.aliyuncs.com/tulingmall/images/20200311/2b84746650fc122d67749a876c45361
 1)引入依赖
 1 <dependency>
 2 <groupId>org.springframework.boot</groupId>
-3 <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+3 <spanrtifactId>spring-boot-starter-data-elasticsearch</artifactId>
 4 </dependency>
 
 2)核心代码

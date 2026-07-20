@@ -466,18 +466,18 @@ spring-boot-starter-tomcat,那就有这三个类,如果没有spring-boot-starter
 而如果不想用Tomcat,那就得这么写:
 1 <dependency>
 2 <groupId>org.springframework.boot</groupId>
-3 <artifactId>spring-boot-starter-web</artifactId>
+3 <spanrtifactId>spring-boot-starter-web</artifactId>
 4 <exclusions>
 5 <exclusion>
 6 <groupId>org.springframework.boot</groupId>
-7 <artifactId>spring-boot-starter-tomcat</artifactId>
+7 <spanrtifactId>spring-boot-starter-tomcat</artifactId>
 8 </exclusion>
 9 </exclusions>
 10 </dependency>
 11
 12 <dependency>
 13 <groupId>org.springframework.boot</groupId>
-14 <artifactId>spring-boot-starter-jetty</artifactId>
+14 <spanrtifactId>spring-boot-starter-jetty</artifactId>
 15 </dependency>
 得把spring-boot-starter-tomcat给排除掉,再添加上spring-boot-starter-jetty的依赖,这样
 Tomcat的Bean就不会生效,Jetty的Bean就能生效,从而项目中用的就是Jetty。

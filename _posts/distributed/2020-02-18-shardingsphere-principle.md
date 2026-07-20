@@ -55,8 +55,7 @@ ShardingSphere在1.4.x之前采用的是性能较快的Druid作为SQL解析器�
 户方配置的分片策略则更加灵活,可以根据使用方需求定制复合分片策略。
 实际使用时,应尽量使用分片路由,明确路由策略。因为广播路由影响过大,不利于集群管理及扩展。
 
-![](file:///Users/roykingw/Desktop/a-work/shardingsphere/%E5%85%AD%E6%9C%9FVIP/img/%E5%8E%9F%E7%90%863.png?
-lastModify=1720509597)
+<!-- [image removed: local file path] -->
 全库表路由:对于不带分片键的DQL、DML以及DDL语句,会遍历所有的库表,逐一执行。例如 select * from course 或者 select * from course
 ustatus='1'(不带分片键)
 全库路由:对数据库的操作都会遍历所有真实库。 例如 set autocommit=0
@@ -68,8 +67,7 @@ ustatus='1'(不带分片键)
 接 ShardingSphere 并发送基于 MySQL 方言的 SQL,ShardingSphere 能自动识别用户协议与存储节点类型自动完成 SQL 方言转换,访问 PostgreS
 构存储节点。
 
-![](file:///Users/roykingw/Desktop/a-work/shardingsphere/%E5%85%AD%E6%9C%9FVIP/img/%E5%8E%9F%E7%90%868.png?
-lastModify=1720509597)
+<!-- [image removed: local file path] -->
 接下来,用户只需要面向逻辑库和逻辑表来写SQL,最终由ShardigSphere的改写引擎将SQL改写为在真实数据库中可以正确执行的语句。SQL改写分
 改写和优化改写。
 正确性改写
@@ -78,15 +76,13 @@ lastModify=1720509597)
 优化改写
 优化改写的目的是在不影响查询正确性的情况下,对性能进行提升的有效手段。它分为单节点优化和流式归并优化。比如我们之前提到,在当前版本下
 个库的多次查询,会通过UNION 合并成一个大的SQL,这也是一种优化改写。
-![](file:///Users/roykingw/Desktop/a-work/shardingsphere/%E5%85%AD%E6%9C%9FVIP/img/%E5%8E%9F%E7%90%864.png?
-lastModify=1720508497)
+<!-- [image removed: local file path] -->
 
 4、SQL Executor : SQL执行引擎
 ShardingSphere 采用一套自动化的执行引擎,负责将路由和改写完成之后的真实 SQL 安全且高效发送到底层数据源执行。它不是简单地将 SQL 通过
 接发送至数据源执行;也并非直接将执行请求放入线程池去并发执行。它更关注平衡数据源连接创建以及内存占用所产生的消耗,以及最大限度地合理
 发等问题。执行引擎的目标是自动化的平衡资源控制与执行效率。
-![](file:///Users/roykingw/Desktop/a-work/shardingsphere/%E5%85%AD%E6%9C%9FVIP/img/%E5%8E%9F%E7%90%865.png?
-lastModify=1720508497)
+<!-- [image removed: local file path] -->
 这里主要是理解内存限制模式和连接限制模式。简单理解,
 内存限制模式一个JDBC链接只需要执行一个SQL,ShardingSphere对一次操作所消耗的数据库连接数量不做限制。
 连接限制模式一个JDBC链接需要执行多个SQL,ShardingSphere严格控制对一次操作所消耗的数据库连接数量。
@@ -94,8 +90,7 @@ lastModify=1720508497)
 
 5、Result Merger: 结果归并
 将从各个数据节点获取的多数据结果集,组合成为一个结果集并正确的返回至请求客户端,称为结果归并。
-![](file:///Users/roykingw/Desktop/a-work/shardingsphere/%E5%85%AD%E6%9C%9FVIP/img/%E5%8E%9F%E7%90%866.png?
-lastModify=1720508497)
+<!-- [image removed: local file path] -->
 其中重点是理解流式归并与内存归并:
 流式归并是指每一次从结果集中获取到的数据,都能够通过逐条获取的方式返回正确的单条数据,它与数据库原生的返回结果集的方式最为契合。
 排序以及流式分组都属于流式归并的一种。通常内存限制模式就可以使用流式归并,比较适合OLTP场景。

@@ -158,7 +158,7 @@ Elasticsearch内置分词器(analyzer)或者自定义分词器实现的。分词
 17 {
 18 "tokenizer": "standard",
 19 "char_filter": ["my_char_filter"],
-20 "text": ["<p>I&apos;m so <a>happy</a>!</p>"]
+20 "text": ["<p>I&apos;m so <span>happy</span>!</p>"]
 21 }
 2) Mapping Character Filter:用于替换指定的字符。
 

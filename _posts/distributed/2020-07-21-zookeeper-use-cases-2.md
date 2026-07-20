@@ -75,7 +75,7 @@ https://spring.io/projects/spring-cloud-zookeeper#learn
 第一步:在父pom文件中指定Spring Cloud版本
 1 <parent>
 2 <groupId>org.springframework.boot</groupId>
-3 <artifactId>spring-boot-starter-parent</artifactId>
+3 <spanrtifactId>spring-boot-starter-parent</artifactId>
 
 4 <version>2.3.2.RELEASE</version>
 5 <relativePath/> <!-- lookup parent from repository -->
@@ -88,7 +88,7 @@ https://spring.io/projects/spring-cloud-zookeeper#learn
 12 <dependencies>
 13 <dependency>
 14 <groupId>org.springframework.cloud</groupId>
-15 <artifactId>spring-cloud-dependencies</artifactId>
+15 <spanrtifactId>spring-cloud-dependencies</artifactId>
 16 <version>${spring-cloud.version}</version>
 17 <type>pom</type>
 18 <scope>import</scope>
@@ -100,11 +100,11 @@ https://spring.io/projects/spring-cloud-zookeeper#learn
 1 <!-- zookeeper服务注册与发现 -->
 2 <dependency>
 3 <groupId>org.springframework.cloud</groupId>
-4 <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+4 <spanrtifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
 5 <exclusions>
 6 <exclusion>
 7 <groupId>org.apache.zookeeper</groupId>
-8 <artifactId>zookeeper</artifactId>
+8 <spanrtifactId>zookeeper</artifactId>
 9 </exclusion>
 10 </exclusions>
 11 </dependency>
@@ -113,7 +113,7 @@ https://spring.io/projects/spring-cloud-zookeeper#learn
 14 <dependency>
 15 <groupId>org.apache.zookeeper</groupId>
 
-16 <artifactId>zookeeper</artifactId>
+16 <spanrtifactId>zookeeper</artifactId>
 17 <version>3.8.0</version>
 18 </dependency>
 注意: zookeeper客户端依赖和zookeeper sever的版本兼容问题

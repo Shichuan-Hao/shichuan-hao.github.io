@@ -217,7 +217,7 @@ TAGS=TagA, WAIT=true, TRACE_ON=true, MAX_OFFSET=250}, body=[72, 101, 108, 108, 1
 
 <dependency>
 <groupId>org.apache.rocketmq</groupId>
-<artifactId>rocketmq-client</artifactId>
+<spanrtifactId>rocketmq-client</artifactId>
 <version>5.3.0</version>
 </dependency>
 **第二步:**就可以直接创建一个简单的消息生产者
@@ -774,9 +774,7 @@ transactionId='null'}]]
 以快速的定位到这一条消息具体的存储位置,继而正确读取到消息的内容。
 接下来,我们还是可以到DashBoard上印证一下消息消费的情况。
 在DashBoard的“主题”⻚面,选择对应主题后的“CONSUMER管理”功能,就能看到消费者的消费情况。
-![](file:///Users/roykingw/Desktop/a-
-work/RocketMQ/%E4%B8%83%E6%9C%9F%20VIP/%E6%96%87%E6%A1%A3/img/1-16.png?
-lastModify=1725009749)
+<!-- [image removed: local file path] -->
 
 从这里可以看到,刚才的Comsumer示例启动了一个叫做please_rename_unique_group_name_4的消费者
 组。然后这个消费者从八个队列中都消费了数据。后面的代理者位点记录的是当前MessageQueue上记录的最
@@ -787,9 +785,7 @@ lastModify=1725009749)
 新消费者组的消费进度。而新的消费者组,也能消费到TopicTest下的所有消息。
 接下来:我们就可以梳理出RocketMQ的消息记录方式
 对之前的实验过程进行梳理,我们就能抽象出RocketMQ的消息模型。如下图所示:
-![](file:///Users/roykingw/Desktop/a-
-work/RocketMQ/%E4%B8%83%E6%9C%9F%20VIP/%E6%96%87%E6%A1%A3/img/1-17.png?
-lastModify=1725009749)
+<!-- [image removed: local file path] -->
 生产者和消费者都可以指定一个Topic发送消息或者拉取消息。而Topic是一个逻辑概念。Topic中的消息会分
 布在后面多个MessageQueue当中。这些MessageQueue会分布到一个或者多个broker中。
 在RocketMQ的这个消息模型当中,最为核心的就是Topic。对于客户端,Topic代表了一类有相同业务规则的

@@ -95,7 +95,7 @@ JavaThread*:54 epoch:2 unused:1 age:4 biased_lock:1 lock:2 (biased object)
 ```xml
 <dependency>
     <groupId>org.openjdk.jol</groupId>
-    <artifactId>jol-core</artifactId>
+    <spanrtifactId>jol-core</artifactId>
     <version>0.9</version>
 </dependency>
 ```

@@ -170,10 +170,10 @@ a. 如果引入mybatis-spring 同样需要做1、3步骤
 3. 当然,如果你想在spring这边看到你mybatis源码相关的注释,还得在mybatis源码的
 pom里面加入plugin,使它生成 jar 的同时 生成 sources 包
 1 <plugin>
-2 <artifactId>maven‐source‐plugin</artifactId>
+2 <spanrtifactId>maven‐source‐plugin</artifactId>
 3 <version>3.0.1</version>
 4 <configuration>
-5 <attach>true</attach>
+5 <spanttach>true</attach>
 6 </configuration>
 7 <executions>
 8 <execution>

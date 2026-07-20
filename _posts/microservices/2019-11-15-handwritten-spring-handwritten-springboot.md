@@ -32,29 +32,29 @@ SpringBoot模块中要添加以下依赖:
 2 <dependency>
 3 <groupId>org.springframework</groupId>
 
-4 <artifactId>spring-context</artifactId>
+4 <spanrtifactId>spring-context</artifactId>
 5 <version>5.3.18</version>
 6 </dependency>
 7 <dependency>
 8 <groupId>org.springframework</groupId>
-9 <artifactId>spring-web</artifactId>
+9 <spanrtifactId>spring-web</artifactId>
 10 <version>5.3.18</version>
 11 </dependency>
 12 <dependency>
 13 <groupId>org.springframework</groupId>
-14 <artifactId>spring-webmvc</artifactId>
+14 <spanrtifactId>spring-webmvc</artifactId>
 15 <version>5.3.18</version>
 16 </dependency>
 17
 18 <dependency>
 19 <groupId>javax.servlet</groupId>
-20 <artifactId>javax.servlet-api</artifactId>
+20 <spanrtifactId>javax.servlet-api</artifactId>
 21 <version>4.0.1</version>
 22 </dependency>
 23
 24 <dependency>
 25 <groupId>org.apache.tomcat.embed</groupId>
-26 <artifactId>tomcat-embed-core</artifactId>
+26 <spanrtifactId>tomcat-embed-core</artifactId>
 27 <version>9.0.60</version>
 28 </dependency>
 29 </dependencies>
@@ -62,7 +62,7 @@ SpringBoot模块中要添加以下依赖:
 1 <dependencies>
 2 <dependency>
 3 <groupId>org.example</groupId>
-4 <artifactId>springboot</artifactId>
+4 <spanrtifactId>springboot</artifactId>
 5 <version>1.0-SNAPSHOT</version>
 6 </dependency>
 7 </dependencies>
@@ -425,13 +425,13 @@ Spring容器中,从而Spring容器就知道了这些配置类的存在,而对于
 1 <dependencies>
 2 <dependency>
 3 <groupId>org.example</groupId>
-4 <artifactId>springboot</artifactId>
+4 <spanrtifactId>springboot</artifactId>
 5 <version>1.0-SNAPSHOT</version>
 6 </dependency>
 7
 8 <dependency>
 9 <groupId>org.eclipse.jetty</groupId>
-10 <artifactId>jetty-server</artifactId>
+10 <spanrtifactId>jetty-server</artifactId>
 11 <version>9.4.43.v20210629</version>
 12 </dependency>
 13 </dependencies>

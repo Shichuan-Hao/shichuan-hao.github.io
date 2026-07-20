@@ -241,7 +241,7 @@ pom.xml引入Guava
 
 <dependency>
 <groupId>com.google.guava</groupId>
-<artifactId>guava</artifactId>
+<spanrtifactId>guava</artifactId>
 <version>33.1.0-jre</version>
 </dependency>
 使用Guava提供的布隆过滤器实现

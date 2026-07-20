@@ -59,8 +59,7 @@ Auto delete属性如果选择为是,那队列将在至少一个消费者已经�
 2、Quorum仲裁队列
 仲裁队列,是RabbitMQ从3.8.0版本,引入的一个新的队列类型,也是目前官方比较推荐的一种对列类型。仲裁队列相比Classic经典
 队列,在分布式环境下对消息的可靠性保障更高。官方文档中表示,未来会使用Quorum仲裁队列代替传统Classic队列。
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP//img/Queue2.png?
-lastModify=1722156434)
+<!-- [image removed: local file path] -->
 关于Quorum的详细介绍⻅https://www.rabbitmq.com/docs/quorum-queues,这里只是对其中的重点进行下解读
 
 Quorum是基于Raft一致性协议实现的一种新型的分布式消息队列,他实现了持久化,多备份的FIFO队列,主要就是针对RabbitMQ的
@@ -91,8 +90,7 @@ Quorum队列更适合于 队列⻓期存在,并且对容错、数据安全方面
 3、Stream流式队列
 Stream队列是RabbitMQ自3.9.0版本开始引入的一种新的数据队列类型。这种队列类型的消息是持久化到磁盘并且具备分布式备份
 的,更适合于消费者多,读消息非常频繁的场景。
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP//img/Queue3.png?
-lastModify=1722156434)
+<!-- [image removed: local file path] -->
 Stream队列的官方文档地址: https://www.rabbitmq.com/docs/streams
 Stream队列的核心是以append-only只添加的日志来记录消息,整体来说,就是消息将以append-only的方式持久化到日志文件中,然
 后通过调整每个消费者的消费进度offset,来实现消息的多次分发。下方有几个属性也都是来定义日志文件的大小以及保存时间。
@@ -217,9 +215,7 @@ Map<String, Object> args = new HashMap<String, Object>();
 args.put("x-dead-letter-exchange", "some.exchange.name");
 channel.queueDeclare("myqueue", false, false, false, args);
 这些参数,也可以在RabbitMQ的管理⻚面进行配置。例如配置策略时:
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/%E6%AD%BB%E4%BF%A1%E7%AD%96%E7%95%A5.png?
-lastModify=1722156205)
+<!-- [image removed: local file path] -->
 另外,你会注意到,在对队列进行配置时,只有Classic经典队列和Quorum仲裁队列才能配置死信队列,而目前Stream流式队列,并
 不支持配置死信队列。
 3、关于参数x-dead-letter-routing-key
@@ -257,16 +253,13 @@ rabbitmq-plugins enable rabbitmq_sharding
 2、配置Sharding策略
 启用完成后,需要配置Sharding的策略。
 
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/sharding1.png?
-lastModify=1722156205)
+<!-- [image removed: local file path] -->
 按照要求,就可以配置一个针对sharding_开头的交换机和队列的策略。
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/sharding2.png?
-lastModify=1722156596)
+<!-- [image removed: local file path] -->
 3、新增带Sharding的Exchange交换机
 在创建Exchange时,可以看到,安装了Sharding插件后,多出了一种队列类型,x-modulus-hash
 
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/sharding3.png?
-lastModify=1722156596)
+<!-- [image removed: local file path] -->
 4、往分片交换机上发送消息
 接下来,就可以用下面的生产者代码,在RabbitMQ上声明一个x-modulus-hash类型的交换机,并往里面发送一万条消息。
 public class ShardingProducer {
@@ -292,11 +285,9 @@ connection.close();
 }
 启动后,就会在RabbitMQ上声明一个sharding_exchange。查看这个交换机的详情,可以看到他的绑定情况:
 
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/sharding4.png?
-lastModify=1722156596)
+<!-- [image removed: local file path] -->
 并且,三千条消息被平均分配到了三个队列当中。
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/sharding5.png?
-lastModify=1722156596)
+<!-- [image removed: local file path] -->
 Sharding插件带来的x-modulus-hash类型Exchange,会忽略之前的routingkey配置,而将消息以轮询的方式平均分配到Exchange绑
 定的所有队列上。
 5、消费分片交换机上的消息

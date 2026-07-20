@@ -77,14 +77,14 @@ SpringBoot 3.0实战
 然后新建一个Maven工程,添加SpringBoot依赖
 1 <parent>
 2 <groupId>org.springframework.boot</groupId>
-3 <artifactId>spring-boot-starter-parent</artifactId>
+3 <spanrtifactId>spring-boot-starter-parent</artifactId>
 4 <version>3.0.0</version>
 5 </parent>
 6
 7 <dependencies>
 8 <dependency>
 9 <groupId>org.springframework.boot</groupId>
-10 <artifactId>spring-boot-starter-web</artifactId>
+10 <spanrtifactId>spring-boot-starter-web</artifactId>
 11 </dependency>
 12 </dependencies>
 以及SpringBoot的插件
@@ -93,11 +93,11 @@ SpringBoot 3.0实战
 2 <plugins>
 3 <plugin>
 4 <groupId>org.graalvm.buildtools</groupId>
-5 <artifactId>native-maven-plugin</artifactId>
+5 <spanrtifactId>native-maven-plugin</artifactId>
 6 </plugin>
 7 <plugin>
 8 <groupId>org.springframework.boot</groupId>
-9 <artifactId>spring-boot-maven-plugin</artifactId>
+9 <spanrtifactId>spring-boot-maven-plugin</artifactId>
 10 </plugin>
 11 </plugins>
 12 </build>

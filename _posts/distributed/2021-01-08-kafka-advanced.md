@@ -38,7 +38,7 @@ throughput -1 --producer-props bootstrap.servers=worker1:9092 acks=1
 二、搭建Kafka监控平台
 生产环境通常会对Kafka搭建监控平台。而Kafka-eagle就是一个可以监控Kafka集群整体运行情况的框架,在生产环境经常会用到。官网地址:
 https://www.kafka-eagle.org/ 以前叫做Kafka-eagle,现在用了个简写,EFAK(Eagle For Apache Kafka)
-![](file:///Users/roykingw/Desktop/a-work/kafka/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/eagle-1.png?lastModify=1723541286)
+<!-- [image removed: local file path] -->
 
 环境准备:
 在官网的DownLoad⻚面可以下载EFAK的运行包,efak-web-3.0.2-bin.tar.gz。
@@ -129,7 +129,7 @@ Kafka集群,比如触发Partition的选举。而在Kraft集群中,会固定配�
 
 Raft协议是目前进行去中心化集群管理的一种常⻅算法,类似于之前的Paxos协议,是一种基于多数同意,从而产生集群共识的分布式算法。Kraft则是
 Kafka基于Raft协议进行的定制算法。
-![](file:///Users/roykingw/Desktop/a-work/kafka/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/1-3.png?lastModify=1723541606)
+<!-- [image removed: local file path] -->
 新的Kraft集群相比传统基于Zookeeper的集群,有一些很明显的好处:
 Kafka可以不依赖于外部框架独立运行。这样减少Zookeeper性能抖动对Kafka集群性能的影响,同时Kafka产品的版本迭代也更自由。
 Controller不再由Zookeeper动态选举产生,而是由配置文件进行固定。这样比较适合配合一些高可用工具来保持集群的稳定性。
@@ -200,7 +200,7 @@ world。
 首先首先需要引入Kafka Streams的Maven依赖
 <dependency>
 <groupId>org.apache.kafka</groupId>
-<artifactId>kafka-streams</artifactId>
+<spanrtifactId>kafka-streams</artifactId>
 <version>3.8.0</version>
 </dependency>
 然后,就可以使用Kafka Streams的API,构建自己的流式计算

@@ -53,7 +53,7 @@ step1: 搭建一个Maven项目,在pom.xml中加入依赖,其中就包含访问�
 <dependencies>
 <dependency>
 <groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-dependencies</artifactId>
+<spanrtifactId>spring-boot-dependencies</artifactId>
 <version>2.2.1.RELEASE</version>
 <type>pom</type>
 <scope>import</scope>
@@ -61,12 +61,12 @@ step1: 搭建一个Maven项目,在pom.xml中加入依赖,其中就包含访问�
 <!-- mybatisplus依赖 -->
 <dependency>
 <groupId>com.baomidou</groupId>
-<artifactId>mybatis-plus-boot-starter</artifactId>
+<spanrtifactId>mybatis-plus-boot-starter</artifactId>
 <version>3.0.5</version>
 </dependency>
 <dependency>
 <groupId>com.alibaba</groupId>
-<artifactId>druid-spring-boot-starter</artifactId>
+<spanrtifactId>druid-spring-boot-starter</artifactId>
 <version>1.1.20</version>
 </dependency>
 </dependencies>
@@ -74,27 +74,27 @@ step1: 搭建一个Maven项目,在pom.xml中加入依赖,其中就包含访问�
 <dependencies>
 <dependency>
 <groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter</artifactId>
+<spanrtifactId>spring-boot-starter</artifactId>
 </dependency>
 <dependency>
 <groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter-test</artifactId>
+<spanrtifactId>spring-boot-starter-test</artifactId>
 </dependency>
 <!-- 数据源连接池 -->
 <dependency>
 <groupId>com.alibaba</groupId>
-<artifactId>druid-spring-boot-starter</artifactId>
+<spanrtifactId>druid-spring-boot-starter</artifactId>
 <version>1.1.20</version>
 </dependency>
 <!-- mysql连接驱动 -->
 <dependency>
 <groupId>mysql</groupId>
-<artifactId>mysql-connector-java</artifactId>
+<spanrtifactId>mysql-connector-java</artifactId>
 </dependency>
 <!-- mybatisplus依赖 -->
 <dependency>
 <groupId>com.baomidou</groupId>
-<artifactId>mybatis-plus-boot-starter</artifactId>
+<spanrtifactId>mybatis-plus-boot-starter</artifactId>
 <version>3.4.3.3</version>
 </dependency>
 </dependencies>
@@ -160,11 +160,11 @@ step1: 在pom.xml中引入ShardingSphere
 <!-- sh ardingJDBC核心依赖 -->
 <dependency>
 <groupId>org.apache.shardingsphere</groupId>
-<artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+<spanrtifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
 <version>5.2.1</version>
 <exclusions>
 <exclusion>
-<artifactId>snakeyaml</artifactId>
+<spanrtifactId>snakeyaml</artifactId>
 <groupId>org.yaml</groupId>
 </exclusion>
 </exclusions>
@@ -172,16 +172,16 @@ step1: 在pom.xml中引入ShardingSphere
 <!-- 版本冲突 - ->
 <dependency>
 <groupId>org.yaml</groupId>
-<artifactId>snakeyaml</artifactId>
+<spanrtifactId>snakeyaml</artifactId>
 <version>1.33</version>
 </dependency>
 <!-- SpringBo ot依赖 -->
 <dependency>
 <groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter</artifactId>
+<spanrtifactId>spring-boot-starter</artifactId>
 <exclusions>
 <exclusion>
-<artifactId>snakeyaml</artifactId>
+<spanrtifactId>snakeyaml</artifactId>
 <groupId>org.yaml</groupId>
 </exclusion>
 </exclusions>
@@ -190,35 +190,35 @@ step1: 在pom.xml中引入ShardingSphere
 <!--注意不要用这个依赖, 他会创建数据源,跟上面ShardingJDBC的SpringBoot集成依赖有冲突 -->
 <!-- <dependency>-->
 <!-- <groupId>com.alibaba</groupId>-->
-<!-- <artifactId>druid-spring-boot-starter</artifactId>-->
+<!-- <spanrtifactId>druid-spring-boot-starter</artifactId>-->
 <!-- <version>1.1.20</version>-->
 <!-- </dependency>-->
 <dependency>
 <groupId>com.alibaba</groupId>
-<artifactId>druid</artifactId>
+<spanrtifactId>druid</artifactId>
 <version>1.1.20</version>
 </dependency>
 <!-- mysql连接 驱动 -->
 <dependency>
 <groupId>mysql</groupId>
-<artifactId>mysql-connector-java</artifactId>
+<spanrtifactId>mysql-connector-java</artifactId>
 </dependency>
 <!-- mybatisp lus依赖 -->
 <dependency>
 <groupId>com.baomidou</groupId>
-<artifactId>mybatis-plus-boot-starter</artifactId>
+<spanrtifactId>mybatis-plus-boot-starter</artifactId>
 <version>3.4.3.3</version>
 </dependency>
 <dependency>
 <groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter-test</artifactId>
+<spanrtifactId>spring-boot-starter-test</artifactId>
 </dependency>
 </dependencies>
 
 注:ShardingSphere目前最新版本5.5.0提供的官方依赖项是
 <dependency>
 <groupId>org.apache.shardingsphere</groupId>
-<artifactId>shardingsphere-jdbc</artifactId>
+<spanrtifactId>shardingsphere-jdbc</artifactId>
 <version>${latest.release.version}</version>
 </dependency>
 这里并没有使用官方的这个依赖项,而是采用的SpringBoot集成ShardingSphere的一个依赖项,依赖的是5.2.1版

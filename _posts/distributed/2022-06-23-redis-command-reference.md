@@ -5401,7 +5401,7 @@ OK
 - 6
 (error) `NOSCRIPT` No matching script. P灵lease7 use
 3
-[EVAL](/commands/eval). 图 : 3
+[EVAL](https://redis.io/commands/eval). 图 : 3
 q
 q
 客户端库的底层实现可以一直乐观地使用 EVALSHA 来代替 EVAL ,并期望着要使用的

@@ -33,7 +33,7 @@ ZooKeeper的Watcher监测是一次性的,每次触发之后都需要重新进行
 1 <!-- zookeeper client -->
 2 <dependency>
 3 <groupId>org.apache.zookeeper</groupId>
-4 <artifactId>zookeeper</artifactId>
+4 <spanrtifactId>zookeeper</artifactId>
 5 <version>3.8.0</version>
 6 </dependency>
 注意:保持与服务端版本一致,不然会有很多兼容性的问题
@@ -144,19 +144,19 @@ curator-recipes封装了一些高级特性,如:Cache事件监听、选举、分�
 1 <!-- zookeeper client -->
 2 <dependency>
 3 <groupId>org.apache.zookeeper</groupId>
-4 <artifactId>zookeeper</artifactId>
+4 <spanrtifactId>zookeeper</artifactId>
 5 <version>3.8.0</version>
 6 </dependency>
 7
 8 <!--curator-->
 9 <dependency>
 10 <groupId>org.apache.curator</groupId>
-11 <artifactId>curator-recipes</artifactId>
+11 <spanrtifactId>curator-recipes</artifactId>
 12 <version>5.1.0</version>
 13 <exclusions>
 14 <exclusion>
 15 <groupId>org.apache.zookeeper</groupId>
-16 <artifactId>zookeeper</artifactId>
+16 <spanrtifactId>zookeeper</artifactId>
 17 </exclusion>
 18 </exclusions>
 19 </dependency>

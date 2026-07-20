@@ -552,7 +552,7 @@ https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
 <!--
 2 <dependency>
 3 <groupId>com.fasterxml.jackson.core</groupId>
-4 <artifactId>jackson-databind</artifactId>
+4 <spanrtifactId>jackson-databind</artifactId>
 5 <version>2.13.2</version>
 6 </dependency>
 7

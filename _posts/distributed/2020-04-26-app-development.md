@@ -42,9 +42,7 @@ RabbitMQ客户端应用开发实战
 这一章节我们将快速完成RabbitMQ客户端基础功能的开发实战。
 一、回顾RabbitMQ基础概念
 
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/RabbitMQ%E6%A6%82%E5%BF%B5.png?
-lastModify=1722150281)
+<!-- [image removed: local file path] -->
 这个RabbitMQ的核心组件,是进行应用开发的基础。
 二、RabbitMQ基础编程模型
 RabbitMQ提供了很多种主流编程语言的客户端支持。这里我们只分析Java语言的客户端。
@@ -53,7 +51,7 @@ RabbitMQ提供了很多种主流编程语言的客户端支持。这里我们只
 1、maven依赖
 <dependency>
 <groupId>com.rabbitmq</groupId>
-<artifactId>amqp-client</artifactId>
+<spanrtifactId>amqp-client</artifactId>
 <version>5.21.0</version>
 </dependency>
 amqp是一种标准的消息驱动实现协议,RabbitMQ是对这一协议的具体实现。由于协议具有稳定性,所以,通常
@@ -124,8 +122,7 @@ com.rabbitmq.client.AMQP.Queue.DeclareOk
 同样,queue的大部分参数,也以管理平台中的为准。例如在创建对列时,之前的版本会有一个AutoDelete选项,但
 是现在这个版本已经没有这个选项了。另外,下方的参数也与老版本有一些不同。
 
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/Queue1.png?lastModify=1722150281)
+<!-- [image removed: local file path] -->
 Durablility表示是否持久化。Durable选项表示会将队列的消息写入硬盘,这样服务重启后这些消息就不会丢失。而另
 外一个选项Transient表示不持久化,消息只在内存中流转。这样服务重启后这些消息就会丢失。当然这也意味着消息
 读写的效率会比较高。
@@ -197,8 +194,7 @@ body the message body
 这其中Exchange如果不需要,传个空字符串就行了。routingKey跟Exchange的消息分发逻辑有关。后面介绍业务场景
 时会详细说明。
 然后关于props参数,可以传入一些消息相关的属性。这些属性你同样不用死记。管理控制台上有明确的说明。
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/Queue4.png?lastModify=1722150281)
+<!-- [image removed: local file path] -->
 props的这些配置项,可以用RabbitMQ中提供的一个Builder对象来构建。
 AMQP.BasicProperties.Builder builder = new AMQP.BasicProperties.Builder();
 //对应⻚面上的Properties部分,传入一些预定的参数值。
@@ -321,8 +317,7 @@ Channel处理的一条消息。这都是RabbitMQ服务端分配的一些内部�
 后续不会分享。另外,接下来我会给你补充一种RabbitMQ比较小众的Header路由机制。
 
 1:hello world体验
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/2-1.png?
-lastModify=1722150281)
+<!-- [image removed: local file path] -->
 最直接的方式,P端发送一个消息到一个指定的queue,中间不需要任何exchange规则。C端按queue方式进行消费。
 关键代码:(其实关键的区别也就是几个声明上的不同。)
 producer:
@@ -333,8 +328,7 @@ channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 这个模式基本就是我们之前演示的Demo。最简单的一个入⻔案例。
 2: Work queues 工作序列
 这是RabbitMQ最基础也是最常用的一种工作机制。
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/2-2.png?
-lastModify=1722150281)
+<!-- [image removed: local file path] -->
 工作任务模式,领导部署一个任务,由下面的一个员工来处理。只关心任务被正确处理,不关心给谁处理。
 Producer消息发送给queue,多个Consumer同时往队列上消费消息。
 关键代码: ===》producer: 将消息直接到Queue上。
@@ -376,8 +370,7 @@ an eye on that, and maybe add more workers, or have some other strategy.
 3:Publish/Subscribe 订阅 发布 机制
 type为fanout 的exchange:
 
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/2-3.png?
-lastModify=1722150281)
+<!-- [image removed: local file path] -->
 这个机制是对上面的一种补充。也就是把preducer与Consumer进行进一步的解耦。producer只负责发送消息,至于
 消息进入哪个queue,由exchange来分配。如上图,就是把producer发送的消息,交由exchange同时发送到两个
 queue里,然后由不同的Consumer去进行消费。
@@ -392,8 +385,7 @@ channel.queueBind(queueName, EXCHANGE_NAME, "");
 4:Routing 基于内容的路由
 type为”direct” 的exchange
 
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/2-4.png?
-lastModify=1722150281)
+<!-- [image removed: local file path] -->
 这种模式一看图就清晰了。 在上一章 exchange 往所有队列发送消息的基础上,增加一个路由配置,指定exchange如
 何将不同类别的消息分发到不同的queue上。
 关键代码===> Producer 同样是往Exchange发送消息,但是需要指定一个routingKey
@@ -408,8 +400,7 @@ channel.basicConsume(queueName, true, consumer);
 5:Topics 基于话题的路由
 type为"topic" 的exchange
 
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/2-5.png?
-lastModify=1722150281)
+<!-- [image removed: local file path] -->
 这个模式也就在Routing模式的基础上,对routingKey进行了模糊匹配。单词之间用,隔开,* 代表一个具体的单词。#
 代表0个或多个单词。
 关键代码===> Producer,依然是往Exchange发送消息,并且需要带上routingKey。
@@ -560,7 +551,7 @@ SpringBoot官方集成了RabbitMQ,只需要快速引入依赖包即可使用。R
 
 <dependency>
 <groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter-amqp</artifactId>
+<spanrtifactId>spring-boot-starter-amqp</artifactId>
 </dependency>
 要特别注意下版本。不同版本下的配置方式会有变化。
 然后所有的基础运行环境都在application.properties中进行配置。所有配置以spring.rabbitmq开头。通常按照示例进

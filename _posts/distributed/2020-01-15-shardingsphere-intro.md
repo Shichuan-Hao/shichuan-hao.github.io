@@ -61,9 +61,7 @@ Template 或直接使用 JDBC;
 支持任意实现 JDBC 规范的数据库,目前支持 MySQL,PostgreSQL,Oracle,
 SQLServer 以及任何可使用 JDBC 访问的数据库。
 
-![](file:///Users/roykingw/Desktop/a-
-work/shardingsphere/%E5%85%AD%E6%9C%9FVIP/img/2-4.png?
-lastModify=1720092178)
+<!-- [image removed: local file path] -->
 这是ShardingSphere最初的产品形态。
 2、ShardingProxy服务端分库分表
 ShardingSphere-Proxy 定位为透明化的数据库代理端,通过实现数据库二进制协议,对异构语
@@ -156,10 +154,7 @@ ShardingSphere的这些设计哲学。ShardingSphere处理分库分表相关问�
 所以在决定进行分库分表之前,一定需要提前对于所需要面对的各种问题进行考量。如果你没
 有考虑清楚数据要如何存储、计算、使用,或者你对于分库分表的各种问题都还没有进行过思
 考,那么千万不要在真实项目中贸然的进行分库分表。
-![]
-(file:///Users/roykingw/Desktop/a-
-work/shardingsphere/%E5%85%AD%E6%9C%9FVIP/img/1-1.png?
-lastModify=1720096115)
+<!-- [image removed: local file path] -->
 
 分库分表,也称为Sharding。其实我觉得,Sharding应该比中文的分库分表更为贴切,他表示
 将数据拆分到不同的数据片中。由于数据往往是一个应用的基础,随着数据从单体服务拆分到

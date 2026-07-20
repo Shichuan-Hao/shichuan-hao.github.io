@@ -146,7 +146,7 @@ config/consumer.properties --formatter
 "kafka.coordinator.group.GroupMetadataManager\$OffsetsMessageFormatter" --from-beginning
 查看到结果:
 
-[test,disTopic,1]::OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=,
+[test,disTopic,1]:`:OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=`,
 commitTimestamp=1661351768150, expireTimestamp=None)
 [test,disTopic,2]::OffsetAndMetadata(offset=0, leaderEpoch=Optional.empty, metadata=,
 commitTimestamp=1661351768150, expireTimestamp=None)
@@ -154,7 +154,7 @@ commitTimestamp=1661351768150, expireTimestamp=None)
 commitTimestamp=1661351768150, expireTimestamp=None)
 [test,disTopic,3]::OffsetAndMetadata(offset=6, leaderEpoch=Optional[3], metadata=,
 commitTimestamp=1661351768151, expireTimestamp=None)
-[test,disTopic,1]::OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=,
+[test,disTopic,1]:`:OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=`,
 commitTimestamp=1661351768151, expireTimestamp=None)
 [test,disTopic,2]::OffsetAndMetadata(offset=0, leaderEpoch=Optional.empty, metadata=,
 commitTimestamp=1661351768151, expireTimestamp=None)
@@ -162,7 +162,7 @@ commitTimestamp=1661351768151, expireTimestamp=None)
 commitTimestamp=1661351768151, expireTimestamp=None)
 [test,disTopic,3]::OffsetAndMetadata(offset=6, leaderEpoch=Optional[3], metadata=,
 commitTimestamp=1661351768153, expireTimestamp=None)
-[test,disTopic,1]::OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=,
+[test,disTopic,1]:`:OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=`,
 commitTimestamp=1661351768153, expireTimestamp=None)
 [test,disTopic,2]::OffsetAndMetadata(offset=0, leaderEpoch=Optional.empty, metadata=,
 commitTimestamp=1661351768153, expireTimestamp=None)

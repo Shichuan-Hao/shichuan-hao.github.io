@@ -26,7 +26,7 @@ Elasticsearch 8.14.x 对应依赖 Spring Data Elasticsearch 5.3.x,对应Spring6.
 
 1 <dependency>
 2 <groupId>org.springframework.boot</groupId>
-3 <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+3 <spanrtifactId>spring-boot-starter-data-elasticsearch</artifactId>
 4 </dependency>
 如果Spring Boot版本选择3.3.2,对应的Spring Data Elasticsearch为5.3.2
 3)配置ElasticSearch

@@ -31,8 +31,7 @@ RabbitMQ集群机制及企业实践
 这一章节主要介绍RabbitMQ在企业实践中保证RabbitMQ数据安全的一些常用措施。
 一、RabbitMQ的性能监控
 关于RabbitMQ的性能监控,在管理控制台中提供了非常丰富的展示。例如首⻚这个整体监控⻚面,就展示了非常多详细的信息。。
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/1.png?
-lastModify=1722172890)
+<!-- [image removed: local file path] -->
 还包括消息的生产消费频率、关键组件使用情况等等非常多的信息,都可以从这个管理控制台上展现出来。但是,对于构建一个自动化
 的性能监控系统来说,这个管理⻚面就不太够用了。为此,RabbitMQ也提供了一系列的HTTP接口,通过这些接口可以非常全面的使用
 并管理RabbitMQ的各种功能。
@@ -47,9 +46,7 @@ lastModify=1722172890)
 RabbitMQ有一个data目录会保存分配到该节点上的所有消息。我们的实验环境中,默认是在/var/lib/rabbitmq/mnesia目录下 这个目录里
 面的备份分为两个部分,一个是元数据(定义结构的数据),一个是消息存储目录。
 对于元数据,可以在Web管理⻚面通过json文件直接导出或导入。
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA.png?
-lastModify=1722172890)
+<!-- [image removed: local file path] -->
 对于消息,可以手动进行备份恢复
 其实对于消息,由于MQ的特性,是不建议进行备份恢复的。而RabbitMQ如果要进行数据备份恢复,也非常简单。
 首先,要保证要恢复的RabbitMQ中已经有了全部的元数据,这个可以通过上一步的json文件来恢复。
@@ -77,64 +74,20 @@ rabbitmq-plugins enable rabbitmq_federation
 # 启用联邦插件的管理平台支持
 rabbitmq-plugins enable rabbitmq_federation_management
 插件启用完成后,可以在管理控制台的Admin菜单看到两个新增选项 Federation Status和Federation Upstreams。
-![](<data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 590"%3E%3C/svg%3E>)
-2、配置Upstream
-Upstream表示是一个外部的服务节点,在RabbitMQ中,可以是一个交换机,也可以是一个队列。他的配置方式是由下游服务主动配置
-一个与上游服务的链接,然后数据就会从上游服务主动同步到下游服务中。
-
-接下来我们用192.168.65.112上的的RabbitMQ服务来模拟DownStream下游服务,去指向一个192.168.65.193服务器上搭建的
-RabbitMQ服务,搭建一个联邦交换机Federation Exchange。
-首先要在下游RabbitMQ中声明一个交换机和交换队列,用来接收远端的数据。这里我们直接用客户端API来快速进行声明。
-public class DownStreamConsumer {
-public static void main(String[] args) throws IOException, TimeoutException {
-ConnectionFactory factory = new ConnectionFactory();
-factory.setHost("192.168.65.112");
-factory.setPort(5672);
-factory.setUsername("admin");
-factory.setPassword("admin");
-factory.setVirtualHost("/mirror");
-Connection connection = factory.newConnection();
-Channel channel = connection.createChannel();
-channel.exchangeDeclare("fed_exchange","direct");
-channel.queueDeclare("fed_queue",true,false,false,null);
-channel.queueBind("fed_queue","fed_exchange","routKey");
-Consumer myconsumer = new DefaultConsumer(channel) {
-@Override
-public void handleDelivery(String consumerTag, Envelope envelope,
-AMQP.BasicProperties properties, byte[] body)
-throws IOException {
-System.out.println("========================");
-String routingKey = envelope.getRoutingKey();
-System.out.println("routingKey >" + routingKey);
-String contentType = properties.getContentType();
-System.out.println("contentType >" + contentType);
-long deliveryTag = envelope.getDeliveryTag();
-System.out.println("deliveryTag >" + deliveryTag);
-System.out.println("content:" + new String(body, "UTF-8"));
-}
-};
-channel.basicConsume("fed_queue", true, myconsumer);
-}
-}
-然后在下游RabbitMQ服务中配置一个上游服务。
-
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/Federation9.png?
-lastModify=1722173928)
+<!-- [image removed: local file path] -->
 服务的名字Name属性随意,URI指向远程服务器(配置方式参看⻚面上的示例):amqp://admin:admin@192.168.65.112 5672/
 URI的详细配置方式⻅⻚面下方的示例。只不过需要注意下,DownStream和UpStream建议使用相同的虚拟机。
 
 下面的Federated exchanges parameters和Federated queues parameters分别指定Upstream(也就是远程服务器)的Exchange和
 Queue。如果不指定,就是用和DownStream中相同的Exchange和Queue。如果UpStream里没有,就创建新的Exchange和Queue。
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/Federation3.png?
-lastModify=1722173928)
+<!-- [image removed: local file path] -->
 注意: 1、其他的相关参数,可以在⻚面上查看帮助。
 2、关于Virtual Host虚拟机配置,如果在配置Upstream时指定了Virtual Host属性,那么在URI中就不能再添加Virtual Host配置
 了,默认会在Upstream上使用相同的Virtual Host。
 3、配置Federation策略
 接下来需要配置一个指向上游服务的Federation策略。在配置策略时可以选择是针对Exchange交换机还是针对Queue队列。配置策略
 时,同样有很多参数可以选择配置。最简化的一个配置如下:
-![](file:///Users/roykingw/Desktop/a-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/Federation4.png?
-lastModify=1722173928)
+<!-- [image removed: local file path] -->
 注意:每个策略的Definition部分,至少需要指定一个Federation目标。federation-upstream-set参数表示是以set集合的方式针对
 多个Upstream生效,all表示是全部Upstream。而federation-upstream参数表示只对某一个Upstream生效。
 4、测试
@@ -154,9 +107,7 @@ lastModify=1722173928)
 Queue坏了,至少还可以从其他Queue中获取服务。
 其实对于RabbitMQ,一个节点的服务也是作为一个集群来处理的,在web控制台的admin-> cluster 中可以看到集群的名字,并且可以
 在⻚面上修改。
-![](file:///Users/roykingw/Desktop/a-
-work/RabbitMQ/%E7%AC%AC%E5%85%AD%E6%9C%9FVIP/img/%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C4.png?
-lastModify=1722172890)
+<!-- [image removed: local file path] -->
 那么RabbitMQ是怎么考虑数据安全这回事的呢?实际上,RabbitMQ实现了两种集群模式:
 
 默认的普通集群模式:

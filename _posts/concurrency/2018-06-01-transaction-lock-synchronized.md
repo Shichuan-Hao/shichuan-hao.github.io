@@ -398,7 +398,7 @@ UseCompressedOops)后,长度为8字节。
 1 <!-- 查看Java 对象布局、大小工具 -->
 2 <dependency>
 3 <groupId>org.openjdk.jol</groupId>
-4 <artifactId>jol-core</artifactId>
+4 <spanrtifactId>jol-core</artifactId>
 5 <version>0.10</version>
 6 </dependency>
 使用方法

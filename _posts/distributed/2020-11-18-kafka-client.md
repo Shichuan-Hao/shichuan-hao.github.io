@@ -36,7 +36,7 @@ Kafka提供了两套客户端API,HighLevel API和LowLevel API。 HighLevel API�
 Kafka提供了非常简单的客户端API。只需要引入一个Maven依赖即可:
 <dependency>
 <groupId>org.apache.kafka</groupId>
-<artifactId>kafka_2.13</artifactId>
+<spanrtifactId>kafka_2.13</artifactId>
 <version>3.8.0</version>
 </dependency>
 1、消息发送者主流程
@@ -742,7 +742,7 @@ producer.close();
 
 <dependency>
 <groupId>org.springframework.kafka</groupId>
-<artifactId>spring-kafka</artifactId>
+<spanrtifactId>spring-kafka</artifactId>
 </dependency>
 2、在application.properties中配置kafka相关参数 例如
 ###########【Kafka集群】###########

@@ -287,7 +287,7 @@ loggers all async采用的是Disruptor,而Async Appender采用的是ArrayBlockin
 1 <!-- disruptor -->
 2 <dependency>
 3 <groupId>com.lmax</groupId>
-4 <artifactId>disruptor</artifactId>
+4 <spanrtifactId>disruptor</artifactId>
 5 <version>3.3.4</version>
 6 </dependency>
 Disruptor构造器

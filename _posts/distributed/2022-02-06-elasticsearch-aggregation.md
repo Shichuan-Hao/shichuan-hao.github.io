@@ -40,8 +40,8 @@ Elasticsearch除搜索以外,提供了针对ES 数据进行统计分析的功能
 1 GET <index_name>/_search
 2 {
 3 "aggs": {
-4 "<aggs_name>": { // 聚合名称需要自己定义
-5 "<agg_type>": {
+4 "<spanggs_name>": { // 聚合名称需要自己定义
+5 "<spangg_type>": {
 6 "field": "<field_name>"
 7 }
 8 }

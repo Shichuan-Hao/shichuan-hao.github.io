@@ -52,7 +52,7 @@ toc: true
 是这些数据在Redis的底层是什么样子呢?实际上Redis提供了一个指令OBJECT可以用来
 查看数据的底层类型。
 127.0.0.1:6379> OBJECT HELP
-1) OBJECT <subcommand> [<arg> [value] [opt] ...]. Subcommands are:
+1) OBJECT <subcommand> [<spanrg> [value] [opt] ...]. Subcommands are:
 2) ENCODING <key>
 3) Return the kind of internal representation used in order to store
 the value
