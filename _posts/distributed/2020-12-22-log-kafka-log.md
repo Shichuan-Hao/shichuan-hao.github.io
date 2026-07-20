@@ -146,7 +146,8 @@ config/consumer.properties --formatter
 "kafka.coordinator.group.GroupMetadataManager\$OffsetsMessageFormatter" --from-beginning
 查看到结果:
 
-[test,disTopic,1]:`:OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=`,
+```
+[test,disTopic,1]::OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=,
 commitTimestamp=1661351768150, expireTimestamp=None)
 [test,disTopic,2]::OffsetAndMetadata(offset=0, leaderEpoch=Optional.empty, metadata=,
 commitTimestamp=1661351768150, expireTimestamp=None)
@@ -154,7 +155,7 @@ commitTimestamp=1661351768150, expireTimestamp=None)
 commitTimestamp=1661351768150, expireTimestamp=None)
 [test,disTopic,3]::OffsetAndMetadata(offset=6, leaderEpoch=Optional[3], metadata=,
 commitTimestamp=1661351768151, expireTimestamp=None)
-[test,disTopic,1]:`:OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=`,
+[test,disTopic,1]::OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=,
 commitTimestamp=1661351768151, expireTimestamp=None)
 [test,disTopic,2]::OffsetAndMetadata(offset=0, leaderEpoch=Optional.empty, metadata=,
 commitTimestamp=1661351768151, expireTimestamp=None)
@@ -162,10 +163,9 @@ commitTimestamp=1661351768151, expireTimestamp=None)
 commitTimestamp=1661351768151, expireTimestamp=None)
 [test,disTopic,3]::OffsetAndMetadata(offset=6, leaderEpoch=Optional[3], metadata=,
 commitTimestamp=1661351768153, expireTimestamp=None)
-[test,disTopic,1]:`:OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=`,
-commitTimestamp=1661351768153, expireTimestamp=None)
-[test,disTopic,2]::OffsetAndMetadata(offset=0, leaderEpoch=Optional.empty, metadata=,
-commitTimestamp=1661351768153, expireTimestamp=None)
+[test,disTopic,1]::OffsetAndMetadata(offset=3, leaderEpoch=Optional[1], metadata=, commitTimestamp=1661351768153, expireTimestamp=None)
+[test,disTopic,2]::OffsetAndMetadata(offset=0, leaderEpoch=Optional.empty, metadata=, commitTimestamp=1661351768153, expireTimestamp=None)
+```
 从这里可以看到,Kafka也是像普通数据一样,以Key-Value的方式来维护消费进度。key是
 groupid+topic+partition,value则是表示当前的offset。
 而这些Offset数据,其实也是可以被消费者修改的,在之前章节已经演示过消费者如何从指定的位置开始消费
