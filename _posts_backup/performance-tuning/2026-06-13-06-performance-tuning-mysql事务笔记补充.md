@@ -1,0 +1,29 @@
+---
+title: "mysql事务笔记补充"
+description: "【有道云笔记】https://note.youdao.com/s/DzQrI9qr 关于《Mysql事务原理与优化最佳实践》中课上示例是基于Mysql5.7的。mysql8也同样适用,有区别会 在本文档中进行记录。 mysql8中事务隔离级别参数改为了transaction_isolation 查看当前数据库的事务隔离级别: show variables like '%isolation%'..."
+author: hsc
+date: 2026-06-13 00:00:00 +0800
+categories: ['Java 后端', '性能调优']
+tags: ['性能调优', 'JVM', 'MySQL', 'Tomcat', 'GC']
+toc: true
+---
+
+> 本文整理自《一、性能调优专题》课程笔记，共 1 页。
+
+【有道云笔记】https://note.youdao.com/s/DzQrI9qr
+关于《Mysql事务原理与优化最佳实践》中课上示例是基于Mysql5.7的。mysql8也同样适用,有区别会
+在本文档中进行记录。
+mysql8中事务隔离级别参数改为了transaction_isolation
+查看当前数据库的事务隔离级别: show variables like '%isolation%';
+设置事务隔离级别:set transaction_isolation='REPEATABLE-READ';
+事务隔离级别案例分析
+如果课堂笔记中脚本报错,使用下面的脚本
+1 CREATE TABLE `account` (
+2 `id` int(11) NOT NULL AUTO_INCREMENT,
+3 `name` varchar(255) DEFAULT NULL,
+4 `balance` int(11) DEFAULT NULL,
+5 PRIMARY KEY (`id`)
+6 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+7 INSERT INTO `account` (`name`, `balance`) VALUES ('lilei', '450');
+8 INSERT INTO `account` (`name`, `balance`) VALUES ('hanmei', '16000');
+9 INSERT INTO `account` (`name`, `balance`) VALUES ('lucy', '2400');
