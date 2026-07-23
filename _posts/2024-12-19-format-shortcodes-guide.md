@@ -1,13 +1,11 @@
 ---
-
 title: "格式化短标签使用指南"
-description: "写 Markdown 时，给文字加颜色需要写一长串 &lt;span style="color:red;"&gt;，非常繁琐。"
+description: '写 Markdown 时，给文字加颜色需要写一长串 &lt;span style="color:red;"&gt;，非常繁琐。'
 author: hsc
 date: 2024-12-19 15:00:00 +0800
 categories: [博客运营]
 tags: []
 published: false
-
 ---
 
 ## 为什么需要短标签？
