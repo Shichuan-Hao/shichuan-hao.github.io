@@ -2,8 +2,8 @@
 title: DeepSeek R1 本地部署与调用方法
 description: DeepSeek R1 推理模型的本地部署方案详解，涵盖模型获取、Ollama部署和主流推理框架
 author: hsc
-date: 2024-01-07 08:00:00 +0800
-categories: [AI Agent, DeepSeek]
+date: 2025-01-07 08:00:00 +0800
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek R1, 本地部署, Ollama, SGLang, vLLM]
 ---
 

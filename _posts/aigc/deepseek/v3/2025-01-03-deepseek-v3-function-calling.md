@@ -2,8 +2,8 @@
 title: DeepSeek V3 Function Calling 实现方法
 description: 通过OpenWeather API集成，详解DeepSeek V3的Function Calling功能实现全流程
 author: hsc
-date: 2024-01-03 08:00:00 +0800
-categories: [AI Agent, DeepSeek]
+date: 2025-01-03 08:00:00 +0800
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek V3, Function Calling, API, Agent]
 ---
 

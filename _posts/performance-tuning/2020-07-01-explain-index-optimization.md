@@ -1,17 +1,11 @@
 ---
-
-
-
-title: "Explain详解与索引优化最佳实践"
-description: "Mysql 安装文档参考: DDRROOPP TTAABBLLEE IIFF EEXXIISSTTSS ``;; 索引使用总结: like KK%相当于=常量"
+title: Explain详解与索引优化最佳实践
+description:
 author: hsc
 date: 2020-07-01 00:00:00 +0800
 categories: ['Java 后端', '性能调优']
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
-
-
-
 ---
 
 Mysql 安装文档参考:

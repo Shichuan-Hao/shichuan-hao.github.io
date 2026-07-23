@@ -3,7 +3,7 @@ title: 模型微调概览与硬件选取
 description: 
 author: hsc
 date: 2025-11-08 10:27:00 +0800
-categories: [AI Agent, 模型微调]
+categories: [AI Agent, Fine-tuning]
 tags: [Model Fine tuning]
 ---
 

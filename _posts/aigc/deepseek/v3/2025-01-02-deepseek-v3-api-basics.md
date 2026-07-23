@@ -2,8 +2,8 @@
 title: DeepSeek V3 API 接入指南
 description: DeepSeek V3 API 调用全流程解析，从注册到多轮对话机器人开发
 author: hsc
-date: 2024-01-02 08:00:00 +0800
-categories: [AI Agent, DeepSeek]
+date: 2025-01-02 08:00:00 +0800
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek V3, API, Chat Completion]
 ---
 

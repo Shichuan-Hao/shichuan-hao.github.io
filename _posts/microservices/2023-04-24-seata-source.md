@@ -76,4 +76,5 @@ ConnectionProxy1 private void doCommit() throws SQLException {2 if (context.inGl
 28 }ExecuteTemplateExecuteTemplate 为具体 statement 的 execute,executeQuery 和 executeUpdate 执行提供模板方法 ExecutorSQLRecognizerSQLRecognizer 识别 sql 类型,获取表名,表别名以及原生 sqlUndoExecutorFactoryUndoExecutorFactory 根据 sqlType 生成对应的 AbstractUndoExecutor。
 UndoExecutor 为生成执行 undoSql 的核心。如果全局事务回滚,它会根据 beforeImage 和 afterImage 以及 sql 类型生成对应的反向 sql 执行回滚数据,并添加脏数据校验机制,使回滚数据更加可靠。
 
-### 3. Seata AT 模式源码分析 Seata 设计流程: https://www.processon.com/view/link/6311bfda1e0853187c0ecd8chttps://www.processon.com/view/link/6007f5c00791294a0e9b611a
+### 3. Seata AT 模式源码分析 Seata 设计流程:
+https://www.processon.com/view/link/6311bfda1e0853187c0ecd8chttps://www.processon.com/view/link/6007f5c00791294a0e9b611a

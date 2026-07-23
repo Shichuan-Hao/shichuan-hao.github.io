@@ -2,8 +2,8 @@
 title: DeepSeek R1 API 调用指南
 description: 深入解析 DeepSeek R1 推理模型 API，掌握 reasoning_content 提取与代码生成应用
 author: hsc
-date: 2024-01-06 08:00:00 +0800
-categories: [AI Agent, DeepSeek]
+date: 2025-01-06 08:00:00 +0800
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek R1, API, Reasoning, 推理模型]
 ---
 

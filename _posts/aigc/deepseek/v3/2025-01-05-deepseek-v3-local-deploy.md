@@ -2,8 +2,8 @@
 title: DeepSeek V3 本地部署流程
 description: DeepSeek V3 的模型架构、内存需求、及通过 Ollama/SGLang/LMDeploy/vLLM 进行本地部署的完整指南
 author: hsc
-date: 2024-01-05 08:00:00 +0800
-categories: [AI Agent, DeepSeek]
+date: 2025-01-05 08:00:00 +0800
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek V3, 本地部署, Ollama, MoE, vLLM]
 ---
 

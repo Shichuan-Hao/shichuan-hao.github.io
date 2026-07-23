@@ -1,9 +1,9 @@
 ---
-title: QLoRA 微调原理
+title: Q-LoRA 微调原理
 description: 
 author: hsc
-date: 2024-01-01 10:27:00 +0800
-categories: [AI Agent, 模型微调]
+date: 2025-04-01 10:27:00 +0800
+categories: [AI Agent, Fine-tuning]
 tags: [Model Fine tuning]
 ---
 

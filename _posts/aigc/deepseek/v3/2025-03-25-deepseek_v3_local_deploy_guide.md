@@ -2,8 +2,8 @@
 title: DeepSeek v3 本地部署流程
 description: 
 author: hsc
-date: 2024-03-25 10:27:00 +0800
-categories: [AI Agent]
+date: 2025-03-25 10:27:00 +0800
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek]
 # pin: true
 # math: true

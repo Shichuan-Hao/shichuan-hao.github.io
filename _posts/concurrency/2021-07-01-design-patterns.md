@@ -1,7 +1,4 @@
 ---
-
-
-
 title: "常用并发设计模式精讲"
 description: "常用并发设计模式 1. 优雅终止线程的设计模式思考:在一个线程 T1 中如何优雅的终止线程 T2?"
 author: hsc
@@ -9,12 +6,10 @@ date: 2021-07-01 00:00:00 +0800
 categories: ['Java 后端', '并发编程']
 tags: ['并发编程', 'JUC', '线程池', 'AQS', 'synchronized', 'volatile']
 toc: true
-
-
-
 ---
 
 常用并发设计模式 https://www.processon.com/view/link/615d4a610e3e74663e97fa0e
+
 1. 优雅终止线程的设计模式思考:在一个线程 T1 中如何优雅的终止线程 T2?
 正确思路:两阶段终止模式 1.1 两阶段终止(Two-phase Termination)模式——优雅的终止线程两阶段终止(Two-phase Termination)模式是一种用于优雅终止线程的设计模式。该模式的基本思想是通过两个阶段来终止线程,第一个阶段是发送终止请求,第二个阶段是等待线程终止。
 思考:第一阶段,在 Java 中如何发送终止请求?

@@ -2,7 +2,7 @@
 title: 开源大模型本地部署硬件选择指南
 description: 从GPU选型到整机配置，全面解析大模型本地部署的硬件选择策略
 author: hsc
-date: 2024-01-01 08:00:00 +0800
+date: 2025-01-01 08:00:00 +0800
 categories: [AI Agent, 大模型部署]
 tags: [GPU, Hardware, Deep Learning]
 ---

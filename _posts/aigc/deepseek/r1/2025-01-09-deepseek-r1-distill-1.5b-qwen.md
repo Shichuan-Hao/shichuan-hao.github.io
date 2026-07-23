@@ -3,7 +3,7 @@ title: DeepSeek-R1 蒸馏 1.5B Qwen 模型调用实战
 description: 从 ModelScope 加载到本地推理，手把手带你跑通 DeepSeek R1 蒸馏 1.5B 模型的完整流程
 author: hsc
 date: 2024-01-09 08:00:00 +0800
-categories: [AI Agent, DeepSeek]
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek R1, 蒸馏模型, 1.5B, Qwen, 本地推理]
 ---
 

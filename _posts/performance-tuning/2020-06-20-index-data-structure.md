@@ -1,7 +1,4 @@
 ---
-
-
-
 title: "索引底层数据结构笔记补充"
 description: "关于《深入理解 Mysql 索引底层数据结构与算法》这节课的笔记补充课程中联合索引案例使用的脚本 1 CREATE TABLE (2 int(11) NOT N"
 author: hsc
@@ -9,9 +6,6 @@ date: 2020-06-20 00:00:00 +0800
 categories: ['Java 后端', '性能调优']
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
-
-
-
 ---
 
 关于《深入理解 Mysql 索引底层数据结构与算法》这节课的笔记补充课程中联合索引案例使用的脚本 1 CREATE TABLE `employees` (2 `id` int(11) NOT NULL AUTO_INCREMENT,3 `name` varchar(24) NOT NULL DEFAULT '' COMMENT '姓名',4 `age` int(11) NOT NULL DEFAULT '0' COMMENT '年龄',5 `position` varchar(20) NOT NULL DEFAULT '' COMMENT '职位',6 `hire_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '入职时间',7 PRIMARY KEY (`id`),8 KEY `idx_name_age_position` (`name`,`age`,`position`) USING BTREE9 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='员工记录表';

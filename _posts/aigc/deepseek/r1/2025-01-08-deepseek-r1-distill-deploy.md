@@ -2,8 +2,8 @@
 title: DeepSeek R1 蒸馏模型部署与调用
 description: DeepSeek R1 蒸馏版本全系列部署指南，覆盖 1.5B~70B 蒸馏模型的获取、部署与调用
 author: hsc
-date: 2024-01-08 08:00:00 +0800
-categories: [AI Agent, DeepSeek]
+date: 2025-01-08 08:00:00 +0800
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek R1, 蒸馏模型, 模型部署, Ollama]
 ---
 

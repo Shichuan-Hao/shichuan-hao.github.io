@@ -2,8 +2,8 @@
 title: 打造专属聊天机器人 – Open-WebUI 接入 DeepSeek V3 流程详解
 description: 从零搭建 Open-WebUI，将 DeepSeek V3 API 接入并打造可视化的AI聊天机器人
 author: hsc
-date: 2024-01-04 08:00:00 +0800
-categories: [AI Agent, DeepSeek]
+date: 2025-01-04 08:00:00 +0800
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek V3, Open-WebUI, Chatbot, 部署]
 ---
 

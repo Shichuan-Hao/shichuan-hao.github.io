@@ -3,7 +3,7 @@ title: 最强开源推理模型 DeepSeek R1 本地部署整理
 description: 
 author: hsc
 date: 2024-07-30 10:27:00 +0800
-categories: [AI Agent]
+categories: [AI Agent, 大模型部署, DeepSeek]
 tags: [DeepSeek]
 ---
 
