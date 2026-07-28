@@ -5,7 +5,7 @@ title: "阿里巴巴手册-泰山版"
 description: "前言《Java 开发手册》是阿里巴巴集团技术团队的集体智慧结晶和经验总结,经历了多次大规模一线实战的检验及不断完善,公开到业界后,众多社区开发者踊跃参与,共同打磨完善"
 author: hsc
 date: 2020-09-08 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', 'JVM调优', '索引优化']
 toc: true
 

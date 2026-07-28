@@ -5,7 +5,7 @@ title: "十一、JDK17新特性梳理"
 description: "为什么是 JDK17 语法层面新特性 1、文本块 2 、Switch 表达式增强 3、instanceof 的模式匹配 4、var 局部变量推导模块化及类封装"
 author: hsc
 date: 2020-05-16 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'JVM调优']
 toc: true
 

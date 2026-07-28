@@ -5,7 +5,7 @@ title: "JVM指令手册"
 description: "栈和局部变量操作将常量压入栈的指令 aconst_null 将 null 对象引用压入栈 iconst_m1 将 int 类型常量-1 压入栈 iconst_0"
 author: hsc
 date: 2021-02-14 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', 'JVM调优', '索引优化']
 toc: true
 

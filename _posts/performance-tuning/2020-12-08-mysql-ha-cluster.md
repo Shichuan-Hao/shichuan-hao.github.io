@@ -5,7 +5,7 @@ title: "Mysql8.0高可用集群架构实战"
 description: "Mysql8.0 高可用集群架构实战..."
 author: hsc
 date: 2020-12-08 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化']
 toc: true
 

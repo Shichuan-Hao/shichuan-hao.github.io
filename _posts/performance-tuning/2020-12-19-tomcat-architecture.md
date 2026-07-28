@@ -5,7 +5,7 @@ title: "Tomcat整体架构及其设计精髓分析(1)"
 description: "课前须知: 本专题讲解的 Tomcat 版本: apache-tomcat-9.0.55"
 author: hsc
 date: 2020-12-19 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'Tomcat调优', 'JVM调优']
 toc: true
 

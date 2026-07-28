@@ -4,7 +4,7 @@ title: "MySQL 8.0 主从复制原理分析与实战"
 description: "课程目标: MySQL 复制(Replication) 是官方提供的主从复制(源到副本的复制)方案,用于将一个 MySQL 的实例同步到另一个实例中。"
 author: hsc
 date: 2020-11-26 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化']
 toc: true
 

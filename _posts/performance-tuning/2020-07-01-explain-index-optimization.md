@@ -3,7 +3,7 @@ title: Explain详解与索引优化最佳实践
 description:
 author: hsc
 date: 2020-07-01 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
 ---

@@ -1,0 +1,43 @@
+{
+  "name": "doc-converters",
+  "mainConversationId": "b6398e45f65544b88eb1065c7e960011",
+  "workspacePath": "f:/happymaya/web/shichuanhao.github.io",
+  "createdAt": "2026-07-27T01:37:44.020Z",
+  "options": {
+    "workspacePath": "f:/happymaya/web/shichuanhao.github.io",
+    "isAutoTeam": false
+  },
+  "isAutoTeam": false,
+  "members": [
+    {
+      "memberId": "redis-writer@doc-converters",
+      "name": "redis-writer",
+      "role": "写Redis系列8篇markdown",
+      "sessionId": "f884785fdb4b421b8a7a41b8a172237c"
+    },
+    {
+      "memberId": "es-writer@doc-converters",
+      "name": "es-writer",
+      "role": "写ES系列15篇markdown",
+      "sessionId": "c642c23efb9442b7b7121023b98503b4"
+    },
+    {
+      "memberId": "zk-net-writer@doc-converters",
+      "name": "zk-net-writer",
+      "role": "写ZK和网络系列11篇",
+      "sessionId": "a89863f9adc047a0aaef164cbd85b250"
+    },
+    {
+      "memberId": "mq-writer@doc-converters",
+      "name": "mq-writer",
+      "role": "写MQ系列14篇markdown",
+      "sessionId": "a259ce02307b4ca3a4325ade191cff1a"
+    },
+    {
+      "memberId": "sharding-writer@doc-converters",
+      "name": "sharding-writer",
+      "role": "写ShardingSphere和杂项7篇",
+      "sessionId": "4c679ad3457843b0afad6df3bd499c81"
+    }
+  ]
+}

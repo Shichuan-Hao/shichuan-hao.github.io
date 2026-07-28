@@ -3,7 +3,7 @@ title: "六、深入理解JVM执行引擎"
 description: "前端编译与后端编译字节码指令是如何执行的解释执行与编译执行热点代码识别客户端编译器与服务端编译器后端编译优化技术方法内联 Inline 逃逸分析 Escape"
 author: hsc
 date: 2021-05-05 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'JVM调优']
 toc: true
 ---

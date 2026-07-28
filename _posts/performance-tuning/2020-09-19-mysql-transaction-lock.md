@@ -5,7 +5,7 @@ title: "深入理解Mysql事务隔离级别与锁机制"
 description: "概述我们的数据库一般都会并发执行多个事务,多个事务可能会并发的对相同的一批数据进行增删改查操作,可能就会导致我们说的脏写、脏读、不可重复读、幻读这些问题"
 author: hsc
 date: 2020-09-19 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
 

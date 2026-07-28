@@ -5,7 +5,7 @@ title: "Innodb底层原理与Mysql日志机制深入剖析"
 description: "MySQL 的内部组件结构大体来说,MySQL 可以分为 Server 层和存储引擎层两部分。"
 author: hsc
 date: 2020-11-04 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
 

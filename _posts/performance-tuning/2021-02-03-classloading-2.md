@@ -6,7 +6,7 @@ title: "二、JAVA类加载机制升职加薪之旅"
 description: "JDK8 的类加载体系 2、沙箱保护机制 2、Linking 链接过程二、一个用类加载机制加薪的故事三、通过类加载器引入外部 Jar 包四、自定义类加载器实现"
 author: hsc
 date: 2021-02-03 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'Tomcat调优', 'JVM调优']
 toc: true
 

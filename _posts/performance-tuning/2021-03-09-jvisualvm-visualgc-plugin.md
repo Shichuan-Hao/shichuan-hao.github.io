@@ -4,7 +4,7 @@ title: "jvisualvm安装Visual GC插件"
 description: "给 jdk 自带的 jvisualvm 安装 Visual GC 插件"
 author: hsc
 date: 2021-03-09 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'JVM调优']
 toc: true
 

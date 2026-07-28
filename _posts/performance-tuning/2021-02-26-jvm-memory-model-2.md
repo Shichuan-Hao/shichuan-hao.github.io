@@ -5,7 +5,7 @@ title: "JVM内存模型深度剖析与优化"
 description: "JDK 体系结构 Java 语言的跨平台特性 JVM 整体结构及内存模型"
 author: hsc
 date: 2021-02-26 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'Tomcat调优', 'JVM调优']
 toc: true
 

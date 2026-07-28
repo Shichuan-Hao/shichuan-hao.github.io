@@ -1,404 +1,481 @@
 ---
-title: "Redis 7.X 多模式安装部署完整指南"
-date: 2022-06-06
-categories: distributed
-tags: [Redis, 安装部署, 主从复制, 哨兵, Cluster, 运维]
-mermaid: true
+layout: post
+title: "Redis7.X 四种模式完整部署教程（单机/主从/哨兵/集群）"
+date: 2022-06-06 09:00:00 +0800
+categories: [distributed]
+tags: [Redis, 部署, 单机, 主从复制, 哨兵, 集群, 运维]
+comments: true
 ---
 
-> Redis 的部署远不止 `apt-get install redis` 一行命令。从单机到主从到哨兵到集群，每一层架构演进都有对应的部署细节和踩坑经验。本文覆盖 Redis 7.X 的完整安装与四种模式部署。
+## 一、环境准备：安装 gcc
 
-## 一、Redis 安装
-
-### 1.1 单机安装
-
-Redis 官网：[redis.io](https://redis.io/)
-
-Redis 主要维护最新版本。Redis 7 目前支持到 **v7.2.5**，于 2024 年 5 月发布。如果想体验最新特性，可以安装不稳定版本（如 7.2.5）。但生产环境强烈建议使用最新的稳定版本（7.2.4）。
-
-#### 安装步骤（CentOS/Ubuntu 通用）
+Redis 由 C 语言编写，编译需要 gcc 环境。
 
 ```bash
-# 1. 更新系统 & 安装基础依赖
-yum update -y && yum install -y gcc make
+# 关闭防火墙
+systemctl stop firewalld.service
 
-# 2. 下载源码
-wget -c https://download.redis.io/releases/redis-7.2.5.tar.gz
-tar xzvf redis-7.2.5.tar.gz
+# 检查防火墙状态
+firewall-cmd --state
 
-# 3. 编译安装
-cd redis-7.2.5
-make && make install
+# 卸载防火墙（生产环境按需操作）
+yum remove firewalld
+
+# 检查 gcc 版本
+gcc --version
+
+# 安装 gcc
+yum install gcc
 ```
 
-**make 常见问题**：
+---
 
-| 问题 | 原因 | 解决方案 |
-|------|------|---------|
-| `gcc: command not found` | 未安装 gcc | `yum install -y gcc` |
-| `fatal error: jemalloc/jemalloc.h` | 分配器问题 | `make MALLOC=libc` |
-| `cc: error: unrecognized command line option '-std=c11'` | gcc 版本太低 | 升级 gcc |
-| server.c 等编译错误 | gcc 7 以下与 Redis 7 不兼容 | `yum install -y centos-release-scl` → `yum install -y devtoolset-7` |
+## 二、单机部署
 
-Redis 7 需要 gcc 7 或以上版本。如果报编译错误，优先检查 gcc 版本：
+### 2.1 下载编译安装
 
 ```bash
-gcc -v
+# 创建应用目录，养成文件归类习惯
+mkdir -p /opt/software/redis
+cd /opt/software/redis
+
+# 下载 Redis 稳定版
+wget https://download.redis.io/redis-stable.tar.gz
+
+# 解压
+tar -xzf redis-stable.tar.gz
+
+# 编译安装
+cd redis-stable
+make install
+
+# 检查安装结果，/usr/local/bin 下会生成以下可执行文件
+ll /usr/local/bin
 ```
 
-#### 编译后文件说明
+### 2.2 编译生成的文件说明
 
-| 文件 | 说明 |
+| 文件 | 作用 |
 |------|------|
-| `redis-server` | 服务端程序 |
-| `redis-cli` | 客户端 |
-| `redis-benchmark` | 性能压测工具 |
-| `redis-check-aof` | AOF 文件修复 |
-| `redis-check-rdb` | RDB 文件检查 |
-| `redis-sentinel` | 哨兵（指向 redis-server 的软链接） |
+| `redis-benchmark` | 性能测试工具，模拟 N 个客户端同时发请求 |
+| `redis-check-aof` | 修复有问题的 AOF 文件 |
+| `redis-check-rdb` | 修复有问题的 RDB 文件 |
+| `redis-sentinel` | Redis 哨兵，高可用集群使用 |
+| `redis-server` | Redis 服务器启动命令 |
+| `redis-cli` | 客户端命令行操作入口 |
 
-### 1.2 基础配置
-
-Redis 的默认配置文件位于源码目录的 `redis.conf`。**任何时候都不要使用默认配置，必须手动创建修改**。
+### 2.3 启动 Redis（前台模式）
 
 ```bash
-# 创建工作目录
-mkdir /myredis
-cp redis.conf /myredis/redis.conf
+# 方式一：源码目录下启动
+./src/redis-server
 
-# 基础设置（编辑 myredis/redis.conf）
-bind 0.0.0.0           # 旧版绑定地址（留 "" 让新版 -::\* 生效）
-protected-mode no      # 非保护模式（学习环境）
-daemonize yes          # 守护进程模式（后台运行）
-port 6379
-logfile "/myredis/redis.log"
-dir /myredis
-
-# 加上密码（极其重要！防止挖矿病毒）
-requirepass yourpassword
+# 方式二：使用 /usr/local/bin 下启动
+redis-server
 ```
 
-> ⚠️ **安全警告**：生产环境**必须设置密码**。网络上大量扫描程序时刻尝试连接无密码的 Redis 实例，注入挖矿脚本。密码强度应按照"防暴力破解"标准设置。
+> ⚠️ 前台启动会阻塞终端，退出终端即关闭服务。
 
-#### 启动服务
+### 2.4 配置 Redis 后台运行
+
+编辑 `redis.conf`，修改以下关键配置：
 
 ```bash
-redis-server /myredis/redis.conf
-redis-cli -a yourpassword
-# 或连接后再认证
-redis-cli
-> AUTH yourpassword
+vim redis.conf
 ```
 
-#### 验证安装
+| 行号 | 配置项 | 值 | 说明 |
+|------|--------|-----|------|
+| 87 | `bind` | `* -::*` | 支持 IPv4/IPv6 远程连接 |
+| 111 | `protected-mode` | `no` | 允许远程连接（不设密码时必须关闭） |
+| 309 | `daemonize` | `yes` | 开启守护进程，后台运行 |
+| 355 | `logfile` | `/opt/software/redis/redis-stable/redis.log` | 指定日志文件 |
+| 510 | `dir` | `/opt/software/redis` | 指定工作目录（存放 RDB、AOF） |
+| 1044 | `requirepass` | `1qaz@WSX` | 设置密码（可选） |
+
+配置完成后，使用配置文件启动：
 
 ```bash
-127.0.0.1:6379> ping
-PONG
-127.0.0.1:6379> info server
-# ... Redis 版本信息
+redis-server redis.conf
+
+# 带密码认证连接
+redis-cli -a 1qaz@WSX
+
+# 退出
+quit
+
+# 关闭 Redis
+redis-cli shutdown
 ```
 
 ---
 
-## 二、主从复制模式部署
+## 三、主从部署 (Master-Slave Replication)
 
-### 2.1 为什么需要主从
+### 3.1 架构原理
 
-单机 Redis 能做到"数据安全"吗？通过 RDB/AOF 持久化，单机 Redis 的数据在节点重启后可恢复。但硬盘故障（SSD 也有寿命）、服务器断电等硬件问题，数据就彻底没了。
+```
+         ┌──────────┐
+         │  Master  │ ── 写操作
+         │  :6379   │
+         └────┬─────┘
+      ┌───────┼───────┐
+      ▼       ▼       ▼
+  ┌──────┐┌──────┐┌──────┐
+  │Slave1││Slave2││Slave3│ ── 读操作
+  │:6379 ││:6379 ││:6379 │
+  └──────┘└──────┘└──────┘
+```
 
-所以需要**主从复制**来构建多副本数据安全。
+- 数据复制**单向**：主 → 从
+- 一个主可有多个从，一个从只能有一个主
+- 默认每台 Redis 服务器都是主节点
 
-### 2.2 部署步骤
+### 3.2 主从复制的四大作用
 
-一个原则：**配从不配主**。主节点照常启动，不需要特殊配置。
+| 作用 | 说明 |
+|------|------|
+| **数据冗余** | 热备份，持久化之外的冗余手段 |
+| **故障恢复** | 主节点故障时，从节点可接管服务（需人工干预） |
+| **负载均衡** | 读写分离：主写从读，分担服务器负载 |
+| **高可用基石** | 哨兵和集群模式的基础 |
+
+### 3.3 部署步骤
+
+主节点配置不变，从节点在配置文件中添加一行：
 
 ```bash
-# 主节点 (6379) — 配置同上单机版
-
-# 从节点 (6380) — 配置文件增加一行
-port 6380
-replicaof 192.168.65.214 6379
-masterauth 123qweasd      # 如果 master 有密码，必须配置
+# 从节点 redis.conf 添加
+replicaof 192.168.75.129 6379
 ```
 
-> `replicaof` 是 Redis 5.0 后的新指令名（旧版 `slaveof` 仍可用但官方推荐 replacement）。
-
-全量配置文件对比：
-
-| 配置项 | Master (6379) | Slave (6380) |
-|--------|--------------|--------------|
-| `port` | 6379 | 6380 |
-| `replicaof` | 无 | `192.168.65.214 6379` |
-| `masterauth` | 无 | `123qweasd` |
-| `replica-read-only` | — | `yes`（默认） |
-
-### 2.3 验证主从状态
+验证：
 
 ```bash
-# Master 端
-127.0.0.1:6379> info replication
-# Replication
-role:master
-connected_slaves:1
-slave0:ip=192.168.65.214,port=6380,state=online,offset=56,lag=1
-
-# Slave 端
-127.0.0.1:6380> info replication
-# Replication
-role:slave
-master_host:192.168.65.214
-master_port:6379
-master_link_status:up
-slave_read_only:1
+# 主节点查看从节点信息
+redis-cli info Replication
 ```
 
-关键检查项：
-- `connected_slaves` 数量是否正确
-- `master_link_status: up`（slave 端必须为 up）
-- `state: online`（master 端必须为 online）
+### 3.4 主从复制的缺点
 
-### 2.4 主从复制的数据一致性
-
-**Redis 复制是异步的**。默认情况下，master 写完数据立即返回客户端，无需等待 slave 确认。这在高并发下是合理的设计，但意味着存在**数据丢失窗口**。
-
-可以通过 `min-replicas-to-write` 和 `min-replicas-max-lag` 限制：
-
-```
-min-replicas-to-write 1          # 至少 1 个 slave 在线
-min-replicas-max-lag 10          # slave 延迟不超过 10 秒
-```
-
-> 人总是有两个选择：要么接受可能丢失；要么不接受，但忍受性能的可能回退。Redis 的设计哲学倾向前者——接受小概率的数据丢失，换取极致性能。
+- **复制延迟**：异步复制，系统繁忙时延迟更严重，从节点越多越严重
+- **Master 挂了需人工干预**：默认不会自动选举新主节点
+- **不能保证高可用**：单纯主从架构是数据冗余 + 读分担，不是高可用方案
 
 ---
 
-## 三、哨兵（Sentinel）模式部署
+## 四、哨兵部署 (Sentinel)
 
-### 3.1 Sentinel 的核心价值
+### 4.1 哨兵模式原理
 
-主从复制解决了数据多副本问题，但 master 挂掉后**不会自动切换**。Sentinel 就是来解决这个问题的。
+哨兵通过独立的哨兵进程监控主从节点状态，自动完成：
 
-### 3.2 部署步骤
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│ Sentinel-1   │     │ Sentinel-2   │     │ Sentinel-3   │
+│  :26379      │◄───►│  :26379      │◄───►│  :26379      │
+└──────┬───────┘     └──────┬───────┘     └──────┬───────┘
+       │                    │                    │
+       └────────────────────┼────────────────────┘
+                            │ 监控
+              ┌─────────────┴─────────────┐
+              │          Master           │
+              │          :6379            │
+              └─────────────┬─────────────┘
+                     ┌──────┴──────┐
+                     ▼             ▼
+              ┌──────────┐ ┌──────────┐
+              │  Slave-1 │ │  Slave-2 │
+              │  :6379   │ │  :6379   │
+              └──────────┘ └──────────┘
+```
 
-按照**至少 3 个 Sentinel 节点**的原则配置（为什么是 3 个？为了在选举 Leader 时满足"超半数"的 Raft 要求）。
+### 4.2 哨兵选举过程
+
+1. 每个在线哨兵都可成为 Leader
+2. 每个哨兵向其他哨兵发送 `sentinel is-master-down-by-addr` 命令，要求将自己设为 Leader
+3. 其他哨兵可以同意或拒绝
+4. 获得票数 >= `num(sentinels)/2+1` 即成为 Leader
+5. 未过半则继续选举
+
+### 4.3 主观下线 vs 客观下线
+
+```
+主观下线 (S_DOWN):
+  Sentinel 向 Master 发送 PING
+  → 超过 down-after-milliseconds 未收到 PONG 或收到错误
+  → 该 Sentinel 单方面认为 Master 不可用
+
+客观下线 (O_DOWN):
+  当主观下线的节点是主节点时
+  → 该 Sentinel 通过 sentinel is-master-down-by-addr 咨询其他 Sentinel
+  → 超过 quorum 个 Sentinel 同意
+  → 判定为客观下线，触发故障转移
+```
+
+### 4.4 故障转移流程
+
+1. **确认主节点故障**：Sentinel 定期 PING Master，确认 Master 不可用（客观下线）
+2. **选举新主节点**——从节点筛选规则：
+   - 过滤掉不健康的（下线/断线，没回复过 PING 的）
+   - 选择**从节点优先级**最高的（`replica-priority` 值最小的）
+   - 选择**复制偏移量**最大的（数据最完整的）
+3. **故障转移**：由 Leader Sentinel 执行
+4. **客户端重定向**：Sentinel 通知客户端新主节点位置，无缝切换
+
+### 4.5 哨兵部署配置
+
+3 台机器都需要配置 `sentinel.conf`：
 
 ```bash
-# sentinel-26379.conf
-daemonize yes
-port 26379
-protected-mode no
-logfile "/root/myredis/sentinel/sentinel-26379.log"
-pidfile /var/run/redis-sentinel-26379.pid
-dir /root/myredis/sentinel
-
-# 核心配置：监控 master
-# sentinel monitor <master-name> <ip> <port> <quorum>
-sentinel monitor mymaster 192.168.65.214 6379 2
-
-# master 密码
-sentinel auth-pass mymaster 123qweasd
-
-# 主观下线判定时间（默认30秒，生产建议适当调大）
-sentinel down-after-milliseconds mymaster 30000
-
-# 故障转移超时时间
-sentinel failover-timeout mymaster 180000
+protected-mode no                                # 6行，关闭保护模式
+daemonize yes                                    # 15行，后台启动
+logfile /opt/software/redis/redis-stable/sentinel.log  # 34行
+dir /opt/software/redis                          # 73行
+sentinel monitor mymaster 192.168.75.129 6379 2  # 93行，监控主节点
+#    ↑名称    ↑主IP    ↑端口  ↑quorum:至少2个哨兵同意才判定故障
+sentinel down-after-milliseconds mymaster 30000  # 134行，30秒超时
+sentinel failover-timeout mymaster 180000        # 234行，故障转移超时180秒
 ```
 
-> **quorum 参数**是整个 Sentinel 架构的核心。3 个 Sentinel 设置 quorum=2，意味着需要 2 个 Sentinel 达成共识才判定 master 客观下线。这是避免误判的关键。
+启动和观察：
 
 ```bash
-# 依次启动 3 个 Sentinel
-redis-server sentinel-26379.conf --sentinel &
-redis-server sentinel-26380.conf --sentinel &
-redis-server sentinel-26381.conf --sentinel &
+# 启动哨兵
+redis-sentinel sentinel.conf
 
-# 或者直接
-redis-sentinel sentinel-26379.conf &
+# 检查哨兵状态
+redis-cli -p 26379 info sentinel
 ```
 
-### 3.3 验证 Sentinel
+### 4.6 故障模拟
 
 ```bash
-# 连接任意 Sentinel
-redis-cli -p 26379
+# 杀掉主节点进程
+ps aux | grep redis
+redis-cli -p 6379 shutdown
 
-127.0.0.1:26379> info sentinel
-# Sentinel
-sentinel_masters:1
-sentinel_tilt:0
-sentinel_running_scripts:0
-sentinel_scripts_queue_length:0
-master0:name=mymaster,status=ok,address=192.168.65.214:6379,slaves=1,sentinels=3
+# 观察哨兵日志（129 主节点下线，重新选举新主节点）
+tail -f sentinel.log
+
+# 重新启动旧主节点（自动加入作为从节点）
+redis-server redis.conf
+tail -f sentinel.log
+
+# 切换后检查节点信息
+redis-cli info replication
+
+# 查看自动修改的配置文件
+cat redis.conf
+cat sentinel.conf
 ```
 
-关键信息：
-- `sentinels:3`：所有 Sentinel 互相发现了
-- `status=ok`：master 状态正常
+### 4.7 哨兵使用建议
 
-### 3.4 故障转移验证
+- 哨兵节点数量应为**多个**（至少 3 个），保证自身高可用
+- 哨兵节点数应是**奇数**（防止脑裂场景下平票）
+- 各哨兵节点配置应**一致**
+- Docker 部署要注意**端口映射**正确性
 
-```bash
-# 模拟 master 宕机
-redis-cli -p 6379 -a 123qweasd SHUTDOWN
+### 4.8 哨兵模式不能保证数据零丢失的原因
 
-# 在 Sentinel 上查看
-redis-cli -p 26379 sentinel get-master-addr-by-name mymaster
-1) "192.168.65.214"
-2) "6380"        # ← 6380 已成为新 master
-```
-
-### 3.5 Sentinel 连接方式
-
-Java 客户端连接 Sentinel：
-
-```java
-Set<String> sentinels = new HashSet<>();
-sentinels.add("192.168.65.214:26379");
-sentinels.add("192.168.65.214:26380");
-sentinels.add("192.168.65.214:26381");
-
-JedisSentinelPool pool = new JedisSentinelPool("mymaster", sentinels, config, "123qweasd");
-// 当 master 切换时，客户端自动感知新 master 地址
-```
+1. **复制延迟**：异步复制，从节点可能尚未完全同步最新写入
+2. **故障检测和转移时间**：检测 + 转移期间，Master 可能已接收了未复制的写操作
+3. **网络分区**：网络分裂时，孤立的主节点继续接受写操作，恢复前无法复制
+4. **多个从节点同时故障**：无可用从节点提升为 Master
 
 ---
 
-## 四、Redis Cluster 模式部署
+## 五、集群部署 (Cluster)
 
-### 4.1 Cluster 的前置认知
+### 5.1 集群的作用
 
-Cluster 是三合一的方案：
-- **数据分片**：16384 个 slot 分配到多个主节点
-- **自动故障转移**：每个主节点有对应从节点
-- **自动重定向**：客户端请求自动路由到正确节点
+| 作用 | 说明 |
+|------|------|
+| **数据分区** | 突破单机内存限制，数据分散到多个节点 |
+| **高并发** | 每个主节点都可提供读写服务，大幅提升响应能力 |
+| **高可用** | 主从复制 + 主节点自动故障转移 |
+| **解决单机瓶颈** | 单机内存过大时，bgsave/bgrewriteaof 的 fork 可能阻塞主进程；全量复制时缓冲区可能溢出 |
 
-### 4.2 完整的 6 节点配置文件（3主3从）
+### 5.2 哈希槽 (Hash Slot) 机制
 
-以 6381 节点为例：
+```
+Redis 集群使用 16384 个哈希槽（编号 0~16383）
+
+Key → CRC16(key) % 16384 → 确定属于哪个槽 → 路由到对应节点
+
+┌─────────────────┬──────────────────┬──────────────────┐
+│    Node A        │     Node B       │     Node C       │
+│  Slots 0~5460   │ Slots 5461~10922 │ Slots 10923~16383│
+└─────────────────┴──────────────────┴──────────────────┘
+```
+
+### 5.3 高可用架构：三主三从
+
+```
+┌────────┐  ┌────────┐  ┌────────┐
+│Master A│  │Master B│  │Master C│
+│ :6379  │  │ :6379  │  │ :6379  │
+└───┬────┘  └───┬────┘  └───┬────┘
+    │           │           │
+    ▼           ▼           ▼
+┌────────┐  ┌────────┐  ┌────────┐
+│Slave A1│  │Slave B1│  │Slave C1│
+│ :6380  │  │ :6380  │  │ :6380  │
+└────────┘  └────────┘  └────────┘
+```
+
+- 任一主节点故障 → 其从节点自动提升为主
+- 当某主节点和其所有从节点都失败 → 集群不可用
+
+### 5.4 集群配置
+
+每台机器两个 Redis 实例（6379 + 6380），配置如下：
+
+**6379 端口配置** (`cluster/redis_6379.conf`)：
 
 ```bash
-# redis6381.conf
 bind * -::*
 daemonize yes
 protected-mode no
-port 6381
-requirepass 123qweasd
-masterauth 123qweasd
+cluster-enabled yes                # 开启集群模式
+cluster-node-timeout 5000          # 节点超时时间
+dir "/opt/software/redis/cluster"
+appendonly yes                     # 开启 AOF
+port 6379
+logfile "/opt/software/redis/redis-stable/cluster/redis6379.log"
+cluster-config-file nodes-6379.conf
+appendfilename "appendonly6379.aof"
+dbfilename "dump6379.rdb"
+```
 
-# ===== Cluster 配置 =====
+**6380 端口配置** (`cluster/redis_6380.conf`)：
+
+```bash
+bind * -::*
+daemonize yes
+protected-mode no
 cluster-enabled yes
-cluster-config-file nodes-6381.conf
-cluster-node-timeout 5000          # 节点超时（毫秒）
-
-# ===== 持久化（Cluster 环境必须开启） =====
+cluster-node-timeout 5000
+dir "/opt/software/redis/cluster"
 appendonly yes
-appenddirname "aof"
-appendfilename "appendonly6381.aof"
-dbfilename "dump6381.rdb"
-
-logfile "/root/myredis/cluster/redis6381.log"
-pidfile /var/run/redis_6381.pid
-dir "/root/myredis/cluster"
+port 6380
+logfile "/opt/software/redis/redis-stable/cluster/redis6380.log"
+cluster-config-file nodes-6380.conf
+appendfilename "appendonly6380.aof"
+dbfilename "dump6380.rdb"
 ```
 
-依次为 6381-6386 创建配置并启动：
+### 5.5 创建集群
 
 ```bash
-redis-server redis6381.conf
-redis-server redis6382.conf
-# ... 到 6386
+# 先启动所有 6 个 Redis 实例
+redis-server ./cluster/redis_6379.conf
+redis-server ./cluster/redis_6380.conf
+
+# 检查服务
+ps aux | grep redis
+
+# 创建三主三从集群（--cluster-replicas 1 表示每个主节点带 1 个从节点）
+redis-cli --cluster create --cluster-replicas 1 \
+  192.168.75.129:6379 192.168.75.129:6380 \
+  192.168.75.131:6379 192.168.75.131:6380 \
+  192.168.75.132:6379 192.168.75.132:6380
 ```
 
-### 4.3 创建集群
+### 5.6 验证和运维命令
 
 ```bash
-redis-cli -a 123qweasd --cluster create --cluster-replicas 1 \
-  192.168.65.214:6381 \
-  192.168.65.214:6382 \
-  192.168.65.214:6383 \
-  192.168.65.214:6384 \
-  192.168.65.214:6385 \
-  192.168.65.214:6386
+# 集群信息
+redis-cli cluster info
+
+# 节点身份信息
+redis-cli cluster nodes
+
+# 节点复制信息
+redis-cli info replication
+
+# 带路由规则连接（关键！-c 参数自动重定向到正确节点）
+redis-cli -c
+set k1 v1          # 自动路由到对应槽位所在的节点
+
+# 停止服务
+redis-cli -p 6379 shutdown
+redis-cli -p 6380 shutdown
 ```
 
-`--cluster-replicas 1` 表示每个主节点配 1 个从节点。Redis 会**自动**：
-- 前 3 个节点（6381/6382/6383）设为 master
-- 后 3 个节点（6384/6385/6386）分别作为它们的 slave
-- 自动分配 16384 个 slot 到 3 个 master（约 5461 个/节点）
-
-### 4.4 验证集群
+### 5.7 故障转移模拟
 
 ```bash
-# 连接集群（加 -c 参数启用集群模式）
-redis-cli -a 123qweasd -p 6381 -c
+# 将 129 机器的主节点(6379)停掉
+redis-cli -p 6379 shutdown
 
-127.0.0.1:6381> CLUSTER NODES
-b5d7fa0bef... 192.168.65.214:6381@16381 myself,master - 0 0 1 connected 0-5460
-e8cd1c6a3c... 192.168.65.214:6382@16382 master - 0 0 2 connected 5461-10922
-c1d5f8e479... 192.168.65.214:6383@16383 master - 0 0 3 connected 10923-16383
-a1b2c3d4e5... 192.168.65.214:6384@16384 slave b5d7fa0bef 0 0 1 connected
-f6g7h8i9j0... 192.168.65.214:6385@16385 slave e8cd1c6a3c 0 0 2 connected
-k1l2m3n4o5... 192.168.65.214:6386@16386 slave c1d5f8e479 0 0 3 connected
+# 观察其从节点(6380)的日志
+cat redis6380.log
+# → 6380 自动提升为主节点
 
-127.0.0.1:6381> CLUSTER INFO
-cluster_state:ok
-cluster_slots_assigned:16384
-cluster_slots_ok:16384
-cluster_slots_fail:0
-cluster_known_nodes:6
-cluster_size:3
+# 在另一台机器查看集群节点信息
+redis-cli cluster nodes
+# → 确认 6380 已成为新主节点
+
+# 重新启动旧主节点 6379
+redis-server ./cluster/redis_6379.conf
+
+# 查看其节点信息（自动变为从节点）
+redis-cli -p 6379 info replication
+
+# 观察日志确认重新加入集群
 ```
 
-### 4.5 动态扩容
+### 5.8 为什么是 16384 个槽？
 
-```bash
-# 添加新 master（6387）
-redis-cli -a 123qweasd --cluster add-node 192.168.65.214:6387 192.168.65.214:6381
-
-# 迁移 slot 给新节点
-redis-cli -a 123qweasd --cluster reshard 192.168.65.214:6381
-# 交互式引导：要移多少slot？哪个节点接收？从哪些节点移出？
-
-# 添加 slave（6388 作为 6387 的从节点）
-redis-cli -a 123qweasd --cluster add-node \
-  192.168.65.214:6388 192.168.65.214:6381 \
-  --cluster-slave --cluster-master-id <master-node-id>
-```
-
-### 4.6 故障转移验证
-
-```bash
-# 关闭 6381（一个 master）
-redis-cli -a 123qweasd -p 6381 shutdown
-
-# 查看集群状态变化
-redis-cli -a 123qweasd -p 6382 -c cluster nodes
-# 6384 应自动升级为 master，slot 范围变为 0-5460
-```
-
-> **注意**：`CLUSTER FAILOVER` 可手动触发故障转移。`CLUSTER FAILOVER FORCE` 不等待主节点响应，强制切换（可能导致数据丢失）。
-
-### 4.7 集群相关故障排查
-
-| 问题 | 现象 | 解决 |
-|------|------|------|
-| `(error) CLUSTERDOWN` | 所有 slot 未全部分配 | 检查节点是否全部启动，执行 `cluster info` |
-| `(error) MOVED 12706 192.168.65.214:6383` | 客户端未加 `-c` 参数 | 加 `-c` 参数重连 |
-| 连接不上某个节点 | 防火墙阻挡 | 开放服务端口 + 服务端口+10000（Gossip 端口） |
-| 集群分裂（脑裂） | 网络分区导致两个 master | 调整 `cluster-node-timeout`，优化网络 |
+- **CRC16 算法**输出 16 位，即 0~65535
+- Redis 选择 16384 (2^14) 而非 65535 (2^16)，原因：
+  - 心跳包中包含槽位信息，16384 个槽用位图表示仅需 2KB，65535 需 8KB
+  - 集群节点数量通常不超过 1000 个，16384 已足够均匀分配
+  - 更小的位图意味着更低的消息传输开销
 
 ---
 
-## 五、部署架构选型指南
+## 六、完整目录结构
 
-| 场景 | 推荐架构 | 理由 |
-|------|---------|------|
-| 本地开发 | 单机 | 简单够用 |
-| 小型项目（QPS < 1万） | 主从复制 | 读写分离，数据备份 |
-| 中型项目（需要高可用） | Sentinel (3节点) | 自动故障转移 |
-| 大型项目（数据量大/QPS > 5万） | Cluster (6节点起) | 数据分片 + 自动故障转移 |
-| 云环境 | Redis Cloud / 云厂商托管 | 免运维，弹性扩容 |
+```
+/opt/software/redis/                     # Redis 应用目录
+├── redis-stable/                        # Redis 应用根目录
+│   ├── cluster/                         # 集群配置文件存放路径（手动创建）
+│   │   ├── redis_6379.conf
+│   │   ├── redis_6380.conf
+│   │   ├── redis6379.log
+│   │   └── redis6380.log
+│   ├── redis.conf                       # 单机/主从配置
+│   ├── sentinel.conf                    # 哨兵配置
+│   └── redis.log                        # 日志
+└── cluster/                             # 集群数据存储目录
+    ├── nodes-6379.conf                  # 集群节点配置文件（自动生成）
+    ├── nodes-6380.conf
+    ├── appendonly6379.aof
+    ├── appendonly6380.aof
+    ├── dump6379.rdb
+    └── dump6380.rdb
+```
 
-> 生产环境切换建议路径：单机 → 主从复制 → Sentinel → Cluster。不要一步到位跳到 Cluster，在理解每一层的基础上逐步演进。
+---
+
+## 七、四种模式选型总结
+
+| 模式 | 高可用 | 数据分片 | 复杂度 | 适用场景 |
+|------|--------|----------|--------|----------|
+| **单机** | ❌ | ❌ | 低 | 开发测试、缓存量小 |
+| **主从** | ❌ (需人工) | ❌ | 低 | 读写分离、数据备份 |
+| **哨兵** | ✅ | ❌ | 中 | 中小规模、要求自动故障转移 |
+| **集群** | ✅ | ✅ | 高 | 大规模、海量数据、高并发 |
+
+---
+
+## 八、面试要点
+
+1. **Redis 哨兵模式的选举过程是怎样的？** — 票数 >= n/2+1 成为 Leader
+2. **主观下线和客观下线的区别？** — 单个 Sentinel 判定 vs 多数 Sentinel 一致判定
+3. **Redis 集群为什么是 16384 个槽？** — 心跳位图 2KB vs 8KB 的权衡
+4. **哨兵模式为什么节点要是奇数？** — 防止脑裂场景下的平票
+5. **四种部署模式各自解决了什么问题？** — 单机→主从(冗余) → 哨兵(自动故障转移) → 集群(分片扩容)

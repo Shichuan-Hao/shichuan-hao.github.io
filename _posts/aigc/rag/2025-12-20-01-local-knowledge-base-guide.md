@@ -1,5 +1,5 @@
 ---
-title: Embedding 快速入门之本地知识库搭建方案综述
+title: 本地知识库搭建方案整理
 description:
 author: hsc
 date: 2025-12-20 19:27:00 +0800

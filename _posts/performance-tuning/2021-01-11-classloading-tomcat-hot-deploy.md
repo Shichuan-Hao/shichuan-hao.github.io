@@ -5,7 +5,7 @@ title: "Tomcat类加载机制及其热加载和热部署原理剖析"
 description: "课前须知: 1.Tomcat 类加载机制详解 1.1 JVM 类加载器 Java 中有 3 个类加载器"
 author: hsc
 date: 2021-01-11 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'Tomcat调优', 'JVM调优']
 toc: true
 

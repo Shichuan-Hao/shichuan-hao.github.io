@@ -6,7 +6,7 @@ title: "Mysql索引优化实战二"
 description: "分页查询优化 1 示例表: CREATE TABLE (3 int(11) NOT NULL AUTO_INCREMENT"
 author: hsc
 date: 2020-08-16 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
 

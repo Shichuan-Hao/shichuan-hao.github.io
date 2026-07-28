@@ -5,7 +5,7 @@ title: "JVM对象创建与内存分配机制深度剖析"
 description: "对象的创建对象创建的主要流程: 1.类加载检查虚拟机遇到一条 new 指令时,首先将去检查这个指令的参数是否能在常量池中定位到一个类的符号引用"
 author: hsc
 date: 2021-03-21 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', 'JVM调优', '索引优化']
 toc: true
 

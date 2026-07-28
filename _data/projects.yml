@@ -1,13 +1,14 @@
 # 项目列表（假数据占位，后续替换为真实项目）
 items:
-  - title: "AI 智能客服 Agent（规划中）"
-    description: "基于 LangChain + Ollama + DeepSeek 构建的企业级智能客服系统，支持 RAG 检索增强、多轮对话、意图识别。"
-    tech: ["LangChain", "Ollama", "DeepSeek", "RAG", "FastAPI"]
-    url: "#"
-    status: "规划中"
+  - title: "灵犀（LingXi）"
+    description: "基于 LangGraph Multi-Agent 架构的企业级 AI Agent 应用。完整实现了意图识别 → 安全护栏 → 任务分解 → 多工具并行（Text2Cypher + GraphRAG）→ 幻觉检测的全链路 Agent 编排。配置驱动、子图可替换，可快速二次开发为各类 AI Agent 应用。"
+    tech: ["LangGraph", "LangChain", "DeepSeek", "Neo4j", "GraphRAG", "FastAPI", "Ollama"]
+    url: "https://github.com/Shichuan-Hao/lingxi_backend"
+    status: "已完成"
 
-  - title: "Ollama 企业级部署工具集"
-    description: "一键式 Ollama 模型部署、压力测试、监控面板，帮助企业快速评估和部署大模型推理服务。"
-    tech: ["Python", "Ollama", "Streamlit", "Docker", "Prometheus"]
-    url: "#"
-    status: "开发中"
+
+  # - title: "Ollama 企业级部署工具集"
+  #   description: "一键式 Ollama 模型部署、压力测试、监控面板，帮助企业快速评估和部署大模型推理服务。"
+  #   tech: ["Python", "Ollama", "Streamlit", "Docker", "Prometheus"]
+  #   url: "#"
+  #   status: "开发中"

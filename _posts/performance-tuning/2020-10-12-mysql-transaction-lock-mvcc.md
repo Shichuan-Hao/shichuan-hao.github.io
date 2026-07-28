@@ -5,7 +5,7 @@ title: "Mysql锁机制与优化实践以及MVCC底层原理剖析(1)"
 description: "锁机制详解锁是计算机协调多个进程或线程并发访问某一资源的机制"
 author: hsc
 date: 2020-10-12 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
 

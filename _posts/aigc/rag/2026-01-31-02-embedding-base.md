@@ -1,5 +1,5 @@
 ---
-title: Embedding 快速入门之 Embedding 基础：理解文本向量化
+title: Embedding 基础：理解文本向量化
 description:
 author: hsc
 date: 2026-01-31 22:27:00 +0800

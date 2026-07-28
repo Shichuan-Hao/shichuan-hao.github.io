@@ -5,7 +5,7 @@ title: "class文件结构参照表全集"
 description: "Class 文件结构类型 名称 数量 u4 固定值(0xCAFEBABE) Magic Number(魔数) 1u2(2 个字节) 次版本号 1u2(2 个字节"
 author: hsc
 date: 2021-04-12 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
 

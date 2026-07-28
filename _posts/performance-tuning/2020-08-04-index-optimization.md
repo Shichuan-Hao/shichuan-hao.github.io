@@ -5,7 +5,7 @@ title: "索引优化笔记补充"
 description: "关于《Mysql 索引优化实战一》中课上示例是基于 Mysql5.7 的。"
 author: hsc
 date: 2020-08-04 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
 

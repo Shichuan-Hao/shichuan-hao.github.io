@@ -4,7 +4,7 @@ title: "Mysql全局优化与Mysql 8.0新特性详解"
 description: "补充一点配置文件 my.ini 或 my.cnf 的全局参数: 假设服务器配置为: CPU:32 核内存:64GDISK:2T SSD 下面参数都是服务端参数"
 author: hsc
 date: 2020-11-15 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'MySQL优化', '索引优化']
 toc: true
 

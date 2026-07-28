@@ -5,7 +5,7 @@ title: "Tomcat 线程模型详解&性能调优"
 description: "课前须知: 1. Tomcat I/O 模型详解 Linux I/O 模型详解 I/O 要解决什么问题 I/O:在计算机内存与外部设备之间拷贝数据的过程。"
 author: hsc
 date: 2020-12-31 00:00:00 +0800
-categories: ['Java 后端', '性能调优']
+categories: [Java, 性能调优]
 tags: ['性能调优', 'MySQL', 'Tomcat调优', 'JVM调优']
 toc: true
 
