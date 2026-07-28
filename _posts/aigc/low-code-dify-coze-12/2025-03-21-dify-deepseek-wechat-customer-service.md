@@ -1,6 +1,7 @@
 ---
 title: Dify + DeepSeek搭建微信智能客服：Chatflow工作流全解析
 description: 使用Dify和DeepSeek构建微信公众号智能客服工作流，涵盖Chatflow设计、LLM节点、知识检索、HTTP请求、问题分类器等核心环节。
+excerpt: 使用Dify和DeepSeek构建微信公众号智能客服工作流，涵盖Chatflow设计、LLM节点、知识检索、HTTP请求、问题分类器等核心环节。
 author: hsc
 date: 2025-03-21 10:00:00 +0800
 categories: [AI Agent, 低代码平台, Dify]
