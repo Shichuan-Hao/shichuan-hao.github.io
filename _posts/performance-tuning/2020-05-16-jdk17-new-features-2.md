@@ -233,14 +233,14 @@ real 0m0.059suser 0m0.027ssys 0m0.036s 然后,GraalVM 还提供了一个功能,�
 [oper@localhost ~]$ native-image Hello========================================================================================================================GraalVM Native Image: Generating 'hello' (executable)...========================================================================================================================[1/8] Initializing...(3.4s @ 0.09GB)
 Java version: 17.0.9+11-LTS, vendor version: Oracle GraalVM 17.0.9+11.1Graal compiler: optimization level: 2, target machine: armv8-a, PGO: ML-inferredC compiler: gcc (redhat, aarch64, 11.4.1)
 Garbage collector: Serial GC (max heap size: 80% of RAM)
-[2/8] Performing analysis... [****](7.6s @ 0.24GB)
+[2/8] Performing analysis... [****] (7.6s @ 0.24GB)
 1,831 (59.26%) of 3,090 types reachable1,733 (46.69%) of 3,712 fields reachable7,726 (35.98%) of 21,471 methods reachable
 
 623 types, 0 fields, and 285 methods registered for reflection49 types, 32 fields, and 48 methods registered for JNI access4 native libraries: dl, pthread, rt, z[3/8] Building universe...(1.0s @ 0.25GB)
 [4/8] Parsing methods... [**](2.6s @ 0.22GB)
 [5/8] Inlining methods... [***](0.6s @ 0.21GB)
 [6/8] Compiling methods... [****](16.6s @ 0.25GB)
-[7/8] Layouting methods... [*](0.4s @ 0.39GB)
+[7/8] Layouting methods... [*] (0.4s @ 0.39GB)
 [8/8] Creating image... [*] (0.0s @ 0.27GB)
 2.7s (8.1% of total time) in 146 GCs | Peak RSS: 0.95GB | CPUload: 1.95Produced artifacts:
 /home/oper/svm_err_b_20231129T171758.715_pid2504.md (build_info)

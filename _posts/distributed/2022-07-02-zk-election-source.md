@@ -151,4 +151,4 @@ Leader 选举核心流程：
     传输层(QuorumCnxManager)  → 按机器分队列
 ```
 
-> 有道云笔记：[Zookeeper选举Leader源码剖析](http://note.youdao.com/noteshare?id=dfa894cfaf0fde76405dd205dc1d1b47)
+> 有道云笔记：[Zookeeper选举Leader源码剖析](https://note.youdao.com/noteshare?id=dfa894cfaf0fde76405dd205dc1d1b47)

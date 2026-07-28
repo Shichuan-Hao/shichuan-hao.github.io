@@ -158,4 +158,4 @@ ZAB 协议核心：
     保证：全局有序 + 跨 Leader 可追踪 + 简化恢复
 ```
 
-> 有道云笔记：[ZAB协议源码剖析](http://note.youdao.com/noteshare?id=0284e85bc556d16fefc05e7a0b30da93)
+> 有道云笔记：[ZAB协议源码剖析](https://note.youdao.com/noteshare?id=0284e85bc556d16fefc05e7a0b30da93)
